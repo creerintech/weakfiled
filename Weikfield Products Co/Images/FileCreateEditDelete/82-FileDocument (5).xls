@@ -1,0 +1,7 @@
+<table border="0">
+	<tr>
+		<th scope="col">#</th><th scope="col">FileNo</th><th scope="col">FileName</th><th scope="col">PropertyName</th><th scope="col">Company</th><th scope="col">Room</th><th scope="col">Aisle</th><th scope="col">ShelfNo</th><th scope="col">Narration</th><th scope="col">DocDate</th><th scope="col">DocExpiryDate</th><th scope="col">Barcode</th>
+	</tr><tr>
+		<td>6</td><td>R8/A/S7/F0008</td><td>Revo Solution</td><td>SAI GANGA</td><td>SAI HARI KRUPA DEVELOPERS</td><td>R8</td><td>A</td><td>S7</td><td>rerrwerewr</td><td>01 Jan 1975</td><td>20 Nov 2017</td><td>123456878</td>
+	</tr>
+</table>

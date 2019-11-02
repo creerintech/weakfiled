@@ -1,0 +1,163 @@
+﻿<%@ Page Title="Date And Document Titles Details" Language="C#" MasterPageFile="~/MasterPages/MasterPage.master" AutoEventWireup="true" CodeFile="YearAndTitlesDetails.aspx.cs" Inherits="MIS_YearAndTitlesDetails" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="SearchContent" runat="Server">
+
+    <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
+    <style type="text/css">
+        .modalPopup {
+            background-color: #696969;
+            filter: alpha(opacity=40);
+            opacity: 0.7;
+            xindex: -1;
+        }
+    </style>
+
+    <script type="text/javascript">
+        var prm = Sys.WebForms.PageRequestManager.getInstance();
+        //Raised before processing of an asynchronous postback starts and the postback request is sent to the server.
+        prm.add_beginRequest(BeginRequestHandler);
+        // Raised after an asynchronous postback is finished and control has been returned to the browser.
+        prm.add_endRequest(EndRequestHandler);
+        function BeginRequestHandler(sender, args) {
+            //Shows the modal popup - the update progress
+            var popup = $find('<%= modalPopup.ClientID %>');
+            if (popup != null) {
+                popup.show();
+            }
+        }
+
+        function EndRequestHandler(sender, args) {
+            //Hide the modal popup - the update progress
+            var popup = $find('<%= modalPopup.ClientID %>');
+            if (popup != null) {
+                popup.hide();
+            }
+        }
+
+
+    </script>
+
+    <script language="javascript" type="text/javascript">
+        function RedirectReceipt() {
+            document.forms[0].target = "_blank";
+            var btnRec = document.getElementById('<%=BtncallRec.ClientID%>');
+            btnRec.click();
+
+        }
+    </script>
+
+    <%--<script type = "text/javascript">
+        function SetTarget() {
+            document.forms[0].target = "_blank";
+        }
+</script>--%>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Title" runat="Server">
+    Date And Document Titles Details
+
+    <asp:UpdatePanel ID="Upp" runat="server">
+        <ContentTemplate>
+            <table width="90%">
+                <tr>
+                    <td align="center">
+                        <div>
+                            <asp:UpdateProgress ID="UpdateProgress" runat="server">
+                                <ProgressTemplate>
+                                    <asp:Image ID="Image1" ImageUrl="~/Images/Icon/waiting.gif" AlternateText="Processing"
+                                        runat="server" />
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+                            <ajax:ModalPopupExtender ID="modalPopup" runat="server" TargetControlID="UpdateProgress"
+                                PopupControlID="UpdateProgress" BackgroundCssClass="modalPopup" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
+
+    <asp:UpdatePanel ID="UPEntry" runat="server">
+        <ContentTemplate>
+            <fieldset id="F1" runat="server" class="FieldSet">
+                <table width="100%" cellspacing="5">
+
+                    <tr style="height: 10px;">
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="Label">File :
+                        </td>
+
+                        <td >
+                            <asp:TextBox ID="txtFile" runat="server" Width="500px" OnTextChanged="txtFile_TextChanged" AutoPostBack="true" TabIndex="1"></asp:TextBox>
+                            <asp:HiddenField ID="hdnFileNo" Value="" runat="server"/>
+
+
+                            <ajax:AutoCompleteExtender ID="AutoCompleteExtender3" runat="server" TargetControlID="txtFile"
+                                CompletionInterval="100" UseContextKey="True" FirstRowSelected="true" ShowOnlyCurrentWordInCompletionListItem="true"
+                                ServiceMethod="GetCompletionListFile" CompletionListCssClass="AutoExtender" CompletionListItemCssClass="AutoExtenderList"
+                                CompletionListHighlightedItemCssClass="AutoExtenderHighlight" MinimumPrefixLength="2">
+                            </ajax:AutoCompleteExtender>
+
+                        </td>
+                       
+                    </tr>
+                    <tr style="height: 10px;">
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr >
+                        <td colspan="3" align="center">
+                        <asp:Button ID="BtnPrint" runat="server" CssClass="button" TabIndex="1" Text="Print" 
+                                ToolTip="Print" OnClick="BtnPrint_Click" />
+                          
+                            <asp:Button ID="BtnCancel" runat="server" CssClass="button" TabIndex="1" Text="Cancel"
+                                oolTip="Clear The Details" OnClick="BtnCancel_Click" />
+                        
+                                 <asp:Button ID="BtnShow" runat="server" CssClass="button" Visible="false"
+                                TabIndex="1" Text="Show" ToolTip="Show Details" ValidationGroup="Add" OnClick="BtnShow_Click" />
+                      
+                                 <asp:Button ID="btnFileNo" runat="server" CssClass="button" TabIndex="1" Text="Print File No(s)" Width="100px"  
+                                ToolTip="Print FileNo" OnClick="btnFileNo_Click" />
+
+                              <asp:Button ID="btnDocument" runat="server" CssClass="button" TabIndex="1" Text="Print Document" Width="100px" 
+                                ToolTip="Print Document Details" OnClick="btnDocument_Click" Visible="true" />
+
+                        </td>
+                       
+                    </tr>
+                    <tr>
+                        <td>
+                            <asp:UpdatePanel ID="BtnCa" runat="server">
+                                <ContentTemplate>
+                                 <asp:Button ID="BtncallRec" runat="server" CssClass="Display_None" OnClick="BtncallRec_Click"
+                                OnClientClick="aspnetForm.target = '_blank';" />
+                                </ContentTemplate>
+                                <Triggers>
+                                    <asp:PostBackTrigger ControlID="BtncallRec" />
+                                </Triggers>
+                            </asp:UpdatePanel>
+                        </td>
+                    </tr>
+
+                    <tr style="height: 10px;">
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </fieldset>
+    
+
+           
+        </ContentTemplate>
+
+    </asp:UpdatePanel>
+</asp:Content>
+

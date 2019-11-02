@@ -1,0 +1,308 @@
+﻿<%@ Page Language="C#" MasterPageFile="~/MasterPages/MasterPage.master" AutoEventWireup="true"
+    CodeFile="FileInwordRegister.aspx.cs" Inherits="Transactions_FileInwordRegister"
+    Title="FileInOutRegister" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<%@ Register Assembly="DropDownCheckBoxes" Namespace="Saplin.Controls" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="SearchContent" runat="Server">
+    <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
+    <input type="hidden" id="hiddenbox" runat="server" value="" />
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Title" runat="Server">
+    File Inword Register
+    <asp:UpdatePanel ID="Upp" runat="server">
+        <ContentTemplate>
+            <table width="100%">
+                <tr>
+                    <td align="center">
+                        <div>
+                            <asp:UpdateProgress ID="UpdateProgress" runat="server">
+                                <ProgressTemplate>
+                                    <asp:Image ID="Image1" ImageUrl="~/Images/Icon/waiting.gif" AlternateText="Processing"
+                                        runat="server" />
+                                </ProgressTemplate>
+                            </asp:UpdateProgress>
+                            <ajax:ModalPopupExtender ID="modalPopup" runat="server" TargetControlID="UpdateProgress"
+                                PopupControlID="UpdateProgress" BackgroundCssClass="modalPopup" />
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="Body" runat="Server">
+    <asp:UpdatePanel ID="uPanel" runat="server">
+        <ContentTemplate>
+            <ajax:TabContainer ID="TabContainer1" runat="server" ActiveTabIndex="2" AutoPostBack="True"
+                Height="250px">
+                <%--To Solve First Tab Edit Problem--%>
+                <ajax:TabPanel ID="TempTabPanel" runat="server" HeaderText="Temp" Visible="false"
+                    BorderStyle="None">
+                </ajax:TabPanel>
+                <%--To Solve First Tab Edit Problem--%>
+                <ajax:TabPanel ID="TabPanel1" runat="server" HeaderText="Inword Master" BorderStyle="None">
+                    <ContentTemplate>
+                        <table width="100%">
+                            <tr>
+                                <td valign="top">
+                                    <fieldset id="fieldset" runat="server" class="FieldSet">
+                                        <table width="90%">
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Label" colspan="2">
+                                                    Date :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtDate" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                    <ajax:CalendarExtender CssClass="cal_Theme1" ID="CalEx_Date" runat="server" Format="dd MMM yyyy"
+                                                        PopupButtonID="Img_Date" TargetControlID="txtDate" />
+                                                    <asp:ImageButton ID="Img_Date" runat="server" CausesValidation="False" CssClass="Imagebutton"
+                                                        ImageUrl="~/Images/Icon/DateSelector.png" TabIndex="1" />
+                                                    <asp:RequiredFieldValidator ID="ReqDate" runat="server" ControlToValidate="txtDate"
+                                                        Display="None" ErrorMessage="Enter Date" SetFocusOnError="True" ValidationGroup="Add">
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender1" runat="server" Enabled="True"
+                                                        TargetControlID="ReqDate" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                                <td class="Label" colspan="2">
+                                                    File No :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtFileNo" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="reqFile" runat="server" ControlToValidate="txtFileNo"
+                                                        Display="None" ErrorMessage="Enter File No" SetFocusOnError="True" ValidationGroup="Add">                                        
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender18" runat="server" Enabled="True"
+                                                        TargetControlID="reqFile" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                                <td class="Label" colspan="2">
+                                                    File Name :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtFileName" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtFileName"
+                                                        Display="None" ErrorMessage="Enter File Name" SetFocusOnError="True" ValidationGroup="Add">                                        
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender3" runat="server" Enabled="True"
+                                                        TargetControlID="reqFile" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td class="Label">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Label" colspan="2">
+                                                    Employee Name :
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlEmployee" runat="server" Width="200px" AutoPostBack="true"
+                                                        CssClass="ComboBox" TabIndex="1">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="ReqddlEmployee" runat="server" ControlToValidate="ddlEmployee"
+                                                        InitialValue="0" Display="None" ErrorMessage="Select Employee Name" SetFocusOnError="True"
+                                                        ValidationGroup="Add">
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender5" runat="server" Enabled="True"
+                                                        TargetControlID="ReqddlEmployee" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                                <td class="Label" colspan="2">
+                                                    Barcode :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="TxtBarcode" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                        </table>
+                                        <table width="100%">
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" align="center">
+                                                    <asp:Button ID="BtnUpdate" runat="server" Text="Update" CssClass="button" ValidationGroup="Add"
+                                                        TabIndex="1" />&nbsp;&nbsp;&nbsp;
+                                                    <asp:Button ID="BtnSave" runat="server" Text="Save" CssClass="button" TabIndex="1"
+                                                        ValidationGroup="Add" />&nbsp;&nbsp;&nbsp;
+                                                    <asp:Button ID="BtnDelete" runat="server" Text="Delete" CssClass="button" ValidationGroup="Add"
+                                                        Visible="false" TabIndex="1" />
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <asp:Button ID="BtnCancel" runat="server" Text="Cancel" CssClass="button" CausesValidation="False"
+                                                        TabIndex="1" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </table>
+                        <center>
+                            <h2>
+                                Search File
+                            </h2>
+                        </center>
+                        <%--<asp:UpdatePanel ID="Content1_UpdatePanel" runat="server">
+                <ContentTemplate>
+                    <asp:TextBox ID="TxtSearch" runat="server" CssClass="search" ToolTip="Enter The Text"
+                TabIndex="15" Width="292px" AutoPostBack="True" > </asp:TextBox>
+            
+            <ajax:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="TxtSearch"
+                CompletionInterval="100" UseContextKey="True" FirstRowSelected="true" ShowOnlyCurrentWordInCompletionListItem="true"
+                ServiceMethod="GetCompletionList" CompletionListCssClass="AutoExtender" CompletionListItemCssClass="AutoExtenderList"
+                CompletionListHighlightedItemCssClass="AutoExtenderHighlight">
+            </ajax:AutoCompleteExtender>
+                </ContentTemplate>
+            </asp:UpdatePanel>--%>
+                    </ContentTemplate>
+                </ajax:TabPanel>
+                <ajax:TabPanel ID="TabPanel2" runat="server" HeaderText="FileOut Master">
+                    <ContentTemplate>
+                        <table width="100%">
+                            <tr>
+                                <td valign="top">
+                                    <fieldset id="fieldset1" runat="server" class="FieldSet">
+                                        <table width="90%">
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Label" colspan="2">
+                                                    Date :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtFileOutDate" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                    <ajax:CalendarExtender CssClass="cal_Theme1" ID="CalendarExtender1" runat="server"
+                                                        Format="dd MMM yyyy" PopupButtonID="Img_Date" TargetControlID="txtFileOutDate" />
+                                                    <asp:ImageButton ID="ImageButton1" runat="server" CausesValidation="False" CssClass="Imagebutton"
+                                                        ImageUrl="~/Images/Icon/DateSelector.png" TabIndex="1" />
+                                                    <asp:RequiredFieldValidator ID="ReqOutDate" runat="server" ControlToValidate="txtFileOutDate"
+                                                        Display="None" ErrorMessage="Enter Date" SetFocusOnError="True" ValidationGroup="Add">
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender2" runat="server" Enabled="True"
+                                                        TargetControlID="ReqOutDate" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                                <td class="Label" colspan="2">
+                                                    File No :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtFileOutNo" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtFileOutNo"
+                                                        Display="None" ErrorMessage="Enter File No" SetFocusOnError="True" ValidationGroup="Add">                                        
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender4" runat="server" Enabled="True"
+                                                        TargetControlID="RequiredFieldValidator3" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                            <tr>
+                                                <td class="Label" colspan="2">
+                                                    File Name :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="TxtOutFileName" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TxtOutFileName"
+                                                        Display="None" ErrorMessage="Enter File Name" SetFocusOnError="True" ValidationGroup="Add">                                        
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender6" runat="server" Enabled="True"
+                                                        TargetControlID="RequiredFieldValidator4" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                                <td>
+                                                </td>
+                                                <td class="Label">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="Label" colspan="2">
+                                                    Employee Name :
+                                                </td>
+                                                <td>
+                                                    <asp:DropDownList ID="ddlEmployeeOutName" runat="server" Width="200px" AutoPostBack="true"
+                                                        CssClass="ComboBox" TabIndex="1">
+                                                    </asp:DropDownList>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="ddlEmployeeOutName"
+                                                        InitialValue="0" Display="None" ErrorMessage="Select Employee Name" SetFocusOnError="True"
+                                                        ValidationGroup="Add">
+                                                    </asp:RequiredFieldValidator>
+                                                    <ajax:ValidatorCalloutExtender ID="ValidatorCalloutExtender7" runat="server" Enabled="True"
+                                                        TargetControlID="RequiredFieldValidator5" WarningIconImageUrl="~/Images/Icon/Warning.png">
+                                                    </ajax:ValidatorCalloutExtender>
+                                                </td>
+                                                <td class="Label" colspan="2">
+                                                    Barcode :
+                                                </td>
+                                                <td>
+                                                    <asp:TextBox ID="txtOutFileBarcode" runat="server" Width="200px" TabIndex="1"></asp:TextBox>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            </tr>
+                                        </table>
+                                        <table width="100%">
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" align="center">
+                                                    <asp:Button ID="TxtOutFileSave" runat="server" Text="Update" CssClass="button" ValidationGroup="Add"
+                                                        TabIndex="1" />&nbsp;&nbsp;&nbsp;
+                                                    <asp:Button ID="txtOutFileUpdate" runat="server" Text="Save" CssClass="button" TabIndex="1"
+                                                        ValidationGroup="Add" />&nbsp;&nbsp;&nbsp;
+                                                    <asp:Button ID="txtOutFileDelete" runat="server" Text="Delete" CssClass="button"
+                                                        ValidationGroup="Add" Visible="false" TabIndex="1" />
+                                                    &nbsp;&nbsp;&nbsp;
+                                                    <asp:Button ID="TxtOutFileCancel" runat="server" Text="Cancel" CssClass="button"
+                                                        CausesValidation="False" TabIndex="1" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="10px">
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </fieldset>
+                                </td>
+                            </tr>
+                        </table>
+                    </ContentTemplate>
+                </ajax:TabPanel>
+            </ajax:TabContainer>
+        </ContentTemplate>
+    </asp:UpdatePanel>
+</asp:Content>

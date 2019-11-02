@@ -1,0 +1,765 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using DMS.DataModel;
+using DMS.EntityClass;
+using DMS.Utility;
+using System.Data;
+using System.Threading;
+using System.IO;
+
+public partial class Transactions_SearchFiles : System.Web.UI.Page
+{
+    #region[Private Variables]
+    DMSearchDocument Obj_SearchDocument = new DMSearchDocument();
+    SearchDocument Entity_SearchDocument = new SearchDocument();
+    CommanFunction Obj_Comm = new CommanFunction();
+    DataSet DS = new DataSet();
+    DataSet DS1 = new DataSet();
+    private string StrError = string.Empty;
+    private string StrCondition = string.Empty;
+    private static bool FlagView = false, FlagDel = false, FlagEdit = false, FlagPrint = false;
+    private bool Flag = true;
+    #endregion
+
+    private void FillDll()
+    {
+        //ddlOpction.Items.Insert(1, new ListItem("DateDetails","1"));
+        //ddlOpction.Items.Insert(0, new ListItem("DocumentNo","2"));
+        //ddlOpction.Items.Insert(0, new ListItem("DocumentSubject","3"));
+        //ddlOpction.Items.Insert(0, new ListItem("DepartmentCategory","4"));
+        //ddlOpction.Items.Insert(0, new ListItem("DocumentTitle","5"));
+        //ddlOpction.Items.Insert(0, new ListItem("DepartmentSubCategory","6"));
+        //ddlOpction.Items.Insert(0, new ListItem("DepartmentSubSubCategory","7"));
+        //ddlOpction.Items.Insert(0, new ListItem("PropertyName", "8"));
+        //ddlOpction.Items.Insert(0, new ListItem("Party", "9"));
+        //ddlOpction.Items.Insert(0, new ListItem("FileNo","10"));
+        //ddlOpction.Items.Insert(0, new ListItem("Room","11"));
+        //ddlOpction.Items.Insert(0, new ListItem("Aisle","12")); 
+        //ddlOpction.Items.Insert(0, new ListItem("CabinetNo","13"));
+        //ddlOpction.Items.Insert(0, new ListItem("ShelfNo", "14"));
+    }
+
+    public void SetInitialRow()
+    {
+        try
+        {
+            DataTable dtTable = new DataTable();
+            DataRow dr;
+
+            dtTable.Columns.Add("#", typeof(int));
+            dtTable.Columns.Add("DateDetails", typeof(string));
+            dtTable.Columns.Add("DocumentNo", typeof(string));
+            dtTable.Columns.Add("FileSubject", typeof(string));
+            dtTable.Columns.Add("DepartmentCategory", typeof(string));
+            dtTable.Columns.Add("DepartmentCategoryId", typeof(int));
+
+            dtTable.Columns.Add("FileName", typeof(string));
+            dtTable.Columns.Add("DepartmentSubCategory", typeof(string));
+            dtTable.Columns.Add("DepartmentSubSubCategory", typeof(string));
+            dtTable.Columns.Add("PropertyName", typeof(string));
+            dtTable.Columns.Add("Party", typeof(string));
+            dtTable.Columns.Add("FileNo", typeof(string));
+            dtTable.Columns.Add("Room", typeof(string));
+            dtTable.Columns.Add("Aisle", typeof(string));
+            dtTable.Columns.Add("RowNo", typeof(string));
+            dtTable.Columns.Add("CabinetNo", typeof(string));
+            dtTable.Columns.Add("ShelfNo", typeof(string));
+
+            dr = dtTable.NewRow();
+            dr["#"] = 0;
+            dr["DateDetails"] = string.Empty;
+            dr["DocumentNo"] = string.Empty;
+            dr["FileSubject"] = string.Empty;
+            dr["DepartmentCategory"] = string.Empty;
+            dr["DepartmentCategoryId"] = 0;
+
+            dr["FileName"] = string.Empty;
+            dr["DepartmentSubCategory"] = string.Empty;
+            dr["DepartmentSubSubCategory"] = string.Empty;
+            dr["PropertyName"] = string.Empty;
+            dr["Party"] = string.Empty;
+            dr["FileNo"] = string.Empty;
+            dr["Room"] = string.Empty;
+            dr["Aisle"] = string.Empty;
+            dr["RowNo"] = string.Empty;
+            dr["CabinetNo"] = string.Empty;
+            dr["ShelfNo"] = string.Empty;
+
+            dtTable.Rows.Add(dr);
+            ViewState["CurrentTable"] = dtTable;
+            GrdReport.DataSource = dtTable;
+            GrdReport.DataBind();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    private void ReportGrid(string RepCondition)
+    {
+        try
+        {
+            string NoSel = "0";
+
+            if (chkDateDetails.Checked == true)
+            {
+                Entity_SearchDocument.DateDetails = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.DateDetails = "0";
+            }
+            if (chkDocumentNo.Checked == true)
+            {
+                Entity_SearchDocument.DocumentNo = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.DocumentNo = "0";
+            }
+
+            if (chkDocumentSubject.Checked == true)
+            {
+                Entity_SearchDocument.FileSubject = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.FileSubject = "0";
+            }
+
+            if (chkDepartmentCategory.Checked == true)
+            {
+                Entity_SearchDocument.DepartmentCategory = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.DepartmentCategory = "0";
+            }
+            if (chkDocumentTitle.Checked == true)
+            {
+                Entity_SearchDocument.FileName = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.FileName = "0";
+            }
+            if (chkDepartmentSubCategory.Checked == true)
+            {
+                Entity_SearchDocument.DepartmentSubCategory = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.DepartmentSubCategory = "0";
+            }
+            if (chkDepartmentSubSubCategory.Checked == true)
+            {
+                Entity_SearchDocument.DepartmentSubSubCategory = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.DepartmentSubSubCategory = "0";
+            }
+            if (chkPropertyName.Checked == true)
+            {
+                Entity_SearchDocument.PropertyName = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.PropertyName = "0";
+            }
+            if (chkParty.Checked == true)
+            {
+                Entity_SearchDocument.Party = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.Party = "0";
+            }
+            if (chkFileNo.Checked == true)
+            {
+                Entity_SearchDocument.FileNo = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.FileNo = "0";
+            }
+            if (chkRoom.Checked == true)
+            {
+                Entity_SearchDocument.Room = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.Room = "0";
+            }
+            if (chkAisle.Checked == true)
+            {
+                Entity_SearchDocument.Aisle = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.Aisle = "0";
+            }
+            if (chkCabinetNo.Checked == true)
+            {
+                Entity_SearchDocument.CabinetNo = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.CabinetNo = "0";
+            }
+            if (chkShelfNo.Checked == true)
+            {
+                Entity_SearchDocument.ShelfNo = "1";
+                NoSel = "1";
+            }
+            else
+            {
+                Entity_SearchDocument.ShelfNo = "0";
+            }
+
+
+            string[] strSearch = RepCondition.Split('-');
+            if (strSearch.Length>0)
+            {
+                if (strSearch.Length==1)
+	            {
+	                Entity_SearchDocument.StrCondition = strSearch[0].ToString();
+                    Entity_SearchDocument.StrCondition2 = "";
+    	            DS1 = Obj_SearchDocument.FillSearchGrid_GooleLike(NoSel, ref Entity_SearchDocument,"",out StrError);    
+	            }
+                if (strSearch.Length==2)
+	            {
+		            Entity_SearchDocument.StrCondition = strSearch[0].ToString();
+                    Entity_SearchDocument.StrCondition2 = strSearch[1].ToString();
+                    DS1 = Obj_SearchDocument.FillSearchGrid_GooleLike(NoSel, ref Entity_SearchDocument,"",out StrError);
+	            }
+                if (strSearch.Length==3)
+	            {
+		            Entity_SearchDocument.StrCondition = strSearch[0].ToString();
+                    Entity_SearchDocument.StrCondition2 = strSearch[1].ToString();
+                    DS1 = Obj_SearchDocument.FillSearchGrid_GooleLike(NoSel, ref Entity_SearchDocument, strSearch[2].ToString(),out StrError);
+	            }
+                
+            }
+            else
+            {
+                Entity_SearchDocument.StrCondition = "";
+                Entity_SearchDocument.StrCondition2 = "";
+                DS1 = Obj_SearchDocument.FillSearchGrid_GooleLike(NoSel, ref Entity_SearchDocument,"",out StrError);
+            }
+            
+
+            if (DS1.Tables.Count > 0 && DS1.Tables[0].Rows.Count > 0)
+            {
+                GrdReport.DataSource = DS1.Tables[0];
+                GrdReport.DataBind();
+
+                ViewState["Search1"] = DS1.Tables[0];
+
+            }
+            else
+            {
+                GrdReport.DataSource = null;
+                GrdReport.DataBind();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    private void MakeEmptyForm()
+    {
+        TxtSearch.Text = string.Empty;
+        FillDll();
+        SetInitialRow();
+        ReportGrid(StrCondition);
+        lblFileNo.Text = "";
+
+        #region[UserRights]
+
+        if (FlagView)
+        {
+            //btnShow.Visible = false;
+        }
+
+        if (FlagPrint)
+        {
+
+            foreach (GridViewRow GRow in GrdReport.Rows)
+            {
+                GRow.FindControl("Image1").Visible = false;
+            }
+
+        }
+        #endregion
+
+    }
+
+    //User Right Function===========
+    public void CheckUserRight()
+    {
+        try
+        {
+            FlagView = FlagDel = FlagEdit = FlagPrint = false;
+            #region [USER RIGHT]
+            //Checking Session Varialbels========
+
+            if (Session["UserName"] != null && Session["UserRole"] != null)
+            {
+
+                System.Data.DataSet dsChkUserRight = new System.Data.DataSet();
+                System.Data.DataSet dsChkUserRight1 = new System.Data.DataSet();
+                dsChkUserRight1 = (DataSet)Session["DataSet"];
+
+                DataRow[] dtRow = dsChkUserRight1.Tables[1].Select("FormName ='SearchDocument'");
+                if (dtRow.Length > 0)
+                {
+                    DataTable dt = dtRow.CopyToDataTable();
+                    dsChkUserRight.Tables.Add(dt);// = dt.Copy();
+                }
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["ViewAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["AddAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["DelAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["EditAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["PrintAuth"].ToString()) == false)
+                {
+                    Response.Redirect("~/Masters/NotAuthUser.aspx");
+                }
+                //Checking View Right ========                    
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["ViewAuth"].ToString()) == false)
+                {
+                    //  btnShow.Visible = false;
+                    GrdReport.Visible = false;
+                }
+
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["PrintAuth"].ToString()) == false)
+                {
+                    foreach (GridViewRow GRow in GrdReport.Rows)
+                    {
+                        GRow.FindControl("Image1").Visible = false;
+                    }
+                    //BtnPrint.Visible = false;
+                    //FlagPrint = true;
+                }
+                //Edit /Delete Column Visible ========
+
+                dsChkUserRight.Dispose();
+                //}
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+
+            #endregion
+        }
+        catch (ThreadAbortException exp)
+        {
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    //User Right Function===========
+    public SortDirection dir
+    {
+        get
+        {
+            if (ViewState["dirState"] == null)
+            {
+                ViewState["dirState"] = SortDirection.Ascending;
+            }
+            return (SortDirection)ViewState["dirState"];
+        }
+        set
+        {
+            ViewState["dirState"] = value;
+        }
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            //  CheckUserRight();
+            MakeEmptyForm();
+        }
+    }
+
+    protected void TxtSearch_TextChanged(object sender, EventArgs e)
+    {
+        StrCondition = TxtSearch.Text.Trim();
+        ReportGrid(StrCondition);
+    }
+
+    protected void GrdReport_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        GrdReport.PageIndex = e.NewPageIndex;
+        StrCondition = TxtSearch.Text.Trim();
+        ReportGrid(StrCondition);
+    }
+
+    protected void GrdReport_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        ReportGrid(StrCondition);
+        DataTable dt = new DataTable();
+        dt = DS1.Tables[0];
+        {
+            string SortDir = string.Empty;
+            if (dir == SortDirection.Ascending)
+            {
+                dir = SortDirection.Descending;
+                SortDir = "Desc";
+            }
+            else
+            {
+                dir = SortDirection.Ascending;
+                SortDir = "Asc";
+            }
+            DataView sortedView = new DataView(dt);
+            sortedView.Sort = e.SortExpression + " " + SortDir;
+            GrdReport.DataSource = sortedView;
+            GrdReport.DataBind();
+        }
+    }
+
+    protected void ddlOpction_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        //string Name = string.Empty;
+
+        //foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlOpction.Items)
+        //{
+        //    if (Chkitem.Selected == true)
+        //    {
+        //        lblOpctionName.Visible = true;
+        //        string OpctionName = Chkitem.ToString();
+
+        //        if (Name.Length > 0)
+        //        {
+        //            Name += " <br/>" + OpctionName;
+        //        }
+        //        else
+        //        {
+        //            Name += " " + OpctionName;
+        //        }
+        //    }
+        //}
+        //lblOpctionName.Text = Name;
+    }
+
+    protected void chkFilter_CheckedChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            StrCondition = TxtSearch.Text.Trim();
+            ReportGrid(StrCondition);
+
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    private void ReportGrid_PopUp(string RepCondition)
+    {
+        try
+        {
+            DS1 = Obj_SearchDocument.FillReportGrid_PopUp(RepCondition, out StrError);
+
+            if (DS1.Tables.Count > 0 && DS1.Tables[0].Rows.Count > 0)
+            {
+                GrdPopUp.DataSource = DS1.Tables[0];
+                GrdPopUp.DataBind();
+            }
+            else
+            {
+                GrdPopUp.DataSource = null;
+                GrdPopUp.DataBind();
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
+    }
+
+    protected void GrdPopUp_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        try
+        {
+            GrdPopUp.PageIndex = e.NewPageIndex;
+            StrCondition = lblFileNo.Text.ToString();
+            ReportGrid_PopUp(StrCondition);
+            PopUpFiles.Show();
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void GrdPopUp_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        try
+        {
+            StrCondition = lblFileNo.Text.ToString();
+            ReportGrid_PopUp(StrCondition);
+            DataTable dt = new DataTable();
+            dt = DS1.Tables[0];
+            {
+                string SortDir = string.Empty;
+                if (dir == SortDirection.Ascending)
+                {
+                    dir = SortDirection.Descending;
+                    SortDir = "Desc";
+                }
+                else
+                {
+                    dir = SortDirection.Ascending;
+                    SortDir = "Asc";
+                }
+                DataView sortedView = new DataView(dt);
+                sortedView.Sort = e.SortExpression + " " + SortDir;
+                GrdPopUp.DataSource = sortedView;
+                GrdPopUp.DataBind();
+                PopUpFiles.Show();
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void LblbtnUploadDocPop_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            LinkButton LB = (LinkButton)sender;
+            int RowIndex = Convert.ToInt32(LB.CommandArgument);
+            if (!GrdPopUp.Rows[RowIndex].Cells[1].Text.Equals("&nbsp;"))
+            {
+                if (!string.IsNullOrEmpty(GrdPopUp.Rows[RowIndex].Cells[16].Text))
+                {
+                    Response.Redirect(ResolveUrl(GrdPopUp.Rows[RowIndex].Cells[16].Text), false);
+                }
+                else
+                {
+                    Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                    LB.Focus();
+                }
+            }
+            else
+            {
+                Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                LB.Focus();
+            }
+            LB.Focus();
+        }
+        catch (Exception ex)
+        {
+            Obj_Comm.ShowPopUpMsg(ex.Message, this.Page);
+        }
+    }
+
+    protected void btnPopUpClose_Click(object sender, ImageClickEventArgs e)
+    {
+        PopUpFiles.Hide();
+    }
+
+    protected void GrdReport_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            switch (e.CommandName)
+            {
+
+                case ("PopUp"):
+                    {
+                        PopUpFiles.Show();
+                        lblFileNo.Text = e.CommandArgument.ToString();
+                        popUpTitle.Text = "File No. - " + e.CommandArgument.ToString() + " Documents";
+                        ReportGrid_PopUp(e.CommandArgument.ToString());
+                        break;
+                    }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void GrdReport_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            e.Row.Attributes["onclick"] = Page.ClientScript.GetPostBackClientHyperlink(GrdReport, "Select$" + e.Row.RowIndex);
+            e.Row.Attributes["style"] = "cursor:pointer";
+        }
+    }
+
+    protected void GrdReport_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        int Row_Index = GrdReport.SelectedRow.RowIndex;
+        Session["DocumentId_Edit"] = GrdReport.DataKeys[Row_Index].Values["#"].ToString();
+
+        string pageurl = "FileRegister.aspx";
+        ScriptManager.RegisterStartupScript(Page, typeof(Page), "OpenWindow", "window.open('" + pageurl + "');", true);
+    }
+    protected void GrdPopUp_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtnPop = (LinkButton)e.Row.FindControl("LblbtnUploadDocPop");
+                if (lnkbtnPop != null)
+                {
+
+                    if (GrdPopUp.DataKeys[e.Row.RowIndex].Values["FileUploadPath"].ToString() == "")
+                    {
+                        lnkbtnPop.Visible = false;
+                    }
+                    else
+                    {
+                        lnkbtnPop.Visible = true;
+                    }
+
+                }
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+    protected void txtSearch1_TextChanged(object sender, EventArgs e)
+    {
+        DataTable dt = (DataTable)ViewState["Search1"];
+
+        if (dt != null)
+        {
+            if (dt.Rows.Count > 0)
+            {
+
+                StrCondition = txtSearch1.Text;
+
+                var query = from r in dt.AsEnumerable()
+                            where (r.Field<string>("ShowName").ToLower()).Contains(StrCondition.ToLower().ToLower())
+                            select r;
+                if (query != null && query.Count() > 0)
+                {
+                    DataTable DTNEW = query.CopyToDataTable();
+
+                    GrdReport.DataSource = DTNEW;
+                    GrdReport.DataBind();
+                }
+                else
+                {
+                    GrdReport.DataSource = null;
+                    GrdReport.DataBind();
+                }
+            }
+        }
+    }
+
+    public override void VerifyRenderingInServerForm(Control control)
+    {
+
+    }
+
+    protected void imgExcel_Click(object sender, ImageClickEventArgs e)
+    {
+
+        #region[Excel Code]
+        Response.Clear();
+        Response.Buffer = true;
+        Response.AddHeader("content-disposition",
+            "attachment;filename=FileRegister_" + DateTime.Now.ToString("dd MMM yyyy") + ".xls");
+        Response.Charset = "";
+        Response.ContentType = "application/ms-excel";
+        StringWriter sw = new StringWriter();
+        HtmlTextWriter hw = new HtmlTextWriter(sw);
+        GridView grdExcel = new GridView();
+        grdExcel = GrdReport;
+        //show 0,1,3,4,10
+        
+        grdExcel.RowStyle.Height = 50;
+        grdExcel.RowStyle.BackColor = System.Drawing.Color.White;
+        grdExcel.RowStyle.ForeColor = System.Drawing.Color.Black;
+        grdExcel.AlternatingRowStyle.BackColor = System.Drawing.Color.White;
+        grdExcel.AlternatingRowStyle.ForeColor = System.Drawing.Color.Black;
+
+        grdExcel.GridLines = GridLines.Both;
+
+        grdExcel.HeaderRow.BackColor = System.Drawing.Color.LightGray;
+        grdExcel.HeaderRow.ForeColor = System.Drawing.Color.White;
+
+        grdExcel.FooterRow.ForeColor = System.Drawing.Color.White;
+        grdExcel.FooterRow.BackColor = System.Drawing.Color.Gray;
+
+        grdExcel.Columns[0].ItemStyle.Width = 30;
+        grdExcel.Columns[1].ItemStyle.Width = 80;
+        grdExcel.Columns[2].Visible = false;
+        
+        grdExcel.Columns[3].Visible = true;
+        grdExcel.Columns[3].ItemStyle.Width = 300;
+        grdExcel.Columns[3].ItemStyle.Wrap = true;
+        
+        grdExcel.Columns[4].Visible = true;
+        grdExcel.Columns[4].ItemStyle.Width = 200;
+        grdExcel.Columns[4].ItemStyle.Wrap = true;
+        
+        grdExcel.Columns[5].Visible = false;
+        grdExcel.Columns[6].Visible = false;
+        grdExcel.Columns[7].Visible = false;
+        grdExcel.Columns[8].Visible = false;
+        grdExcel.Columns[9].Visible = false;
+        grdExcel.Columns[10].Visible = true;
+        grdExcel.Columns[10].ItemStyle.Width = 100;
+
+        grdExcel.Columns[11].Visible = false;
+        grdExcel.Columns[12].Visible = false;
+        grdExcel.Columns[13].Visible = false;
+        grdExcel.Columns[14].Visible = false;
+        grdExcel.Columns[15].Visible = false;
+        grdExcel.Columns[16].Visible = false;
+
+        
+
+        grdExcel.RenderControl(hw);
+
+        Response.Output.Write(sw.ToString());
+
+        Response.Output.Write("");
+
+        Response.Flush();
+        Response.End();
+        #endregion
+
+    }
+}

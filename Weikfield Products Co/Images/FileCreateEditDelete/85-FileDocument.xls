@@ -1,0 +1,7 @@
+<table border="0">
+	<tr>
+		<th scope="col">#</th><th scope="col">DocImagePath</th><th scope="col">DocumentTitle</th><th scope="col">DocumentSubTitle</th><th scope="col">DocRefNo</th><th scope="col">Status</th><th scope="col">DocDate</th>
+	</tr><tr>
+		<td>0</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+	</tr>
+</table>

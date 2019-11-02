@@ -1,0 +1,933 @@
+<table border="0">
+	<tr>
+		<th scope="col">Particulars</th><th scope="col">LedgerID</th><th scope="col">Dr</th><th scope="col">Cr</th><th scope="col">VoucherID</th><th scope="col">Credit</th><th scope="col">Debit</th>
+	</tr><tr>
+		<td>ABHAY KOKAD</td><td>9285</td><td>4919.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4919.00</td>
+	</tr><tr>
+		<td>ABHIJEET GADRE</td><td>17019</td><td>131916.00</td><td>25000.00</td><td>&nbsp;</td><td>0.00</td><td>106916.00</td>
+	</tr><tr>
+		<td>ABHINANDAN BADHE</td><td>16800</td><td>0.00</td><td>2272.00</td><td>&nbsp;</td><td>2272.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ABHIRUCHI CITY PRIDE</td><td>5759</td><td>51036.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>51036.00</td>
+	</tr><tr>
+		<td>ABRATECH </td><td>14417</td><td>743.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>743.00</td>
+	</tr><tr>
+		<td>ADITYA PROMOTERS</td><td>14497</td><td>5725.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5725.00</td>
+	</tr><tr>
+		<td>ADORN REALTORS</td><td>17089</td><td>107710.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>107710.00</td>
+	</tr><tr>
+		<td>ADV. A. U. PATHAN</td><td>14176</td><td>1890.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1890.00</td>
+	</tr><tr>
+		<td>ADV. RAJESHRI ADSUL</td><td>16902</td><td>25711.00</td><td>25714.00</td><td>&nbsp;</td><td>3.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AJAY HARPHALE</td><td>14266</td><td>2422.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2422.00</td>
+	</tr><tr>
+		<td>ALPHA OMEGA INFOSOLUTION INDIA.LTD</td><td>16209</td><td>17800.00</td><td>11780.00</td><td>&nbsp;</td><td>0.00</td><td>6020.00</td>
+	</tr><tr>
+		<td>AMARNATH SHARMA</td><td>16832</td><td>0.00</td><td>120.00</td><td>&nbsp;</td><td>120.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AMEYA FINISHING SOLUTION PVT. LTD</td><td>16276</td><td>409742.00</td><td>409810.00</td><td>&nbsp;</td><td>68.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AMIR PETIWALA</td><td>17029</td><td>0.00</td><td>20000.00</td><td>&nbsp;</td><td>20000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AMIT DALVI</td><td>14595</td><td>0.00</td><td>1270.00</td><td>&nbsp;</td><td>1270.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AMIT DANIYAT</td><td>16819</td><td>69496.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>69496.00</td>
+	</tr><tr>
+		<td>AMIT DHARIWAL</td><td>16961</td><td>95829.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>95829.00</td>
+	</tr><tr>
+		<td>AMIT G. BAJARE</td><td>14555</td><td>0.00</td><td>50000.00</td><td>&nbsp;</td><td>50000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AMIT PAHILANI</td><td>16755</td><td>19100.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>19100.00</td>
+	</tr><tr>
+		<td>AMRIT MIRPURI</td><td>15933</td><td>11180.00</td><td>13900.00</td><td>&nbsp;</td><td>2720.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AMRUT JAIN</td><td>15471</td><td>2514.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2514.00</td>
+	</tr><tr>
+		<td>AMS PROJECT CONSULTANTS PVT. LTD</td><td>16955</td><td>70804.00</td><td>64389.00</td><td>&nbsp;</td><td>0.00</td><td>6415.00</td>
+	</tr><tr>
+		<td>ANAGHA NACHANE</td><td>15621</td><td>86360.00</td><td>121050.00</td><td>&nbsp;</td><td>34690.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ANIL KESKAR</td><td>17067</td><td>14478.00</td><td>33834.00</td><td>&nbsp;</td><td>19356.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ANIL METHA</td><td>17046</td><td>20190.00</td><td>22900.00</td><td>&nbsp;</td><td>2710.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ARCH. AMIT PATIL</td><td>15565</td><td>1370.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1370.00</td>
+	</tr><tr>
+		<td>ARCH. ANAND  THORAT</td><td>4458</td><td>12744.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>12744.00</td>
+	</tr><tr>
+		<td>ARCH. ASHISH GADKAR</td><td>15818</td><td>6204.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6204.00</td>
+	</tr><tr>
+		<td>ARCH. ASHISH SACHADE</td><td>4119</td><td>2851.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2851.00</td>
+	</tr><tr>
+		<td>ARCH. GAURAV SHAH</td><td>1103</td><td>2088.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2088.00</td>
+	</tr><tr>
+		<td>ARCH. JAGDISH SURE</td><td>16878</td><td>8500.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8500.00</td>
+	</tr><tr>
+		<td>ARCH. RAHUL MUTHA</td><td>7332</td><td>175729.00</td><td>75000.00</td><td>&nbsp;</td><td>0.00</td><td>100729.00</td>
+	</tr><tr>
+		<td>ARCH. RAJANI SHINDE</td><td>4016</td><td>48152.00</td><td>40000.00</td><td>&nbsp;</td><td>0.00</td><td>8152.00</td>
+	</tr><tr>
+		<td>ARIHANT HARDWARE AND STEEL</td><td>13681</td><td>20366.00</td><td>18980.00</td><td>&nbsp;</td><td>0.00</td><td>1386.00</td>
+	</tr><tr>
+		<td>ARIHANT LAMINATS</td><td>17066</td><td>40434.00</td><td>7000.00</td><td>&nbsp;</td><td>0.00</td><td>33434.00</td>
+	</tr><tr>
+		<td>ARSHAD WAHEDANA </td><td>13964</td><td>0.00</td><td>11335.00</td><td>&nbsp;</td><td>11335.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ARUN BHOJANI</td><td>16956</td><td>110494.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>110494.00</td>
+	</tr><tr>
+		<td>ARUN GATTANI</td><td>14119</td><td>3302.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3302.00</td>
+	</tr><tr>
+		<td>ARUN PHALAKE</td><td>16991</td><td>429244.00</td><td>600000.00</td><td>&nbsp;</td><td>170756.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ARVIND B. SHAH</td><td>8723</td><td>450651.00</td><td>437860.00</td><td>&nbsp;</td><td>0.00</td><td>12791.00</td>
+	</tr><tr>
+		<td>ARVIND MEHTA</td><td>16960</td><td>171623.00</td><td>163522.00</td><td>&nbsp;</td><td>0.00</td><td>8101.00</td>
+	</tr><tr>
+		<td>ASHISH PAROPATE</td><td>16852</td><td>10689.00</td><td>10688.00</td><td>&nbsp;</td><td>0.00</td><td>1.00</td>
+	</tr><tr>
+		<td>ASHISH SACHADE</td><td>4795</td><td>10107.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>10107.00</td>
+	</tr><tr>
+		<td>ASHOK GOKHALE</td><td>14688</td><td>3900.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3900.00</td>
+	</tr><tr>
+		<td>ASHOKA DEVELOPERS</td><td>15161</td><td>80992.00</td><td>53070.00</td><td>&nbsp;</td><td>0.00</td><td>27922.00</td>
+	</tr><tr>
+		<td>ASHWINI SHEPAL</td><td>15453</td><td>0.00</td><td>2352.00</td><td>&nbsp;</td><td>2352.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ATHAYU HOSPITAL</td><td>15968</td><td>248835.00</td><td>125000.00</td><td>&nbsp;</td><td>0.00</td><td>123835.00</td>
+	</tr><tr>
+		<td>ATIK NAIK</td><td>15581</td><td>27540.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>27540.00</td>
+	</tr><tr>
+		<td>ATLAS INFRASERVE PVT. LTD.</td><td>16874</td><td>330883.00</td><td>331638.00</td><td>&nbsp;</td><td>755.00</td><td>0.00</td>
+	</tr><tr>
+		<td>AVINASH LAGAD</td><td>12251</td><td>4773.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4773.00</td>
+	</tr><tr>
+		<td>AYURVISHWA AUSHADHALAYA PVT. LTD</td><td>16795</td><td>60992.00</td><td>108378.00</td><td>&nbsp;</td><td>47386.00</td><td>0.00</td>
+	</tr><tr>
+		<td>B. C. PATWARDHAN</td><td>16954</td><td>205174.00</td><td>204501.60</td><td>&nbsp;</td><td>0.00</td><td>672.40</td>
+	</tr><tr>
+		<td>B. L. SANCHATI</td><td>16805</td><td>47540.00</td><td>47250.00</td><td>&nbsp;</td><td>0.00</td><td>290.00</td>
+	</tr><tr>
+		<td>BAFANA BROTHERS</td><td>16094</td><td>1616.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1616.00</td>
+	</tr><tr>
+		<td>BALASAHEB MAGAR</td><td>16245</td><td>2475.00</td><td>2975.00</td><td>&nbsp;</td><td>500.00</td><td>0.00</td>
+	</tr><tr>
+		<td>BALASAHEB POKALE</td><td>11705</td><td>0.00</td><td>37876.00</td><td>&nbsp;</td><td>37876.00</td><td>0.00</td>
+	</tr><tr>
+		<td>BEAUTY ZONE</td><td>16848</td><td>34290.00</td><td>41356.00</td><td>&nbsp;</td><td>7066.00</td><td>0.00</td>
+	</tr><tr>
+		<td>BHAGIRATHI JEWELLERS</td><td>16847</td><td>86887.00</td><td>49157.00</td><td>&nbsp;</td><td>0.00</td><td>37730.00</td>
+	</tr><tr>
+		<td>BHAGYASHRI JACHAKH</td><td>17079</td><td>0.00</td><td>27570.00</td><td>&nbsp;</td><td>27570.00</td><td>0.00</td>
+	</tr><tr>
+		<td>BHAKTI SURESH BUDHANI</td><td>15722</td><td>4480.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4480.00</td>
+	</tr><tr>
+		<td>BHAMBURE PRASHANT</td><td>13961</td><td>0.00</td><td>4000.00</td><td>&nbsp;</td><td>4000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>BHARATI INTERIORS</td><td>15951</td><td>4281.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4281.00</td>
+	</tr><tr>
+		<td>BHIMRAO PATOLE</td><td>15988</td><td>3434.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3434.00</td>
+	</tr><tr>
+		<td>BIPIN NACHANE</td><td>15639</td><td>86360.00</td><td>117645.00</td><td>&nbsp;</td><td>31285.00</td><td>0.00</td>
+	</tr><tr>
+		<td>BORA FAMILY - NAGAR</td><td>15727</td><td>17611.00</td><td>17604.00</td><td>&nbsp;</td><td>0.00</td><td>7.00</td>
+	</tr><tr>
+		<td>BUDHANI BROTHERS</td><td>16872</td><td>3600.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3600.00</td>
+	</tr><tr>
+		<td>CARE DECOR</td><td>15559</td><td>8741.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8741.00</td>
+	</tr><tr>
+		<td>CHAPHALKAR BROTHERS-SATARA ROAD</td><td>4700</td><td>25800.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>25800.00</td>
+	</tr><tr>
+		<td>CHETAN BARATE</td><td>14001</td><td>51180.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>51180.00</td>
+	</tr><tr>
+		<td>CHETAN DESHMUKH</td><td>17065</td><td>28359.00</td><td>5900.00</td><td>&nbsp;</td><td>0.00</td><td>22459.00</td>
+	</tr><tr>
+		<td>CHINTAN SHAHA</td><td>13647</td><td>6330.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6330.00</td>
+	</tr><tr>
+		<td>CHRYSALIS BUSINESSES SOLUTIONS PVT. LTD.</td><td>17056</td><td>67414.00</td><td>50000.00</td><td>&nbsp;</td><td>0.00</td><td>17414.00</td>
+	</tr><tr>
+		<td>CITY POINT APARTMENT</td><td>16876</td><td>20434.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>20434.00</td>
+	</tr><tr>
+		<td>CORNICE</td><td>13935</td><td>4312.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4312.00</td>
+	</tr><tr>
+		<td>COSMOS CO-OP BANK LTD.</td><td>9766</td><td>11311.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>11311.00</td>
+	</tr><tr>
+		<td>DALPATRAJ PRAJAPATI</td><td>17076</td><td>128340.00</td><td>125250.00</td><td>&nbsp;</td><td>0.00</td><td>3090.00</td>
+	</tr><tr>
+		<td>DESIGN EDGE</td><td>15961</td><td>0.00</td><td>3700.00</td><td>&nbsp;</td><td>3700.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DESIGN EDGE ARCHITECTS PVT. LTD.</td><td>11214</td><td>248814.00</td><td>220000.00</td><td>&nbsp;</td><td>0.00</td><td>28814.00</td>
+	</tr><tr>
+		<td>DESIGNWISE CONSULTANTS - PRIVIE SELENA</td><td>16826</td><td>1596885.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1596885.00</td>
+	</tr><tr>
+		<td>DESIGNWISE CONSULTANTS - PRIVIE SHILOH</td><td>16827</td><td>605714.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>605714.00</td>
+	</tr><tr>
+		<td>DESIGNWISE CONSULTANTS - PRIVIE SIENNA</td><td>16828</td><td>332510.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>332510.00</td>
+	</tr><tr>
+		<td>DEVYANI PATANKAR</td><td>16754</td><td>36080.00</td><td>32350.00</td><td>&nbsp;</td><td>0.00</td><td>3730.00</td>
+	</tr><tr>
+		<td>DHAIRESHA SANGHAVI</td><td>13509</td><td>18621.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>18621.00</td>
+	</tr><tr>
+		<td>DHANANJAY NAMJOSHI</td><td>16875</td><td>13697.00</td><td>13700.00</td><td>&nbsp;</td><td>3.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DHEERAJ NAUTIYAL</td><td>16804</td><td>249924.00</td><td>246276.00</td><td>&nbsp;</td><td>0.00</td><td>3648.00</td>
+	</tr><tr>
+		<td>DILIP BUDHANI</td><td>13369</td><td>9929.00</td><td>8643.00</td><td>&nbsp;</td><td>0.00</td><td>1286.00</td>
+	</tr><tr>
+		<td>DIPIKA SACHADE</td><td>16993</td><td>131000.00</td><td>135000.00</td><td>&nbsp;</td><td>4000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DR. BUTALA</td><td>14564</td><td>1441.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1441.00</td>
+	</tr><tr>
+		<td>DR. D. Y. PATIL VIDYAPEETH SOCIETY</td><td>9507</td><td>15789.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>15789.00</td>
+	</tr><tr>
+		<td>DR. GAJARE</td><td>14171</td><td>0.00</td><td>1639.00</td><td>&nbsp;</td><td>1639.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DR. MORE</td><td>13645</td><td>675.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>675.00</td>
+	</tr><tr>
+		<td>DR. NITIN KOLTE</td><td>15689</td><td>6480.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6480.00</td>
+	</tr><tr>
+		<td>DR. PATIL P. M.</td><td>14998</td><td>2170.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2170.00</td>
+	</tr><tr>
+		<td>DR. PRADHAN</td><td>16781</td><td>28184.00</td><td>28584.00</td><td>&nbsp;</td><td>400.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DR. ROHIT C KHANDEKAR</td><td>16167</td><td>0.00</td><td>50000.00</td><td>&nbsp;</td><td>50000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DR. ROHIT DIKSHIT</td><td>14689</td><td>0.00</td><td>5673.00</td><td>&nbsp;</td><td>5673.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DR. SATYJEET SURYAVASHI</td><td>16994</td><td>100680.00</td><td>161800.00</td><td>&nbsp;</td><td>61120.00</td><td>0.00</td>
+	</tr><tr>
+		<td>DR. SURESH MEKHLE</td><td>14982</td><td>15447.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>15447.00</td>
+	</tr><tr>
+		<td>DR. WAIKAR</td><td>15879</td><td>3058.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3058.00</td>
+	</tr><tr>
+		<td>DR. WALUNJKAR</td><td>15864</td><td>0.00</td><td>53202.00</td><td>&nbsp;</td><td>53202.00</td><td>0.00</td>
+	</tr><tr>
+		<td>EQUINOX SOFTWARE PVT. LIMITED</td><td>13934</td><td>0.00</td><td>961.00</td><td>&nbsp;</td><td>961.00</td><td>0.00</td>
+	</tr><tr>
+		<td>FALGUN SHAH</td><td>12687</td><td>0.00</td><td>5133.00</td><td>&nbsp;</td><td>5133.00</td><td>0.00</td>
+	</tr><tr>
+		<td>FAZHAL HUSSAIN</td><td>15944</td><td>4766.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4766.00</td>
+	</tr><tr>
+		<td>G. S. KUMBHAR</td><td>16132</td><td>139460.00</td><td>175498.00</td><td>&nbsp;</td><td>36038.00</td><td>0.00</td>
+	</tr><tr>
+		<td>GAMNARAM CHOUDHARY</td><td>16916</td><td>252388.00</td><td>251000.00</td><td>&nbsp;</td><td>0.00</td><td>1388.00</td>
+	</tr><tr>
+		<td>GAUTAM LADKAT</td><td>15389</td><td>772890.00</td><td>676812.00</td><td>&nbsp;</td><td>0.00</td><td>96078.00</td>
+	</tr><tr>
+		<td>GEET MOTWANI</td><td>16037</td><td>35826.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>35826.00</td>
+	</tr><tr>
+		<td>GHALSASI CONSTRUCTION PVT. LTD.</td><td>1764</td><td>577873.00</td><td>577910.00</td><td>&nbsp;</td><td>37.00</td><td>0.00</td>
+	</tr><tr>
+		<td>GINI CITICORP REALTY L L P</td><td>4905</td><td>978011.00</td><td>844618.00</td><td>&nbsp;</td><td>0.00</td><td>133393.00</td>
+	</tr><tr>
+		<td>GIRISH BAMBOLI</td><td>15377</td><td>0.00</td><td>1000.00</td><td>&nbsp;</td><td>1000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>GIRISH JADHAV</td><td>16818</td><td>95968.00</td><td>73948.00</td><td>&nbsp;</td><td>0.00</td><td>22020.00</td>
+	</tr><tr>
+		<td>GIRISH SHAHA</td><td>16785</td><td>74250.00</td><td>58630.00</td><td>&nbsp;</td><td>0.00</td><td>15620.00</td>
+	</tr><tr>
+		<td>GLOBAL ENTERPRISES</td><td>16929</td><td>5880.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5880.00</td>
+	</tr><tr>
+		<td>GOEL AVISHKAR PROMOTERS</td><td>211</td><td>24758.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>24758.00</td>
+	</tr><tr>
+		<td>GOPAL LADDHA</td><td>16792</td><td>51516.00</td><td>3500.00</td><td>&nbsp;</td><td>0.00</td><td>48016.00</td>
+	</tr><tr>
+		<td>GURUDAS SAMHNI</td><td>17005</td><td>2432.00</td><td>2430.00</td><td>&nbsp;</td><td>0.00</td><td>2.00</td>
+	</tr><tr>
+		<td>HARSH INFRA STRUCTURS</td><td>17109</td><td>41920.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>41920.00</td>
+	</tr><tr>
+		<td>HEMANT PARGAVKAR</td><td>16846</td><td>600.00</td><td>20600.00</td><td>&nbsp;</td><td>20000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>HEMANT SHAH</td><td>16802</td><td>9850.00</td><td>8500.00</td><td>&nbsp;</td><td>0.00</td><td>1350.00</td>
+	</tr><tr>
+		<td>HIGH CHOICE</td><td>17035</td><td>14350.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>14350.00</td>
+	</tr><tr>
+		<td>HIGH CHOICE STUDIO</td><td>16923</td><td>13190.00</td><td>134540.00</td><td>&nbsp;</td><td>121350.00</td><td>0.00</td>
+	</tr><tr>
+		<td>HITEN SOMAYYA</td><td>14783</td><td>1385.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1385.00</td>
+	</tr><tr>
+		<td>HITESH SOLANKI</td><td>16116</td><td>0.00</td><td>8880.00</td><td>&nbsp;</td><td>8880.00</td><td>0.00</td>
+	</tr><tr>
+		<td>HOTEL DREAMLAND</td><td>490</td><td>13910.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>13910.00</td>
+	</tr><tr>
+		<td>I. I. SHAIKH</td><td>15484</td><td>8843.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8843.00</td>
+	</tr><tr>
+		<td>INFINITY DESIGN</td><td>15706</td><td>6755.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6755.00</td>
+	</tr><tr>
+		<td>INGALE SHASTRI</td><td>16356</td><td>191205.00</td><td>185125.00</td><td>&nbsp;</td><td>0.00</td><td>6080.00</td>
+	</tr><tr>
+		<td>INGRID SPACE &amp; INTERIOR DESIGNERS</td><td>16835</td><td>42877.00</td><td>52894.00</td><td>&nbsp;</td><td>10017.00</td><td>0.00</td>
+	</tr><tr>
+		<td>J. P. ENTERPRISES</td><td>15870</td><td>4144.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4144.00</td>
+	</tr><tr>
+		<td>JADHAV SIR</td><td>16980</td><td>140500.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>140500.00</td>
+	</tr><tr>
+		<td>JAI GANESH BRIKS AND SUPPLIERS</td><td>17060</td><td>185000.00</td><td>150000.00</td><td>&nbsp;</td><td>0.00</td><td>35000.00</td>
+	</tr><tr>
+		<td>JAIN RAJESH</td><td>12879</td><td>70281.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>70281.00</td>
+	</tr><tr>
+		<td>JAYANTILAL OSWAL</td><td>11196</td><td>86971.00</td><td>42341.00</td><td>&nbsp;</td><td>0.00</td><td>44630.00</td>
+	</tr><tr>
+		<td>JAYDEEP PHARANDE</td><td>16892</td><td>52711.00</td><td>52721.00</td><td>&nbsp;</td><td>10.00</td><td>0.00</td>
+	</tr><tr>
+		<td>K &amp; S ASSOCIATES</td><td>16854</td><td>1540.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1540.00</td>
+	</tr><tr>
+		<td>K. K. NAIDU</td><td>15036</td><td>0.00</td><td>1870.00</td><td>&nbsp;</td><td>1870.00</td><td>0.00</td>
+	</tr><tr>
+		<td>K. S. SANITATIONS (S)</td><td>15295</td><td>6192.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6192.00</td>
+	</tr><tr>
+		<td>KAILAS SOMINY</td><td>14293</td><td>11299.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>11299.00</td>
+	</tr><tr>
+		<td>KAILAS SUTAR</td><td>9981</td><td>0.00</td><td>3005.00</td><td>&nbsp;</td><td>3005.00</td><td>0.00</td>
+	</tr><tr>
+		<td>KAJARIA CERAMICS LTD</td><td>5909</td><td>10047.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>10047.00</td>
+	</tr><tr>
+		<td>KAKADE CONSTRUCTIONS COMPANY PVT. LTD.</td><td>13513</td><td>648450.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>648450.00</td>
+	</tr><tr>
+		<td>KAKADE DEVELOPERS PVT. LTD.</td><td>13363</td><td>395839.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>395839.00</td>
+	</tr><tr>
+		<td>KAKKAD DEVELOPMENTS</td><td>8608</td><td>166027.00</td><td>140916.00</td><td>&nbsp;</td><td>0.00</td><td>25111.00</td>
+	</tr><tr>
+		<td>KANCHAN REGE</td><td>17071</td><td>10000.00</td><td>9990.00</td><td>&nbsp;</td><td>0.00</td><td>10.00</td>
+	</tr><tr>
+		<td>KAPSONS CERAMICS (I) PVT. LTD.(M)</td><td>1441</td><td>6791.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6791.00</td>
+	</tr><tr>
+		<td>KASTURI KULKARNI</td><td>17104</td><td>13970.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>13970.00</td>
+	</tr><tr>
+		<td>KEDAR ENGINEERS</td><td>16124</td><td>11541.00</td><td>7953.00</td><td>&nbsp;</td><td>0.00</td><td>3588.00</td>
+	</tr><tr>
+		<td>KETAN GUPTA</td><td>14914</td><td>1985.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1985.00</td>
+	</tr><tr>
+		<td>KEWAL REAL EST. DEV. PVT. LTD.</td><td>250</td><td>2284.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2284.00</td>
+	</tr><tr>
+		<td>KGN MOTORS PVT LTD</td><td>16296</td><td>71688.00</td><td>84928.00</td><td>&nbsp;</td><td>13240.00</td><td>0.00</td>
+	</tr><tr>
+		<td>KIRAN AGARWAL</td><td>16977</td><td>29648.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>29648.00</td>
+	</tr><tr>
+		<td>KIRAN DESHPANDE</td><td>16275</td><td>77370.00</td><td>74868.00</td><td>&nbsp;</td><td>0.00</td><td>2502.00</td>
+	</tr><tr>
+		<td>KOTHARI AUTO LINK PVT. LTD.</td><td>1274</td><td>19818.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>19818.00</td>
+	</tr><tr>
+		<td>KRYSTALLINE CONSTRUCTION LLP.</td><td>13851</td><td>16162.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>16162.00</td>
+	</tr><tr>
+		<td>KUBERLAXMI PROPERTIES</td><td>11951</td><td>530758.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>530758.00</td>
+	</tr><tr>
+		<td>KUBERS NAVKAR JWELLERS</td><td>17078</td><td>213802.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>213802.00</td>
+	</tr><tr>
+		<td>KUMAR &amp; POTNIS </td><td>16431</td><td>599262.00</td><td>629481.00</td><td>&nbsp;</td><td>30219.00</td><td>0.00</td>
+	</tr><tr>
+		<td>KUMAR AGRO PRODUCTS PVT. LTD</td><td>8364</td><td>896307.00</td><td>435153.00</td><td>&nbsp;</td><td>0.00</td><td>461154.00</td>
+	</tr><tr>
+		<td>KUMAR AGRO PRODUCTS PVT. LTD. (PALMCREST)</td><td>10978</td><td>46749.00</td><td>31318.00</td><td>&nbsp;</td><td>0.00</td><td>15431.00</td>
+	</tr><tr>
+		<td>KUMAR AND POTNIS</td><td>496</td><td>49375.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>49375.00</td>
+	</tr><tr>
+		<td>KUMAR AND POTNIS ASSOCIATES</td><td>11018</td><td>16457.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>16457.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY</td><td>1483</td><td>21085.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>21085.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY - KUMAR PALMDEW S/F</td><td>14726</td><td>701466.00</td><td>267934.00</td><td>&nbsp;</td><td>0.00</td><td>433532.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY - PACIFIC</td><td>7026</td><td>360193.00</td><td>136536.00</td><td>&nbsp;</td><td>0.00</td><td>223657.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY - PEBBLE PARK</td><td>2977</td><td>1714931.00</td><td>1245759.00</td><td>&nbsp;</td><td>0.00</td><td>469172.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY - PRINCEVILLE</td><td>8785</td><td>21820.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>21820.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY - PRIVIE SANCTUM B1</td><td>12489</td><td>1503494.00</td><td>250000.00</td><td>&nbsp;</td><td>0.00</td><td>1253494.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY - PRIVIE SELENA S/F</td><td>14305</td><td>188981.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>188981.00</td>
+	</tr><tr>
+		<td>KUMAR COMPANY- KUMAR PRIMUS</td><td>4965</td><td>5480.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5480.00</td>
+	</tr><tr>
+		<td>KUMAR CRYSTALLINE - KUMAR PICADDILY</td><td>10911</td><td>50723.00</td><td>50724.00</td><td>&nbsp;</td><td>1.00</td><td>0.00</td>
+	</tr><tr>
+		<td>KUMAR PROPERTIES</td><td>256</td><td>4628.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4628.00</td>
+	</tr><tr>
+		<td>KUMBARE ENTERPRISES</td><td>15720</td><td>96149.00</td><td>175173.00</td><td>&nbsp;</td><td>79024.00</td><td>0.00</td>
+	</tr><tr>
+		<td>KUMBARE HERMITAGE</td><td>15609</td><td>1113182.00</td><td>1320141.00</td><td>&nbsp;</td><td>206959.00</td><td>0.00</td>
+	</tr><tr>
+		<td>LAKHICHAND C. BAFNA</td><td>14390</td><td>9777.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>9777.00</td>
+	</tr><tr>
+		<td>LATEY</td><td>16920</td><td>14899.00</td><td>14900.00</td><td>&nbsp;</td><td>1.00</td><td>0.00</td>
+	</tr><tr>
+		<td>LAXMI DEVELOPERS</td><td>14856</td><td>706722.00</td><td>754617.00</td><td>&nbsp;</td><td>47895.00</td><td>0.00</td>
+	</tr><tr>
+		<td>LIVE FOR FOOD F &amp; B PVT. LTD</td><td>16258</td><td>413297.00</td><td>537459.00</td><td>&nbsp;</td><td>124162.00</td><td>0.00</td>
+	</tr><tr>
+		<td>M.BABULAL &amp; SONS</td><td>16794</td><td>23390.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>23390.00</td>
+	</tr><tr>
+		<td>M/S NITIN RAOSAHEB BHADANGE</td><td>15179</td><td>0.00</td><td>6658.00</td><td>&nbsp;</td><td>6658.00</td><td>0.00</td>
+	</tr><tr>
+		<td>M/S NIWAS ENTERPRISES</td><td>14463</td><td>1391.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1391.00</td>
+	</tr><tr>
+		<td>M/S PYLON ENG.</td><td>12297</td><td>1470.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1470.00</td>
+	</tr><tr>
+		<td>M/S SHREYAS MERCANTILE PVT. LTD.</td><td>16047</td><td>4000.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4000.00</td>
+	</tr><tr>
+		<td>M/S SWAROOP INTERIORS PVT. LTD.</td><td>12282</td><td>0.00</td><td>1020.00</td><td>&nbsp;</td><td>1020.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MABEREST HOTELS PVT. LTD.</td><td>12102</td><td>4260.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4260.00</td>
+	</tr><tr>
+		<td>MADHAVE KIRANE</td><td>16779</td><td>19070.00</td><td>15070.00</td><td>&nbsp;</td><td>0.00</td><td>4000.00</td>
+	</tr><tr>
+		<td>MAHAVEER CERAMICS</td><td>11629</td><td>24766.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>24766.00</td>
+	</tr><tr>
+		<td>MAHAVIR</td><td>16927</td><td>12235.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>12235.00</td>
+	</tr><tr>
+		<td>MAHENDRA BHANSALI</td><td>13319</td><td>2400.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2400.00</td>
+	</tr><tr>
+		<td>MAHENDRA DESHPANDE PROMOTERS BUILDERS PVT. LTD.</td><td>790</td><td>212053.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>212053.00</td>
+	</tr><tr>
+		<td>MAHESH KUMAR</td><td>16769</td><td>355944.00</td><td>343420.00</td><td>&nbsp;</td><td>0.00</td><td>12524.00</td>
+	</tr><tr>
+		<td>MAHESH MANGADE</td><td>14125</td><td>5131.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5131.00</td>
+	</tr><tr>
+		<td>MAHESH PINGALE</td><td>13470</td><td>89397.00</td><td>100000.00</td><td>&nbsp;</td><td>10603.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MAHESH SANKAPAL</td><td>16921</td><td>2564.00</td><td>3193.00</td><td>&nbsp;</td><td>629.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MAJESTIQUE REALTORS LLP</td><td>16988</td><td>475096.00</td><td>484591.00</td><td>&nbsp;</td><td>9495.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MANIKCHAND KUMAR PROPERTIES</td><td>262</td><td>53268.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>53268.00</td>
+	</tr><tr>
+		<td>MANISH MAGHADE</td><td>15975</td><td>6036.00</td><td>3320.00</td><td>&nbsp;</td><td>0.00</td><td>2716.00</td>
+	</tr><tr>
+		<td>MANJIRI TAMHANE</td><td>17028</td><td>55300.00</td><td>25300.00</td><td>&nbsp;</td><td>0.00</td><td>30000.00</td>
+	</tr><tr>
+		<td>MANOJ BOTRE</td><td>15733</td><td>356241.00</td><td>800825.00</td><td>&nbsp;</td><td>444584.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MANOJ KELUSKAR</td><td>16919</td><td>20916.00</td><td>20760.00</td><td>&nbsp;</td><td>0.00</td><td>156.00</td>
+	</tr><tr>
+		<td>MANOJ SACHDEV</td><td>15271</td><td>1200.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1200.00</td>
+	</tr><tr>
+		<td>MANOJKUMAR SHARMA</td><td>16869</td><td>198236.00</td><td>287800.00</td><td>&nbsp;</td><td>89564.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MARIGOLD PROPERTIES</td><td>10839</td><td>15627.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>15627.00</td>
+	</tr><tr>
+		<td>MASTERS FOODS &amp; BEVERAGERS LLP</td><td>17036</td><td>123348.00</td><td>122208.00</td><td>&nbsp;</td><td>0.00</td><td>1140.00</td>
+	</tr><tr>
+		<td>MEENA BARVE</td><td>16840</td><td>35495.00</td><td>14000.00</td><td>&nbsp;</td><td>0.00</td><td>21495.00</td>
+	</tr><tr>
+		<td>MEENAMANI GANGA BUILDERS LLP</td><td>15925</td><td>76178.00</td><td>75326.00</td><td>&nbsp;</td><td>0.00</td><td>852.00</td>
+	</tr><tr>
+		<td>MEGHA KARNANI</td><td>16822</td><td>16003.00</td><td>18588.00</td><td>&nbsp;</td><td>2585.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MENSE ELECTRICALS PVT. LTD.</td><td>13196</td><td>0.00</td><td>25023.00</td><td>&nbsp;</td><td>25023.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MILAGRO CERAMICA PVT. LTD -PUNE</td><td>16957</td><td>45755.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>45755.00</td>
+	</tr><tr>
+		<td>MINOTI MAKIM</td><td>4935</td><td>12279.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>12279.00</td>
+	</tr><tr>
+		<td>MISS. BHARTI</td><td>16189</td><td>678.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>678.00</td>
+	</tr><tr>
+		<td>MOHAN GONDWADKAR</td><td>17090</td><td>0.00</td><td>263000.00</td><td>&nbsp;</td><td>263000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MOHAN MARKAD</td><td>16952</td><td>5287.00</td><td>5288.00</td><td>&nbsp;</td><td>1.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MOHINIBAI OSWAL</td><td>15666</td><td>0.00</td><td>40560.00</td><td>&nbsp;</td><td>40560.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. AJMANI</td><td>15474</td><td>0.00</td><td>50000.00</td><td>&nbsp;</td><td>50000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. ANIL KHUBANI</td><td>15725</td><td>918.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>918.00</td>
+	</tr><tr>
+		<td>MR. ARVIND GAWALI</td><td>16986</td><td>44700.00</td><td>44637.00</td><td>&nbsp;</td><td>0.00</td><td>63.00</td>
+	</tr><tr>
+		<td>MR. BABAN JANJIRE</td><td>17049</td><td>115234.00</td><td>35000.00</td><td>&nbsp;</td><td>0.00</td><td>80234.00</td>
+	</tr><tr>
+		<td>MR. BANGAR</td><td>17034</td><td>0.00</td><td>10000.00</td><td>&nbsp;</td><td>10000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. BHORSINGH PRAJAPATI</td><td>16851</td><td>2680.00</td><td>2010.00</td><td>&nbsp;</td><td>0.00</td><td>670.00</td>
+	</tr><tr>
+		<td>MR. BHUSHAN JAIN</td><td>16777</td><td>48390.00</td><td>51750.00</td><td>&nbsp;</td><td>3360.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. DEEPAK SHAH</td><td>13191</td><td>9688.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>9688.00</td>
+	</tr><tr>
+		<td>MR. DINESH JAIN</td><td>15893</td><td>302734.00</td><td>300404.00</td><td>&nbsp;</td><td>0.00</td><td>2330.00</td>
+	</tr><tr>
+		<td>MR. JAVALKAR</td><td>12493</td><td>0.00</td><td>16769.00</td><td>&nbsp;</td><td>16769.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. JITENDRA PORWAL</td><td>16976</td><td>17778.00</td><td>15278.00</td><td>&nbsp;</td><td>0.00</td><td>2500.00</td>
+	</tr><tr>
+		<td>MR. KAPOOR</td><td>14000</td><td>0.00</td><td>4636.00</td><td>&nbsp;</td><td>4636.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. KAVITKAR</td><td>17111</td><td>3910.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3910.00</td>
+	</tr><tr>
+		<td>MR. KULKARNI RAHUL</td><td>15887</td><td>1005.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1005.00</td>
+	</tr><tr>
+		<td>MR. MAHESH BANKHELE</td><td>16908</td><td>322560.00</td><td>472560.00</td><td>&nbsp;</td><td>150000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. MOHON GAUDADKAR</td><td>17048</td><td>36390.00</td><td>36392.00</td><td>&nbsp;</td><td>2.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. PANDIT</td><td>14027</td><td>5070.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5070.00</td>
+	</tr><tr>
+		<td>MR. RAHUL MUTHA</td><td>16940</td><td>12450.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>12450.00</td>
+	</tr><tr>
+		<td>MR. RAJAS JAIN</td><td>15031</td><td>5913.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5913.00</td>
+	</tr><tr>
+		<td>MR. RAJESH SHAH</td><td>6992</td><td>0.00</td><td>3166.00</td><td>&nbsp;</td><td>3166.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. RAJESH THAKRE</td><td>16914</td><td>39354.00</td><td>39352.00</td><td>&nbsp;</td><td>0.00</td><td>2.00</td>
+	</tr><tr>
+		<td>MR. RAKESH OSWAL</td><td>15941</td><td>109602.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>109602.00</td>
+	</tr><tr>
+		<td>MR. RAVINDRA KATARIYA</td><td>16969</td><td>86400.00</td><td>87300.00</td><td>&nbsp;</td><td>900.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. ROHAN PATIL</td><td>14088</td><td>2800.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2800.00</td>
+	</tr><tr>
+		<td>MR. SANCHETI</td><td>16943</td><td>3810.00</td><td>3809.00</td><td>&nbsp;</td><td>0.00</td><td>1.00</td>
+	</tr><tr>
+		<td>MR. SANJAY NAVALE</td><td>13424</td><td>10461.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>10461.00</td>
+	</tr><tr>
+		<td>MR. SANJAY SATAV</td><td>14045</td><td>4901.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4901.00</td>
+	</tr><tr>
+		<td>MR. SANTOSH AGRWAL</td><td>16925</td><td>112842.00</td><td>100000.00</td><td>&nbsp;</td><td>0.00</td><td>12842.00</td>
+	</tr><tr>
+		<td>MR. SHISHIR TOTRE</td><td>16880</td><td>10749.00</td><td>10200.00</td><td>&nbsp;</td><td>0.00</td><td>549.00</td>
+	</tr><tr>
+		<td>MR. SUBHASH BANSAL</td><td>15237</td><td>0.00</td><td>234054.00</td><td>&nbsp;</td><td>234054.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. SUHAS GAIKWAD</td><td>17091</td><td>0.00</td><td>2000.00</td><td>&nbsp;</td><td>2000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. SURAJMAL MANTRI</td><td>17075</td><td>0.00</td><td>107110.00</td><td>&nbsp;</td><td>107110.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. VIJAYAJI MANTRI</td><td>16801</td><td>289228.00</td><td>365000.00</td><td>&nbsp;</td><td>75772.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR. VIKRAM KAKADE</td><td>13467</td><td>0.00</td><td>25460.00</td><td>&nbsp;</td><td>25460.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MR.SWAPNIL TAMHANE</td><td>17096</td><td>2305.00</td><td>23061.00</td><td>&nbsp;</td><td>20756.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MRS. ANITA SHROTRI</td><td>16074</td><td>2624.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2624.00</td>
+	</tr><tr>
+		<td>MRS. BHARTI TORANI</td><td>14128</td><td>4166.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4166.00</td>
+	</tr><tr>
+		<td>MRS. HEENA SHAH</td><td>16370</td><td>23050.00</td><td>17017.00</td><td>&nbsp;</td><td>0.00</td><td>6033.00</td>
+	</tr><tr>
+		<td>MRS. LANDE</td><td>17068</td><td>9972.00</td><td>9970.00</td><td>&nbsp;</td><td>0.00</td><td>2.00</td>
+	</tr><tr>
+		<td>MRS. S. K. BATRA</td><td>16212</td><td>17000.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>17000.00</td>
+	</tr><tr>
+		<td>MRS. SEEMA SURESH BHOSALE</td><td>13604</td><td>44879.00</td><td>32000.00</td><td>&nbsp;</td><td>0.00</td><td>12879.00</td>
+	</tr><tr>
+		<td>MRS. SUMANBEN J PATEL</td><td>16799</td><td>71980.00</td><td>73092.00</td><td>&nbsp;</td><td>1112.00</td><td>0.00</td>
+	</tr><tr>
+		<td>MUGDHA KULKARNI</td><td>11417</td><td>0.00</td><td>39968.00</td><td>&nbsp;</td><td>39968.00</td><td>0.00</td>
+	</tr><tr>
+		<td>N. M. ARCH AND INTERIOR</td><td>16175</td><td>20575.00</td><td>17200.00</td><td>&nbsp;</td><td>0.00</td><td>3375.00</td>
+	</tr><tr>
+		<td>NABRIYA FINANCIAL SERVICES PVT. LTD</td><td>16947</td><td>92961.00</td><td>87624.00</td><td>&nbsp;</td><td>0.00</td><td>5337.00</td>
+	</tr><tr>
+		<td>NAHAR INTEGRATED SYSTEM SERVICES PVT. LTD.</td><td>16034</td><td>12471.00</td><td>42123.00</td><td>&nbsp;</td><td>29652.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE &amp; ASSOCIATES</td><td>514</td><td>75231.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>75231.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE AND PRIDE AOP</td><td>1403</td><td>87228.00</td><td>302764.00</td><td>&nbsp;</td><td>215536.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE AND PRIDE AOP - THE SPIRES(14-15)</td><td>12296</td><td>3437301.00</td><td>3134968.00</td><td>&nbsp;</td><td>0.00</td><td>302333.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE CONSTRUCTION PVT. LTD.</td><td>12215</td><td>23265.00</td><td>35451.00</td><td>&nbsp;</td><td>12186.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE DEVELOPERS - EMINENCE</td><td>14452</td><td>307265.00</td><td>165474.00</td><td>&nbsp;</td><td>0.00</td><td>141791.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE DEVELOPERS PVT. LTD.</td><td>269</td><td>0.00</td><td>401813.00</td><td>&nbsp;</td><td>401813.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE DEVELOPERS PVT. LTD.-14-15</td><td>11938</td><td>31126.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>31126.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE HOUSING DEVLOPMENT  </td><td>1192</td><td>44311.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>44311.00</td>
+	</tr><tr>
+		<td>NAIKNAVARE PROFILE ENVIRON HOUSING PVT. LTD</td><td>7897</td><td>0.00</td><td>34751.00</td><td>&nbsp;</td><td>34751.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NANDKISHOR STEEL FURNITURE</td><td>15648</td><td>63027.00</td><td>56627.00</td><td>&nbsp;</td><td>0.00</td><td>6400.00</td>
+	</tr><tr>
+		<td>NANDURDIKAR</td><td>17077</td><td>20240.00</td><td>10000.00</td><td>&nbsp;</td><td>0.00</td><td>10240.00</td>
+	</tr><tr>
+		<td>NARENDRA ROKADE</td><td>16793</td><td>51824.00</td><td>51150.00</td><td>&nbsp;</td><td>0.00</td><td>674.00</td>
+	</tr><tr>
+		<td>NATRAJAN IYER</td><td>16068</td><td>290547.00</td><td>300000.00</td><td>&nbsp;</td><td>9453.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NAVCON INFRA PROJECTS PVT. LTD.</td><td>7551</td><td>51377.00</td><td>29790.00</td><td>&nbsp;</td><td>0.00</td><td>21587.00</td>
+	</tr><tr>
+		<td>NAVIN KAINTH</td><td>16939</td><td>29902.00</td><td>27310.00</td><td>&nbsp;</td><td>0.00</td><td>2592.00</td>
+	</tr><tr>
+		<td>NAVIN PEDHI</td><td>17017</td><td>153368.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>153368.00</td>
+	</tr><tr>
+		<td>NAVNATH JAMBHULKAR</td><td>5467</td><td>8550.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8550.00</td>
+	</tr><tr>
+		<td>NEENA ENTERPRISES (S)</td><td>7995</td><td>3417.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3417.00</td>
+	</tr><tr>
+		<td>NEHARIKA OSWAL</td><td>15665</td><td>0.00</td><td>60545.00</td><td>&nbsp;</td><td>60545.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NEW SHRADHA JEWELLERS</td><td>16797</td><td>28224.00</td><td>19200.00</td><td>&nbsp;</td><td>0.00</td><td>9024.00</td>
+	</tr><tr>
+		<td>NIKHIL BHARGAV</td><td>15688</td><td>4553.00</td><td>1784.00</td><td>&nbsp;</td><td>0.00</td><td>2769.00</td>
+	</tr><tr>
+		<td>NIKHIL KAMTHE</td><td>15924</td><td>126156.00</td><td>113780.00</td><td>&nbsp;</td><td>0.00</td><td>12376.00</td>
+	</tr><tr>
+		<td>NIKHIL V. CHOUHAN</td><td>9979</td><td>2470.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2470.00</td>
+	</tr><tr>
+		<td>NILESH KALPANDE</td><td>17037</td><td>121656.00</td><td>122534.00</td><td>&nbsp;</td><td>878.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NILESH KAWADE</td><td>15550</td><td>220630.00</td><td>210792.00</td><td>&nbsp;</td><td>0.00</td><td>9838.00</td>
+	</tr><tr>
+		<td>NINAD DALVI</td><td>16774</td><td>167971.00</td><td>178114.60</td><td>&nbsp;</td><td>10143.60</td><td>0.00</td>
+	</tr><tr>
+		<td>NIPUN OSWAL</td><td>15553</td><td>449407.00</td><td>264204.00</td><td>&nbsp;</td><td>0.00</td><td>185203.00</td>
+	</tr><tr>
+		<td>NITIN ADHAV</td><td>16891</td><td>267127.00</td><td>267503.00</td><td>&nbsp;</td><td>376.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NITIN BELSARE</td><td>16831</td><td>17154.00</td><td>16887.00</td><td>&nbsp;</td><td>0.00</td><td>267.00</td>
+	</tr><tr>
+		<td>NOBLE BAKE HOUSE</td><td>16941</td><td>32208.00</td><td>32207.00</td><td>&nbsp;</td><td>0.00</td><td>1.00</td>
+	</tr><tr>
+		<td>NOOR ENTERPRISES</td><td>16079</td><td>0.00</td><td>2370.00</td><td>&nbsp;</td><td>2370.00</td><td>0.00</td>
+	</tr><tr>
+		<td>NOZAR PANDOL</td><td>17050</td><td>17747.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>17747.00</td>
+	</tr><tr>
+		<td>NURADDIN KAPDAWALA</td><td>14892</td><td>187708.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>187708.00</td>
+	</tr><tr>
+		<td>OFFBEAT DEVELOPERS PRIVATE LIMITED</td><td>12248</td><td>360344.00</td><td>359236.00</td><td>&nbsp;</td><td>0.00</td><td>1108.00</td>
+	</tr><tr>
+		<td>OMKAR CONSTRUCTION</td><td>14678</td><td>77935.00</td><td>26147.00</td><td>&nbsp;</td><td>0.00</td><td>51788.00</td>
+	</tr><tr>
+		<td>ORIENTAL RUBBER INDUSTRIES PVT. LTD. HEAD OFFICE</td><td>16788</td><td>79057.00</td><td>69425.00</td><td>&nbsp;</td><td>0.00</td><td>9632.00</td>
+	</tr><tr>
+		<td>P. S. BHAPKAR</td><td>16873</td><td>57144.00</td><td>58223.00</td><td>&nbsp;</td><td>1079.00</td><td>0.00</td>
+	</tr><tr>
+		<td>PALLAVI BILLIMORIA</td><td>16187</td><td>188970.00</td><td>172670.00</td><td>&nbsp;</td><td>0.00</td><td>16300.00</td>
+	</tr><tr>
+		<td>PAPER KRAFT MFG. INDIA PVT LTD</td><td>7477</td><td>80119.00</td><td>80359.00</td><td>&nbsp;</td><td>240.00</td><td>0.00</td>
+	</tr><tr>
+		<td>PARAG MANIYAR</td><td>15582</td><td>2309.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2309.00</td>
+	</tr><tr>
+		<td>PARASMANI CONSTRUCTION PVT. LTD.</td><td>13766</td><td>40239.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>40239.00</td>
+	</tr><tr>
+		<td>PARESH BUDHANI</td><td>16183</td><td>154153.00</td><td>110000.00</td><td>&nbsp;</td><td>0.00</td><td>44153.00</td>
+	</tr><tr>
+		<td>PARESH SHETH</td><td>9223</td><td>8364.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8364.00</td>
+	</tr><tr>
+		<td>PARVATI CONSTRUCTIONS</td><td>17082</td><td>3159.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3159.00</td>
+	</tr><tr>
+		<td>PATIL</td><td>12755</td><td>15811.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>15811.00</td>
+	</tr><tr>
+		<td>PEGASUS PROPERTIES PVT. LTD.</td><td>364</td><td>1008113.00</td><td>813459.00</td><td>&nbsp;</td><td>0.00</td><td>194654.00</td>
+	</tr><tr>
+		<td>PERFECT PAINTS</td><td>14680</td><td>25777.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>25777.00</td>
+	</tr><tr>
+		<td>PRAJAPATI MISTRY</td><td>17016</td><td>7550.00</td><td>7500.00</td><td>&nbsp;</td><td>0.00</td><td>50.00</td>
+	</tr><tr>
+		<td>PRAJATTA R. SHIRGAOKAR</td><td>13275</td><td>5490.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5490.00</td>
+	</tr><tr>
+		<td>PRANAY RANKA</td><td>15368</td><td>1531.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1531.00</td>
+	</tr><tr>
+		<td>PRASHANT CHAVAN</td><td>17084</td><td>0.00</td><td>35360.00</td><td>&nbsp;</td><td>35360.00</td><td>0.00</td>
+	</tr><tr>
+		<td>PRASHANT HIREMATH</td><td>16105</td><td>92051.00</td><td>90000.00</td><td>&nbsp;</td><td>0.00</td><td>2051.00</td>
+	</tr><tr>
+		<td>PRATHAM YASH ASSOCIATES</td><td>17027</td><td>194864.00</td><td>195000.00</td><td>&nbsp;</td><td>136.00</td><td>0.00</td>
+	</tr><tr>
+		<td>PRATHMESH PROMOTERS &amp; CO.</td><td>16791</td><td>813967.00</td><td>826830.00</td><td>&nbsp;</td><td>12863.00</td><td>0.00</td>
+	</tr><tr>
+		<td>PRATHMESH PROMOTERS CO.</td><td>15952</td><td>131283.00</td><td>104453.00</td><td>&nbsp;</td><td>0.00</td><td>26830.00</td>
+	</tr><tr>
+		<td>PRATIBHA JADHAV</td><td>16884</td><td>48296.00</td><td>47918.00</td><td>&nbsp;</td><td>0.00</td><td>378.00</td>
+	</tr><tr>
+		<td>PRATIK RAJENDRA MUNOT</td><td>13608</td><td>3361.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3361.00</td>
+	</tr><tr>
+		<td>PRATIK ZANVAR</td><td>14694</td><td>0.00</td><td>1630.00</td><td>&nbsp;</td><td>1630.00</td><td>0.00</td>
+	</tr><tr>
+		<td>PRAVEEN PAREKH</td><td>15412</td><td>5050.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5050.00</td>
+	</tr><tr>
+		<td>PREETI STEPHEN</td><td>16225</td><td>640.00</td><td>795.00</td><td>&nbsp;</td><td>155.00</td><td>0.00</td>
+	</tr><tr>
+		<td>R. D. BHOSALE</td><td>17092</td><td>60722.00</td><td>60721.00</td><td>&nbsp;</td><td>0.00</td><td>1.00</td>
+	</tr><tr>
+		<td>RADHA SHELKE</td><td>17097</td><td>0.00</td><td>2000.00</td><td>&nbsp;</td><td>2000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RADICAL SPACES INDIA PVT. LTD.</td><td>14185</td><td>3500.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3500.00</td>
+	</tr><tr>
+		<td>RADINITALIA PVT. LTD.</td><td>15308</td><td>36319.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>36319.00</td>
+	</tr><tr>
+		<td>RAJENDRA BHAMBHANI</td><td>16247</td><td>56535.00</td><td>65077.00</td><td>&nbsp;</td><td>8542.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RAJENDRA MOHITE</td><td>16316</td><td>57707.00</td><td>68788.00</td><td>&nbsp;</td><td>11081.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RAJNISH MEDHEKAR</td><td>12161</td><td>1410.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1410.00</td>
+	</tr><tr>
+		<td>RAJUBHAI RATHOD</td><td>15592</td><td>6620.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6620.00</td>
+	</tr><tr>
+		<td>RAKESH CHORBELE</td><td>14435</td><td>0.00</td><td>2025.00</td><td>&nbsp;</td><td>2025.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RAKESH OSWAL</td><td>4195</td><td>11360.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>11360.00</td>
+	</tr><tr>
+		<td>RAKSHIT OSWAL</td><td>14072</td><td>9236.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>9236.00</td>
+	</tr><tr>
+		<td>RAM SHINDE</td><td>17070</td><td>25972.00</td><td>25970.00</td><td>&nbsp;</td><td>0.00</td><td>2.00</td>
+	</tr><tr>
+		<td>RAMA SYNERGY SPACES</td><td>12616</td><td>0.00</td><td>17567.00</td><td>&nbsp;</td><td>17567.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RANGOLI CERA TILES (S)</td><td>7647</td><td>3478.00</td><td>51802.00</td><td>&nbsp;</td><td>48324.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RATHOD MEDICAL STORES</td><td>16963</td><td>33660.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>33660.00</td>
+	</tr><tr>
+		<td>RESHMA KADAM</td><td>16215</td><td>165616.00</td><td>93827.00</td><td>&nbsp;</td><td>0.00</td><td>71789.00</td>
+	</tr><tr>
+		<td>RIJ ENGG. PVT. LTD</td><td>10125</td><td>506933.00</td><td>337469.00</td><td>&nbsp;</td><td>0.00</td><td>169464.00</td>
+	</tr><tr>
+		<td>RISHIKESH DUBE</td><td>15593</td><td>0.00</td><td>4340.00</td><td>&nbsp;</td><td>4340.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ROHAN AMBALI</td><td>13891</td><td>0.00</td><td>10911.00</td><td>&nbsp;</td><td>10911.00</td><td>0.00</td>
+	</tr><tr>
+		<td>ROHAN BUILDERS &amp; DEVELOPERS PVT. LTD.</td><td>9732</td><td>5062.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5062.00</td>
+	</tr><tr>
+		<td>ROHAN PROJECTS</td><td>9008</td><td>5031.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5031.00</td>
+	</tr><tr>
+		<td>ROYAL STAR GROUP</td><td>12875</td><td>4958.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4958.00</td>
+	</tr><tr>
+		<td>RUCHA PROMOTERS AND DEVELOPERS PVT. LTD.</td><td>15540</td><td>1478193.00</td><td>906750.00</td><td>&nbsp;</td><td>0.00</td><td>571443.00</td>
+	</tr><tr>
+		<td>RUJUTA PENDSE</td><td>15866</td><td>29857.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>29857.00</td>
+	</tr><tr>
+		<td>RUNWAL HOUSING AND TOWNSHIP PVT. LTD.</td><td>13549</td><td>2468.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2468.00</td>
+	</tr><tr>
+		<td>RUPESH SHETTY</td><td>16130</td><td>526929.00</td><td>527598.00</td><td>&nbsp;</td><td>669.00</td><td>0.00</td>
+	</tr><tr>
+		<td>RUTUJA MULE</td><td>16935</td><td>92843.00</td><td>102397.50</td><td>&nbsp;</td><td>9554.50</td><td>0.00</td>
+	</tr><tr>
+		<td>S. D. CHOUDHARI</td><td>14814</td><td>0.00</td><td>1560.00</td><td>&nbsp;</td><td>1560.00</td><td>0.00</td>
+	</tr><tr>
+		<td>S. D. RATHOD</td><td>16860</td><td>15781.00</td><td>20778.00</td><td>&nbsp;</td><td>4997.00</td><td>0.00</td>
+	</tr><tr>
+		<td>S. K. AGRWAL</td><td>17088</td><td>33300.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>33300.00</td>
+	</tr><tr>
+		<td>S. S. KADAM</td><td>16942</td><td>27850.00</td><td>27854.00</td><td>&nbsp;</td><td>4.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SACHIN KONAPURE</td><td>13997</td><td>2681.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2681.00</td>
+	</tr><tr>
+		<td>SAGAR MALANI</td><td>16760</td><td>1452788.00</td><td>880000.00</td><td>&nbsp;</td><td>0.00</td><td>572788.00</td>
+	</tr><tr>
+		<td>SAGAR RATHI</td><td>16346</td><td>7385.00</td><td>6900.00</td><td>&nbsp;</td><td>0.00</td><td>485.00</td>
+	</tr><tr>
+		<td>SAHASTRABUDHYE</td><td>4574</td><td>2992.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2992.00</td>
+	</tr><tr>
+		<td>SAI SALES CORPORATION</td><td>15842</td><td>110624.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>110624.00</td>
+	</tr><tr>
+		<td>SAINIK SCHOOL SATARA</td><td>16871</td><td>10500.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>10500.00</td>
+	</tr><tr>
+		<td>SAIRAJ ENTERPRISES</td><td>16926</td><td>76800.00</td><td>82423.00</td><td>&nbsp;</td><td>5623.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SAMRAT VERKUTE</td><td>16228</td><td>2092.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2092.00</td>
+	</tr><tr>
+		<td>SANDEEP BHAYATI</td><td>15840</td><td>8893.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8893.00</td>
+	</tr><tr>
+		<td>SANDEEP GONDHALE</td><td>17100</td><td>0.00</td><td>2400.00</td><td>&nbsp;</td><td>2400.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SANDEEP SHROFF</td><td>14409</td><td>2368.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2368.00</td>
+	</tr><tr>
+		<td>SANGITA WELINKAR</td><td>15972</td><td>4370.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4370.00</td>
+	</tr><tr>
+		<td>SANGRAM U. SHINDE</td><td>16998</td><td>6960.00</td><td>8640.00</td><td>&nbsp;</td><td>1680.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SANJAY ADHIKARI</td><td>14105</td><td>11016.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>11016.00</td>
+	</tr><tr>
+		<td>SANJAY DOSHI</td><td>17098</td><td>0.00</td><td>10062.00</td><td>&nbsp;</td><td>10062.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SANJAY GANDHI</td><td>16096</td><td>18385.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>18385.00</td>
+	</tr><tr>
+		<td>SANJAY HEMWANI</td><td>16798</td><td>64490.00</td><td>60098.00</td><td>&nbsp;</td><td>0.00</td><td>4392.00</td>
+	</tr><tr>
+		<td>SANJAY SAFAI</td><td>14559</td><td>1553.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1553.00</td>
+	</tr><tr>
+		<td>SANJAYJI KALE</td><td>16759</td><td>521352.00</td><td>513331.00</td><td>&nbsp;</td><td>0.00</td><td>8021.00</td>
+	</tr><tr>
+		<td>SANKET BIYANI</td><td>2064</td><td>237973.00</td><td>300793.00</td><td>&nbsp;</td><td>62820.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SANKLA</td><td>14956</td><td>0.00</td><td>7410.00</td><td>&nbsp;</td><td>7410.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SANTOSH RASKAR</td><td>16843</td><td>206123.00</td><td>205392.00</td><td>&nbsp;</td><td>0.00</td><td>731.00</td>
+	</tr><tr>
+		<td>SATHE AND COMPANY PVT. LTD.</td><td>304</td><td>5626.00</td><td>4576.00</td><td>&nbsp;</td><td>0.00</td><td>1050.00</td>
+	</tr><tr>
+		<td>SEASONS SERVICE APARTMENTS</td><td>6074</td><td>0.00</td><td>47357.00</td><td>&nbsp;</td><td>47357.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SERVIEW ENTERPRIESES</td><td>16862</td><td>223950.00</td><td>310936.00</td><td>&nbsp;</td><td>86986.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SHABBIR SIR</td><td>14820</td><td>1425.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1425.00</td>
+	</tr><tr>
+		<td>SHAH CONSTRUCTION</td><td>12758</td><td>6325.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6325.00</td>
+	</tr><tr>
+		<td>SHAILESH &amp; SANT</td><td>16842</td><td>28593.00</td><td>35102.00</td><td>&nbsp;</td><td>6509.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SHAKUN TILE COMPANY</td><td>11006</td><td>8650.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8650.00</td>
+	</tr><tr>
+		<td>SHAKUN TILES &amp; SANITATION</td><td>6028</td><td>13421.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>13421.00</td>
+	</tr><tr>
+		<td>SHALINI LALWANI</td><td>16853</td><td>235287.00</td><td>318806.00</td><td>&nbsp;</td><td>83519.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SHANTARAM ELECTRIC INDUSTRY</td><td>16913</td><td>19970.00</td><td>23530.00</td><td>&nbsp;</td><td>3560.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SHANTILAL SOLANKI</td><td>5932</td><td>22399.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>22399.00</td>
+	</tr><tr>
+		<td>SHARAD PATHARE</td><td>15607</td><td>349569.00</td><td>198000.00</td><td>&nbsp;</td><td>0.00</td><td>151569.00</td>
+	</tr><tr>
+		<td>SHARDA CONSTRUCTION</td><td>16886</td><td>6444.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6444.00</td>
+	</tr><tr>
+		<td>SHARDDHA PINGALE</td><td>17058</td><td>56588.00</td><td>56000.00</td><td>&nbsp;</td><td>0.00</td><td>588.00</td>
+	</tr><tr>
+		<td>SHASHIKANT LIMDI</td><td>15717</td><td>43850.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>43850.00</td>
+	</tr><tr>
+		<td>SHEESHAM DECORATORS</td><td>15995</td><td>164962.00</td><td>162120.00</td><td>&nbsp;</td><td>0.00</td><td>2842.00</td>
+	</tr><tr>
+		<td>SHIRISH DESHPANDE</td><td>4750</td><td>1856.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1856.00</td>
+	</tr><tr>
+		<td>SHIRISH PANHALE</td><td>15105</td><td>1373.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1373.00</td>
+	</tr><tr>
+		<td>SHIVAJI CHORGE</td><td>13848</td><td>9464.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>9464.00</td>
+	</tr><tr>
+		<td>SHREE ENTERPRISES</td><td>15805</td><td>2445.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2445.00</td>
+	</tr><tr>
+		<td>SHREE MADHU TRADERS</td><td>12785</td><td>3458.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3458.00</td>
+	</tr><tr>
+		<td>SHREE SHANTINATH BHAGVAN TRUST</td><td>14501</td><td>1215.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1215.00</td>
+	</tr><tr>
+		<td>SHREE SIDDHIVINAYAK ENTERPRISES</td><td>16240</td><td>25959.00</td><td>8567.00</td><td>&nbsp;</td><td>0.00</td><td>17392.00</td>
+	</tr><tr>
+		<td>SHREE SWAMI SAMARTH INDUSTRIES</td><td>13493</td><td>3053.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3053.00</td>
+	</tr><tr>
+		<td>SHREE VENKATESH BUILDCON PVT. LTD.</td><td>14502</td><td>10046.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>10046.00</td>
+	</tr><tr>
+		<td>SHREE VIJAY ASSOCIATES</td><td>15698</td><td>738.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>738.00</td>
+	</tr><tr>
+		<td>SHREEJI SALES</td><td>17038</td><td>201300.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>201300.00</td>
+	</tr><tr>
+		<td>SHRI AGASHE</td><td>14212</td><td>0.00</td><td>4300.00</td><td>&nbsp;</td><td>4300.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SHRIGIRI ENGG. CONSTRUCTION</td><td>4216</td><td>198216.00</td><td>224976.00</td><td>&nbsp;</td><td>26760.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SHRINIVAS CHAFALKAR</td><td>17041</td><td>70820.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>70820.00</td>
+	</tr><tr>
+		<td>SHROFF AMIT INFRA</td><td>15584</td><td>3884031.00</td><td>2672591.00</td><td>&nbsp;</td><td>0.00</td><td>1211440.00</td>
+	</tr><tr>
+		<td>SHWETA JAIN</td><td>15664</td><td>0.00</td><td>164000.00</td><td>&nbsp;</td><td>164000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SIDDHIVINAYAK CONTRACTOR &amp; DEVELOPERS</td><td>17061</td><td>94225.00</td><td>35482.00</td><td>&nbsp;</td><td>0.00</td><td>58743.00</td>
+	</tr><tr>
+		<td>SMITA DAHIWADKAR</td><td>14507</td><td>12568.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>12568.00</td>
+	</tr><tr>
+		<td>SPACE TALK STUDIO</td><td>17045</td><td>34034.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>34034.00</td>
+	</tr><tr>
+		<td>SPARC INTERIORS STUDIO LLP</td><td>17015</td><td>17360.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>17360.00</td>
+	</tr><tr>
+		<td>SPARKLET MAINTENANCE A/C</td><td>15035</td><td>17484.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>17484.00</td>
+	</tr><tr>
+		<td>SQUISITOS</td><td>15956</td><td>69165.00</td><td>74700.00</td><td>&nbsp;</td><td>5535.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SUBHASH MUTHA</td><td>17018</td><td>4040.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4040.00</td>
+	</tr><tr>
+		<td>SUBHASH ZAMBAD</td><td>14399</td><td>17409.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>17409.00</td>
+	</tr><tr>
+		<td>SUCHETA SHAH</td><td>13276</td><td>4380.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4380.00</td>
+	</tr><tr>
+		<td>SUJATA SADANAND</td><td>16181</td><td>63000.00</td><td>62000.00</td><td>&nbsp;</td><td>0.00</td><td>1000.00</td>
+	</tr><tr>
+		<td>SUKUMAR TOWNSHIP DEV. P.L.</td><td>10048</td><td>2208555.00</td><td>2213529.00</td><td>&nbsp;</td><td>4974.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SUKUMAR TOWNSHIP DEVELOPMENT P. L.</td><td>315</td><td>78575.00</td><td>57821.00</td><td>&nbsp;</td><td>0.00</td><td>20754.00</td>
+	</tr><tr>
+		<td>SUN PLY</td><td>16899</td><td>26600.00</td><td>25050.00</td><td>&nbsp;</td><td>0.00</td><td>1550.00</td>
+	</tr><tr>
+		<td>SUNIL AGARWAL</td><td>16989</td><td>66736.00</td><td>66730.00</td><td>&nbsp;</td><td>0.00</td><td>6.00</td>
+	</tr><tr>
+		<td>SUNIL DEVEKAR</td><td>16945</td><td>36970.00</td><td>38410.00</td><td>&nbsp;</td><td>1440.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SUNIL PITALE</td><td>10778</td><td>4938.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>4938.00</td>
+	</tr><tr>
+		<td>SURESH CHOUGHULE</td><td>16095</td><td>3731.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3731.00</td>
+	</tr><tr>
+		<td>SURESH DESHPANDE</td><td>16971</td><td>24924.00</td><td>33197.00</td><td>&nbsp;</td><td>8273.00</td><td>0.00</td>
+	</tr><tr>
+		<td>SURESH KOTE</td><td>14710</td><td>37942.00</td><td>13400.00</td><td>&nbsp;</td><td>0.00</td><td>24542.00</td>
+	</tr><tr>
+		<td>SURINDER SINGH BEDI</td><td>16938</td><td>29470.00</td><td>29400.00</td><td>&nbsp;</td><td>0.00</td><td>70.00</td>
+	</tr><tr>
+		<td>SURYADATTA EDUCATION FOUNDATION</td><td>8247</td><td>5793.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5793.00</td>
+	</tr><tr>
+		<td>SUSHEEL KUMAR TUNK</td><td>13785</td><td>10716.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>10716.00</td>
+	</tr><tr>
+		<td>SWAPNALOK</td><td>17055</td><td>26200.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>26200.00</td>
+	</tr><tr>
+		<td>SWATI KALAPURE</td><td>17105</td><td>42656.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>42656.00</td>
+	</tr><tr>
+		<td>TELEPHONE SHOPPEES</td><td>16982</td><td>7077.00</td><td>7076.00</td><td>&nbsp;</td><td>0.00</td><td>1.00</td>
+	</tr><tr>
+		<td>THAKAR PATIL PROMOTERS AND BUILDERS</td><td>17081</td><td>0.00</td><td>200000.00</td><td>&nbsp;</td><td>200000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>THE MISTRI TALES</td><td>16812</td><td>27938.00</td><td>26146.00</td><td>&nbsp;</td><td>0.00</td><td>1792.00</td>
+	</tr><tr>
+		<td>TIRUPATI CERAMICS</td><td>14964</td><td>8892.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>8892.00</td>
+	</tr><tr>
+		<td>TONY THAMKACHAN</td><td>15478</td><td>2033.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>2033.00</td>
+	</tr><tr>
+		<td>TUSHAR DOSHI</td><td>16751</td><td>98993.00</td><td>98222.00</td><td>&nbsp;</td><td>0.00</td><td>771.00</td>
+	</tr><tr>
+		<td>TUSHAR LAKHE</td><td>17073</td><td>15432.00</td><td>15400.00</td><td>&nbsp;</td><td>0.00</td><td>32.00</td>
+	</tr><tr>
+		<td>ULKA JOSHI</td><td>16856</td><td>8600.00</td><td>11000.00</td><td>&nbsp;</td><td>2400.00</td><td>0.00</td>
+	</tr><tr>
+		<td>UNIQUE COMPUTERS</td><td>16776</td><td>118811.00</td><td>118000.00</td><td>&nbsp;</td><td>0.00</td><td>811.00</td>
+	</tr><tr>
+		<td>USHA OSWAL</td><td>15667</td><td>0.00</td><td>35000.00</td><td>&nbsp;</td><td>35000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>V. L. JAIN &amp; CO.</td><td>13870</td><td>3142.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3142.00</td>
+	</tr><tr>
+		<td>V. R. GANDHE</td><td>16780</td><td>135520.00</td><td>135520.50</td><td>&nbsp;</td><td>0.50</td><td>0.00</td>
+	</tr><tr>
+		<td>VAIBHAV VAZE</td><td>16953</td><td>13400.00</td><td>10560.00</td><td>&nbsp;</td><td>0.00</td><td>2840.00</td>
+	</tr><tr>
+		<td>VAMAN URUNKAR</td><td>15942</td><td>664956.00</td><td>697414.00</td><td>&nbsp;</td><td>32458.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VAMONA DEVELOPERS PVT. LTD.</td><td>15199</td><td>107537.00</td><td>237257.00</td><td>&nbsp;</td><td>129720.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VASANT SWADAS</td><td>17007</td><td>13115.00</td><td>11337.00</td><td>&nbsp;</td><td>0.00</td><td>1778.00</td>
+	</tr><tr>
+		<td>VED CONSTRUCTIONS</td><td>10803</td><td>3638.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>3638.00</td>
+	</tr><tr>
+		<td>VENKATESH ENTERPRISES</td><td>14469</td><td>26544.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>26544.00</td>
+	</tr><tr>
+		<td>VIJAY BINAKIYA</td><td>16064</td><td>5150.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5150.00</td>
+	</tr><tr>
+		<td>VIJAY JAMBHULKAR</td><td>8189</td><td>33083.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>33083.00</td>
+	</tr><tr>
+		<td>VIJAY RAO</td><td>14584</td><td>5513.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>5513.00</td>
+	</tr><tr>
+		<td>VIKESH KUMAR BATRA</td><td>15101</td><td>0.00</td><td>1440.00</td><td>&nbsp;</td><td>1440.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VILAS D. BHAGAT</td><td>16250</td><td>0.00</td><td>2272.00</td><td>&nbsp;</td><td>2272.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VIRAJ PROPERTIES</td><td>7781</td><td>57714.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>57714.00</td>
+	</tr><tr>
+		<td>VIRAJ PROPERTIES-SHILOH</td><td>15286</td><td>354049.00</td><td>338336.00</td><td>&nbsp;</td><td>0.00</td><td>15713.00</td>
+	</tr><tr>
+		<td>VIRAJ PROPERTIES-SHIVAJINAGAR</td><td>13769</td><td>0.00</td><td>5913.00</td><td>&nbsp;</td><td>5913.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VIRAJ PROPERTIES-SUPNEKAR J.V.</td><td>11672</td><td>0.00</td><td>12764.00</td><td>&nbsp;</td><td>12764.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VISHAL JADHAV</td><td>16917</td><td>3850.00</td><td>3852.00</td><td>&nbsp;</td><td>2.00</td><td>0.00</td>
+	</tr><tr>
+		<td>VISHNU LAMBA </td><td>13502</td><td>9981.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>9981.00</td>
+	</tr><tr>
+		<td>W. D. S.</td><td>8828</td><td>6839.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>6839.00</td>
+	</tr><tr>
+		<td>WTE INFRA PROJECTS PVT. LTD.</td><td>16786</td><td>332545.00</td><td>310721.00</td><td>&nbsp;</td><td>0.00</td><td>21824.00</td>
+	</tr><tr>
+		<td>YASHODA JEWELLERS </td><td>16950</td><td>64520.00</td><td>64500.00</td><td>&nbsp;</td><td>0.00</td><td>20.00</td>
+	</tr><tr>
+		<td>YOGESH BHOR</td><td>16907</td><td>1900000.00</td><td>2106000.00</td><td>&nbsp;</td><td>206000.00</td><td>0.00</td>
+	</tr><tr>
+		<td>YOGITA NARSALE</td><td>17063</td><td>13230.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>13230.00</td>
+	</tr><tr>
+		<td>YUGAL CONSTRUCTION</td><td>2262</td><td>671705.20</td><td>669240.20</td><td>&nbsp;</td><td>0.00</td><td>2465.00</td>
+	</tr><tr>
+		<td>ZENDE PROPERTIES</td><td>14433</td><td>1522.00</td><td>0.00</td><td>&nbsp;</td><td>0.00</td><td>1522.00</td>
+	</tr>
+</table>

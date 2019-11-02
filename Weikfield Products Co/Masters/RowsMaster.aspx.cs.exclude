@@ -1,0 +1,375 @@
+﻿using DMS.DataModel;
+using DMS.EntityClass;
+using DMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Masters_RowsMaster : System.Web.UI.Page
+{
+
+    #region[Private Variables]
+    DMRows Obj_Rows = new DMRows();
+    Rows Entity_Rows = new Rows();
+    CommanFunction Obj_Comm = new CommanFunction();
+    DataSet DS = new DataSet();
+
+    private string StrError = string.Empty;
+    private string StrCondition = string.Empty;
+    private bool Flag = true;
+    private static bool FlagAdd = false, FlagDel = false, FlagEdit = false;
+    #endregion
+
+    #region[UserDefinedFunction]
+
+    //User Right Function===========
+    public void CheckUserRight()
+    {
+        FlagAdd = FlagDel = FlagEdit = false;
+        try
+        {
+
+        }
+        catch (ThreadAbortException)
+        {
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    //User Right Function===========
+
+    private void MakeEmptyForm()
+    {
+        BindCMB();
+        ddlRoom.Focus();
+        if (!FlagAdd)
+            BtnSave.Visible = true;
+        BtnUpdate.Visible = false;
+        BtnDelete.Visible = false;
+        BtnCancel.Visible = true;
+        txtRowNo.Text = string.Empty;
+        TxtSearch.Text = string.Empty;
+        ReportGrid(StrCondition);
+        ddlRoom.SelectedValue = "0";
+        ddlAisle.Items.Clear();
+    }
+
+    private void MakeControlEmpty()
+    {
+        txtRowNo.Text = string.Empty;
+        ReportGrid(StrCondition);
+        txtRowNo.Focus();
+    }
+
+    private void ReportGrid(string RepCondition)
+    {
+        try
+        {
+            DS = Obj_Rows.GetRowList(RepCondition, out StrError);
+
+            if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+            {
+                GrdReport.DataSource = DS;
+                GrdReport.DataBind();
+            }
+            else
+            {
+                GrdReport.DataSource = null;
+                GrdReport.DataBind();
+            }
+            Obj_Rows = null;
+            DS = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    private void BindCMB()
+    {
+        DataSet DSC = new DataSet();
+        DSC = Obj_Rows.FillCombo(out StrError);
+
+        if (DSC.Tables.Count > 0)
+        {
+            if (DSC.Tables[0].Rows.Count > 0)
+            {
+                ddlRoom.DataSource = DSC.Tables[0];
+                ddlRoom.DataTextField = "Room";
+                ddlRoom.DataValueField = "RoomId";
+                ddlRoom.DataBind();
+            }
+        }
+    }
+
+    private bool Check()
+    {
+        DataSet Ds = new DataSet();
+        Flag = true;
+        if (ViewState["EditID"] != null)
+
+            Ds = Obj_Rows.ChkDuplicate(txtRowNo.Text.Trim(), long.Parse(ViewState["EditID"].ToString()), ddlRoom.SelectedItem.Text, ddlAisle.SelectedItem.Text, out StrError);
+        else
+            Ds = Obj_Rows.ChkDuplicate(txtRowNo.Text.Trim(), -1, ddlRoom.SelectedItem.Text, ddlAisle.SelectedItem.Text, out StrError);
+
+        if (Ds.Tables.Count > 0)
+        {
+            if (Ds.Tables[0].Rows.Count > 0)
+            {
+                if (long.Parse(Ds.Tables[0].Rows[0][0].ToString()) > 0)
+                {
+                    Flag = false;
+                    Obj_Comm.ShowPopUpMsg("This Row No Already Exist....!", this.Page);
+                    txtRowNo.Focus();
+                }
+            }
+        }
+        return Flag;
+    }
+
+    #endregion
+
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            CheckUserRight();
+
+            MakeEmptyForm();
+            ddlRoom.Focus();
+        }
+    }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        DMRows Obj_Rows = new DMRows();
+        string[] SearchList = Obj_Rows.GetSuggestRecord(prefixText);
+        return SearchList;
+    }
+
+    protected void TxtSearch_TextChanged(object sender, EventArgs e)
+    {
+        StrCondition = TxtSearch.Text.Trim();
+        ReportGrid(StrCondition);
+    }
+
+    protected void BtnUpdate_Click(object sender, EventArgs e)
+    {
+        int i = Convert.ToInt32(hiddenbox.Value);
+        if (i == 0)
+        {
+            int UpdateRow = 0;
+            try
+            {
+                if (Check() == true)
+                {
+                    if (ViewState["EditID"] != null)
+                    {
+                        Entity_Rows.RowId = Convert.ToInt32(ViewState["EditID"]);
+                    }
+                    Entity_Rows.RowNo = txtRowNo.Text.Trim();
+                    Entity_Rows.RoomId = Convert.ToInt32(ddlRoom.SelectedValue);
+                    Entity_Rows.AisleId = Convert.ToInt32(ddlAisle.SelectedValue);
+                    Entity_Rows.UserId = Convert.ToInt32(Session["UserId"]);
+                    Entity_Rows.LoginDate = DateTime.Now;
+
+                    UpdateRow = Obj_Rows.UpdateRow(ref Entity_Rows, out StrError);
+                    if (UpdateRow != 0)
+                    {
+                        Obj_Comm.ShowPopUpMsg("Record Updated Successfully", this.Page);
+                        MakeEmptyForm();
+                        ddlRoom.Focus();
+                        Entity_Rows = null;
+                        Obj_Comm = null;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+        int InsertRow = 0;
+        try
+        {
+          
+            if (Check() == true)
+            {
+                Entity_Rows.RowNo = txtRowNo.Text.Trim();
+                Entity_Rows.RoomId = Convert.ToInt32(ddlRoom.SelectedValue);
+                Entity_Rows.AisleId = Convert.ToInt32(ddlAisle.SelectedValue);
+                Entity_Rows.UserId = Convert.ToInt32(Session["UserId"]);
+                Entity_Rows.LoginDate = DateTime.Now;
+
+                InsertRow = Obj_Rows.InsertRow(ref Entity_Rows, out StrError);
+
+                if (InsertRow > 0)
+                {
+                    Obj_Comm.ShowPopUpMsg("Record Saved Successfully", this.Page);
+                   // MakeEmptyForm();
+                  //  ddlRoom.Focus();
+                    MakeControlEmpty();
+                    Entity_Rows = null;
+                    Obj_Comm = null;
+                }
+            }
+            //}
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void BtnDelete_Click(object sender, EventArgs e)
+    {
+        int i = Convert.ToInt32(hiddenbox.Value);
+        if (i == 0)
+        {
+            try
+            {
+                int DeleteId = 0;
+                if (ViewState["EditID"] != null)
+                {
+                    if (long.Parse(hdnFldUsedCnt.Value.ToString()) > 0)
+                    {
+                        Obj_Comm.ShowPopUpMsg("Row is in use. Cannot Delete Record...", this.Page);
+                        return;
+                    }
+
+                    DeleteId = Convert.ToInt32(ViewState["EditID"]);
+                }
+                if (DeleteId != 0)
+                {
+                    Entity_Rows.RowId = DeleteId;
+                    Entity_Rows.UserId = Convert.ToInt32(Session["UserId"]);
+                    Entity_Rows.LoginDate = DateTime.Now;
+                    int iDelete = Obj_Rows.DeleteRow(ref Entity_Rows, out StrError);
+                    if (iDelete != 0)
+                    {
+                        Obj_Comm.ShowPopUpMsg("Record Deleted Successfully..!", this.Page);
+                        MakeEmptyForm();
+                    }
+                    else
+                    {
+                        Obj_Comm.ShowPopUpMsg("Row is in use. Cannot Delete Record...", this.Page);
+                        return;
+                    }
+
+                }
+                Entity_Rows = null;
+                Obj_Comm = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        MakeEmptyForm();
+    }
+
+    protected void GrdReport_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        try
+        {
+            switch (e.CommandName)
+            {
+                case ("Select"):
+                    {
+                        if (Convert.ToInt32(e.CommandArgument) != 0)
+                        {
+                            ViewState["EditID"] = Convert.ToInt32(e.CommandArgument);
+                            LinkButton lnk = (LinkButton)e.Item.FindControl("lbtn_List");
+                            Label lbl = (Label)e.Item.FindControl("lblUsedCnt");
+                            if (lnk != null)
+                            {
+                                hdnFldUsedCnt.Value = lbl.Text;
+                            }
+                            DS = Obj_Rows.GetRowForEdit(Convert.ToInt32(e.CommandArgument), out StrError);
+
+                            if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+                            {
+                                txtRowNo.Text = DS.Tables[0].Rows[0]["RowNo"].ToString();
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["RoomId"]) > 0)
+                                {
+                                    ddlRoom.SelectedValue = DS.Tables[0].Rows[0]["RoomId"].ToString();
+                                    ddlRoom_SelectedIndexChanged(source, e);
+                                }
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["AisleId"]) > 0)
+                                {
+                                    ddlAisle.SelectedValue = DS.Tables[0].Rows[0]["AisleId"].ToString();
+                                }
+                            }
+                            else
+                            {
+                                MakeEmptyForm();
+                            }
+
+                            DS = null;
+                            Obj_Rows = null;
+                            BtnSave.Visible = false;
+                            if (!FlagEdit)
+                                BtnUpdate.Visible = true;
+                            if (!FlagDel)
+                                BtnDelete.Visible = true;
+                            txtRowNo.Focus();
+                        }
+
+                        break;
+                    }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    protected void ddlRoom_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            ddlRoom.Focus();
+            DataSet Ds = new DataSet();
+            Ds = Obj_Rows.GetAisle(Convert.ToInt32(ddlRoom.SelectedValue), out StrError);
+            if (Ds.Tables.Count > 0)
+            {
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlAisle.DataSource = Ds.Tables[0];
+                        ddlAisle.DataTextField = "Aisle";
+                        ddlAisle.DataValueField = "AisleId";
+                        ddlAisle.DataBind();
+                    }
+                }
+
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+}

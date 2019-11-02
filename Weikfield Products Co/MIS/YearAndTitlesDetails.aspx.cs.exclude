@@ -1,0 +1,259 @@
+﻿using DMS.DataModel;
+using DMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class MIS_YearAndTitlesDetails : System.Web.UI.Page
+{
+
+    #region[Private Variables]
+    DMYearAndDoctTitleDtls Obj_YearDtls = new DMYearAndDoctTitleDtls();
+  //  YearAndDoctTitleDtls Entity_YearDtls = new YearAndDoctTitleDtls();
+    CommanFunction Obj_Comm = new CommanFunction();
+    DataSet DS = new DataSet();
+    DataSet DS1 = new DataSet();
+    private string StrError = string.Empty;
+    private string StrCondition = string.Empty;
+    private static bool FlagAdd = false, FlagDel = false, FlagEdit = false;
+    private static int flag=0;
+    private bool Flag = true;
+    #endregion
+
+  //private void GridShow(string RepCondition)
+  //  {
+  //      try
+  //      {
+  //          DS1 = Obj_YearDtls.ShowGrdRecords(RepCondition, out StrError);
+
+  //          if (DS1.Tables.Count > 0 && DS1.Tables[0].Rows.Count > 0)
+  //          {
+  //              GrdShow.DataSource = DS1.Tables[0];
+  //              GrdShow.DataBind();
+  //          }
+  //          else
+  //          {
+  //              GrdShow.DataSource = null;
+  //              GrdShow.DataBind();
+  //          }
+  //          //  Obj_FileDocument = null;
+  //          //  DS = null;
+  //      }
+  //      catch (Exception ex)
+  //      {
+  //          throw new Exception(ex.Message);
+  //      }
+
+  //  }
+
+    private void MakeEmptyForm()
+    {
+        txtFile.Focus();
+        txtFile.Text = string.Empty;
+        HttpContext.Current.Cache["DirFile"] = "";
+        FillFile();     
+    }
+
+    private void FillFile()
+    {
+        DataSet ds = Obj_YearDtls.FillFiles(out StrError);
+        
+        if (ds.Tables.Count > 0)
+        {
+            HttpContext.Current.Cache["DirFile"] = (DataTable)ds.Tables[0];
+          
+        }
+    }
+
+    public SortDirection dir
+    {
+        get
+        {
+            if (ViewState["dirState"] == null)
+            {
+                ViewState["dirState"] = SortDirection.Ascending;
+            }
+            return (SortDirection)ViewState["dirState"];
+        }
+        set
+        {
+            ViewState["dirState"] = value;
+        }
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            //  CheckUserRight();
+            MakeEmptyForm();
+        }
+    }
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        MakeEmptyForm();
+    }
+
+    protected void BtnShow_Click(object sender, EventArgs e)
+    {
+       // hdnFileNo.Value = ds.Tables[0].Rows[0]["FileNo"].ToString();
+       // string FileNo = hdnFileNo.Value;
+       /// GridShow(FileNo);
+    }
+
+    protected void txtFile_TextChanged(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty((HttpContext.Current.Cache["DirFile"]).ToString()))
+        {
+            DataTable DtNew = null;
+        }
+        else
+        {
+            StrCondition = txtFile.Text;
+            DataTable DtNew = (DataTable)HttpContext.Current.Cache["DirFile"];
+            var query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("ShowName").ToLower()).Contains(StrCondition.ToLower())
+                        select r;
+            if (query != null && query.Count() > 0)
+            {
+                DataTable DTNEW = query.CopyToDataTable();
+                txtFile.Text = DTNEW.Rows[0]["ShowName"].ToString();
+                hdnFileNo.Value = DTNEW.Rows[0]["FileNo"].ToString();
+              
+            }
+            else
+            {
+                txtFile.Text = "";
+
+            }
+        }
+    }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+
+    public static string[] GetCompletionListFile(string prefixText, int count, string contextKey)
+    {
+        if (string.IsNullOrEmpty((HttpContext.Current.Cache["DirFile"]).ToString()))
+        {
+            DataTable DtNew = null;
+            return null;
+        }
+        else
+        {
+            DataTable DtNew = (DataTable)HttpContext.Current.Cache["DirFile"];
+
+            DataView view = DtNew.DefaultView;
+
+
+            string[] SearchList;
+
+            var query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("ShowName").ToLower()).Contains(prefixText.ToLower())
+                        select r.Field<string>("ShowName");
+            SearchList = query.ToArray();
+
+            if (prefixText.Contains(' '))
+            {
+                string[] str = prefixText.Split(' ');
+                if (str.Length == 2)
+                {
+                    query = from r in DtNew.AsEnumerable()
+                            where (r.Field<string>("Room").ToLower()).Contains(str[0].ToString().ToLower())
+                            where (r.Field<string>("Aisle").ToLower()).Contains(str[1].ToString().ToLower())
+                            select r.Field<string>("ShowName");
+
+                    SearchList = query.ToArray();
+                }
+                if (str.Length == 3)
+                {
+                    query = from r in DtNew.AsEnumerable()
+                            where (r.Field<string>("Room").ToLower()).Contains(str[0].ToString().ToLower())
+                            where (r.Field<string>("Aisle").ToLower()).Contains(str[1].ToString().ToLower())
+                            where (r.Field<string>("RowNo").ToLower()).Contains(str[2].ToString().ToLower())
+                            select r.Field<string>("ShowName");
+                    SearchList = query.ToArray();
+
+                }
+                if (str.Length == 4)
+                {
+                    query = from r in DtNew.AsEnumerable()
+                            where (r.Field<string>("Room").ToLower()).Contains(str[0].ToString().ToLower())
+                            where (r.Field<string>("Aisle").ToLower()).Contains(str[1].ToString().ToLower())
+                            where (r.Field<string>("CabinetNo").ToLower()).Contains(str[2].ToString().ToLower())
+                            where (r.Field<string>("ShelfNo").ToLower()).Contains(str[3].ToString().ToLower())
+                            select r.Field<string>("ShowName");
+                    SearchList = query.ToArray();
+
+                }
+            }
+            else
+            {
+                query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("ShowName").ToLower()).Contains(prefixText.ToLower())
+                        select r.Field<string>("ShowName");
+                SearchList = query.ToArray();
+            }
+            //string[] SearchList = query.ToArray();
+
+            return SearchList;
+
+        }
+    }
+
+    protected void btnFileNo_Click(object sender, EventArgs e)
+    {
+        flag = 2;
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "RedirectReceipt", "RedirectReceipt();", true);
+        
+    }
+
+    protected void BtnPrint_Click(object sender, EventArgs e)
+    {
+        if (long.Parse(txtFile.Text.Length.ToString()) <= 0)
+        {
+            Obj_Comm.ShowPopUpMsg("Please Enter File No...", this.Page);
+            txtFile.Focus();
+            return;
+        }
+
+        flag = 1;
+        ScriptManager.RegisterStartupScript(this, this.GetType(), "RedirectReceipt", "RedirectReceipt();", true);
+    }
+
+    protected void btnDocument_Click(object sender, EventArgs e)
+    {
+        if (long.Parse(txtFile.Text.Length.ToString()) <= 0)
+        {
+            Obj_Comm.ShowPopUpMsg("Please Enter File No...", this.Page);
+            txtFile.Focus();
+            return;
+        } 
+          flag = 3;
+          ScriptManager.RegisterStartupScript(this, this.GetType(), "RedirectReceipt", "RedirectReceipt();", true);         
+    }
+
+    protected void BtncallRec_Click(object sender, EventArgs e)
+    {
+        string FileNo = hdnFileNo.Value;
+
+        if (flag == 1)
+        {
+            Response.Redirect(@"~/PrintReport/PrintRpt.aspx?Flag=1&FileNo=" + FileNo, false);
+        }
+        if (flag == 2)
+        {
+            Response.Redirect(@"~/PrintReport/PrintRpt.aspx?Flag=2", false);
+        }
+        if (flag == 3)
+        {
+            Response.Redirect(@"~/PrintReport/PrintRpt.aspx?Flag=3&FileNo1=" + FileNo, false);
+        }
+
+    }
+}

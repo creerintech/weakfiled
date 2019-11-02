@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Linq;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Xml.Linq;
+
+public partial class Transactions_FileInwordRegister : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void TabContainer1_ActiveTabChanged(object sender, EventArgs e)
+    {
+        if (TabContainer1.ActiveTab == TabPanel1)
+        {
+            ////lblA.Text = TabPanel1.HeaderText;
+            //txtIncineratorNo.Focus();           
+            //Page.Title = "Incinerator Master";
+            //MakeEmptyIncinatorForm();
+            ////ReportGrid(StrCondition);
+
+            //SearchTr();
+            //lblWasteColoursSelectedI.Visible = true;
+            //txtIncineratorNo.Focus();
+            //CheckUserRight();
+        }
+        else
+        if (TabContainer1.ActiveTab == TabPanel2)
+        {
+           //// lblA.Text = TabPanel2.HeaderText;
+           // txtAutoclaveNo.Focus();
+           // MakeEmptyAutoClaveForm();           
+           // Page.Title = "Autoclave Master";
+           //// ReportGrid(StrCondition);
+           // //SearchTr();
+           // lblWasteColoursSelectedA.Visible = true;
+           // CheckUserRight();
+
+        }      
+    }
+
+}

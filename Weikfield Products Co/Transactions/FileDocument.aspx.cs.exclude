@@ -1,0 +1,1893 @@
+﻿using DMS.DataModel;
+using DMS.EntityClass;
+using DMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Transactions_FileDocument : System.Web.UI.Page
+{
+
+    #region[Private Variables]
+    DMFileDocument Obj_FileDocument = new DMFileDocument();
+    FileDocument Entity_FileDocument = new FileDocument();
+    CommanFunction Obj_Comm = new CommanFunction();
+    DataSet DS = new DataSet();
+    DataSet DS1 = new DataSet();
+    private string StrError = string.Empty;
+    private string StrCondition = string.Empty;
+    private static bool FlagAdd = false, FlagDel = false, FlagEdit = false;
+    private bool Flag = true;
+    #endregion
+
+    #region[UserDefinedFunction]
+
+    //User Right Function===========
+    public void CheckUserRight()
+    {
+        FlagAdd = FlagDel = FlagEdit = false;
+        try
+        {
+            #region [USER RIGHT]
+            //Checking Session Varialbels========
+            if (Session["UserName"] != null && Session["UserRole"] != null)
+            {
+             
+                System.Data.DataSet dsChkUserRight = new System.Data.DataSet();
+                System.Data.DataSet dsChkUserRight1 = new System.Data.DataSet();
+                dsChkUserRight1 = (DataSet)Session["DataSet"];
+
+                DataRow[] dtRow = dsChkUserRight1.Tables[1].Select("FormName ='FileDocument'");
+                if (dtRow.Length > 0)
+                {
+                    DataTable dt = dtRow.CopyToDataTable();
+                    dsChkUserRight.Tables.Add(dt);// = dt.Copy();
+                }
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["ViewAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["AddAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["DelAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["EditAuth"].ToString()) == false &&
+                    Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["PrintAuth"].ToString()) == false)
+                {
+                    Response.Redirect("~/Masters/NotAuthUser.aspx");
+                }
+                //Checking View Right ========                    
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["ViewAuth"].ToString()) == false)
+                {
+                    GrdReport.Visible = false;
+                }
+                //Checking Add Right ========                    
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["AddAuth"].ToString()) == false)
+                {
+                    BtnSave.Visible = false;
+                    FlagAdd = true;
+                }
+                //Checking Print Right ========                    
+                //if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["PrintAuth"].ToString()) == false)
+                //{
+                //    foreach (GridViewRow GRow in GrdReport.Rows)
+                //    {
+                //        GRow.FindControl("Image1").Visible = false;
+                //    }
+                //    //BtnPrint.Visible = false;
+                //    //FlagPrint = true;
+                //}
+                //Edit /Delete Column Visible ========
+                if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["DelAuth"].ToString()) == false
+                    && Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["EditAuth"].ToString()) == false)
+                {
+                    foreach (GridViewRow GRow in GrdReport.Rows)
+                    {
+                        GRow.FindControl("ImgBtnDelete").Visible = false;
+                    }
+                    BtnUpdate.Visible = false;
+                    //BtnCancelBooking.Visible = false;
+                    FlagDel = true;
+                    FlagEdit = true;
+                }
+                else
+                {
+                    //Checking Delete Right ========
+                    if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["DelAuth"].ToString()) == false)
+                    {
+                        foreach (GridViewRow GRow in GrdReport.Rows)
+                        {
+                            GRow.FindControl("ImgBtnDelete").Visible = false;
+
+                        }
+                        FlagDel = true;
+                    }
+
+                    //Checking Edit Right ========
+                    if (Convert.ToBoolean(dsChkUserRight.Tables[0].Rows[0]["EditAuth"].ToString()) == false)
+                    {
+                        foreach (GridViewRow GRow in GrdReport.Rows)
+                        {
+                            GRow.FindControl("ImgBtnEdit").Visible = false;
+                        }
+                        //BtnCancelBooking.Visible = false;
+                    }
+                }
+                dsChkUserRight.Dispose();
+                //}
+            }
+            else
+            {
+                Response.Redirect("~/Default.aspx");
+            }
+            #endregion
+        }
+        catch (ThreadAbortException)
+        {
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    //User Right Function===========
+
+    private void MakeEmptyForm()
+    {
+
+        ViewState["EditID"] = null;
+       
+      
+        if (!FlagAdd)
+            BtnSave.Visible = true;
+        BtnUpdate.Visible = false;
+       // BtnDelete.Visible = false;
+        lblFilePath.Text = string.Empty;
+        lblFileNo.Text = string.Empty;
+        BtnCancel.Visible = true;
+        txtDate.Text = DateTime.Now.ToString("dd MMM yyyy");
+        txtDocNo.Text = string.Empty;
+        txtAdditionalNotes.Text = string.Empty;
+       
+        txtFile.Text = string.Empty;
+        txtRoom.Text = string.Empty;
+        txtRoom.Enabled = false;
+        txtRows.Text = string.Empty;
+        txtRows.Enabled = false;
+        txtCabinet.Text = string.Empty;
+        txtCabinet.Enabled = false;
+        txtAisle.Text = string.Empty;
+        txtAisle.Enabled = false;
+        txtShelf.Text = string.Empty;
+        txtShelf.Enabled = false;
+        txtSearchNew.Text = string.Empty;
+        lblPropertyName.Text = "";
+        lblPartyName.Text = "";
+        ddlTitleofDocument.SelectedValue = "0";
+        ddlDocumentSubject.SelectedValue = "0";
+        ddlDept.SelectedValue = "0";
+        ddlSubCategory.Items.Clear();
+        ddlSubSubCategory.Items.Clear();
+        HttpContext.Current.Cache["DirFile"] = "";
+        HttpContext.Current.Cache["Dir"] = "";
+        FillFile();
+        FillParty();
+        BindCMB();
+        SetInitialRow();
+        ReportGrid(StrCondition);
+
+        foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlParty.Items)
+        {
+            Chkitem.Selected = false;
+        }
+        foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlProperty.Items)
+        {
+            Chkitem.Selected = false;
+        }
+
+        ImgAddDoctTitle.Visible = true;
+        ImgBtnDoctTitleRefresh.Visible = false;
+
+        ImgAddDocSubject.Visible = true;
+        ImgBtnDoctSubjectRefresh.Visible = false;
+
+        ImgAddCategory.Visible = true;
+        ImgRefreshCategory.Visible = false;
+
+        ImgAddSubCategory.Visible = true;
+        ImgRefreshSubCategory.Visible = false;
+
+        ImgAddSubSubCategory.Visible = true;
+        ImgRefreshSubSubCategory.Visible = false;
+
+        ImgAddParty.Visible = true;
+        ImgRefreshParty.Visible = false;
+
+        ImgAddProperty.Visible = true;
+        ImgRefreshProperty.Visible = false;
+        txtDate.Focus();
+       
+    }
+
+    public void SetInitialRow()
+    {
+        try
+        {
+            DataTable dtTable = new DataTable();
+            DataRow dr;
+
+            dtTable.Columns.Add("#", typeof(int));
+            dtTable.Columns.Add("DateDetails", typeof(string));
+            dtTable.Columns.Add("DocumentNo", typeof(string));
+            dtTable.Columns.Add("DocumentSubject", typeof(string));
+            dtTable.Columns.Add("DepartmentCategory", typeof(string));
+            dtTable.Columns.Add("DepartmentCategoryId", typeof(int));
+            dtTable.Columns.Add("DocumentTitleId", typeof(int));
+            dtTable.Columns.Add("DocumentTitle", typeof(string));
+            dtTable.Columns.Add("DepartmentSubCategory", typeof(string));
+            dtTable.Columns.Add("DepartmentSubSubCategory", typeof(string));
+            dtTable.Columns.Add("PropertyName", typeof(string));
+            dtTable.Columns.Add("Party", typeof(string));
+            dtTable.Columns.Add("FileNo", typeof(string));
+           
+            dtTable.Columns.Add("Room", typeof(string));
+            dtTable.Columns.Add("Aisle", typeof(string));
+            dtTable.Columns.Add("RowNo", typeof(string));
+            dtTable.Columns.Add("CabinetNo", typeof(string));
+            dtTable.Columns.Add("ShelfNo", typeof(string));
+            dtTable.Columns.Add("FileUploadPath", typeof(string));
+
+            dr = dtTable.NewRow();
+            dr["#"] = 0;
+            dr["DateDetails"] = string.Empty;
+            dr["DocumentNo"] = string.Empty;
+            dr["DocumentSubject"] = string.Empty;
+            dr["DepartmentCategory"] = string.Empty;
+            dr["DepartmentCategoryId"] = 0;
+            dr["DocumentTitleId"] = 0;
+            dr["DocumentTitle"] = string.Empty;
+            dr["DepartmentSubCategory"] = string.Empty;
+            dr["DepartmentSubSubCategory"] = string.Empty;
+            dr["PropertyName"] = string.Empty;
+            dr["Party"] = string.Empty;
+            dr["FileNo"] = string.Empty;
+            dr["Room"] = string.Empty;
+            dr["Aisle"] = string.Empty;
+            dr["RowNo"] = string.Empty;
+            dr["CabinetNo"] = string.Empty;
+            dr["ShelfNo"] = string.Empty;
+            dr["FileUploadPath"] = string.Empty;
+          
+            dtTable.Rows.Add(dr);
+            ViewState["CurrentTable"] = dtTable;
+            GrdReport.DataSource = dtTable;
+            GrdReport.DataBind();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
+    }
+
+    private void ReportGrid(string RepCondition)
+    {
+        try
+        {
+            DS1 = Obj_FileDocument.FillReportGrid(RepCondition, out StrError);
+
+            if (DS1.Tables.Count > 0 && DS1.Tables[0].Rows.Count > 0)
+            {
+                GrdReport.DataSource = DS1.Tables[0];
+                GrdReport.DataBind();
+            }
+            else
+            {
+                GrdReport.DataSource = null;
+                GrdReport.DataBind();
+            }
+          //  Obj_FileDocument = null;
+          //  DS = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
+    }
+
+    private void FillFile()
+    {
+        DataSet ds = Obj_FileDocument.FillFiles(out StrError);
+        if (ds.Tables.Count > 0)
+        {
+            HttpContext.Current.Cache["DirFile"] = (DataTable)ds.Tables[0];
+          
+        }
+
+    }
+
+    private void FillParty()
+    {
+        DataSet DS = new DataSet();
+        DS = Obj_FileDocument.FillParty(out StrError);
+
+        if (DS.Tables.Count > 0)
+        {
+            if (DS.Tables[0].Rows.Count > 0)
+            {
+                ddlParty.DataSource = DS.Tables[0];
+                ddlParty.DataValueField = "PartyId";
+                ddlParty.DataTextField = "Party";
+                ddlParty.DataBind();
+            }
+
+            if (DS.Tables[1].Rows.Count > 0)
+            {
+                ddlProperty.DataSource = DS.Tables[1];
+                ddlProperty.DataTextField = "PropertyName";
+                ddlProperty.DataValueField = "PropertyId";
+                ddlProperty.DataBind();
+            }
+        }
+    }
+
+    private void BindCMB()
+    {
+        DataSet DSC = new DataSet();
+        DSC = Obj_FileDocument.FillCombo(out StrError);
+
+        if (DSC.Tables.Count > 0)
+        {
+            if (DSC.Tables[0].Rows.Count > 0)
+            {
+                //ddlTitleofDocument.DataSource = DSC.Tables[0];
+                //ddlTitleofDocument.DataTextField = "DocumentTitle";
+                //ddlTitleofDocument.DataValueField = "DocumentTitleId";
+                //ddlTitleofDocument.DataBind();
+            }
+
+            if (DSC.Tables[1].Rows.Count > 0)
+            {
+                //ddlDept.DataSource = DSC.Tables[1];
+                //ddlDept.DataTextField = "DepartmentCategory";
+                //ddlDept.DataValueField = "DepartmentCategoryId";
+                //ddlDept.DataBind();
+            }
+
+            if (DSC.Tables[2].Rows.Count > 0)
+            {
+                //ddlDocumentSubject.DataSource = DSC.Tables[2];
+                //ddlDocumentSubject.DataTextField = "DocumentSubject";
+                //ddlDocumentSubject.DataValueField = "DocumentSubjectId";
+                //ddlDocumentSubject.DataBind();
+            }
+
+            if (DSC.Tables[3].Rows.Count > 0)
+            {
+                HttpContext.Current.Cache["Dir"] = (DataTable)DSC.Tables[3];
+            }
+        }
+    }
+
+    private bool Check()
+    {
+        DataSet Ds = new DataSet();
+        Flag = true;
+        if (ViewState["EditID"] != null)
+            Ds = Obj_FileDocument.ChkDuplicate(txtDocNo.Text.Trim(), long.Parse(ViewState["EditID"].ToString()), out StrError);
+        else
+            Ds = Obj_FileDocument.ChkDuplicate(txtDocNo.Text.Trim(), -1, out StrError);
+
+        //if (Ds.Tables.Count > 0)
+        //{
+        //    if (Ds.Tables[0].Rows.Count > 0)
+        //    {
+        //        if (long.Parse(Ds.Tables[0].Rows[0][0].ToString()) > 0)
+        //        {
+        //            Flag = false;
+        //            Obj_Comm.ShowPopUpMsg("This Document No Already Exist....!", this.Page);
+        //            txtDocNo.Focus();
+        //        }
+        //    }
+        //}
+        return Flag;
+    }
+
+    private void PartyName()
+    {
+        try
+        {
+            string Party = string.Empty;
+
+            foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlParty.Items)
+            {
+                if (Chkitem.Selected == true)
+                {
+                    lblPartyName.Visible = true;
+                    string PartyName = Chkitem.ToString();
+
+                    if (Party.Length > 0)
+                    {
+                        Party += " <br/>" + PartyName;
+                    }
+                    else
+                    {
+                        Party += " " + PartyName;
+                    }
+                }
+            }
+            lblPartyName.Text = Party;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    private void PropertyName()
+    {
+        try
+        {
+            string Property = string.Empty;
+
+            foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlProperty.Items)
+            {
+                if (Chkitem.Selected == true)
+                {
+                    lblPartyName.Visible = true;
+                    string PropertyName = Chkitem.ToString();
+
+                    if (Property.Length > 0)
+                    {
+                        Property += " <br/>" + PropertyName;
+                    }
+                    else
+                    {
+                        Property += " " + PropertyName;
+                    }
+                }
+            }
+            lblPropertyName.Text = Property;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    public SortDirection dir
+    {
+        get
+        {
+            if (ViewState["dirState"] == null)
+            {
+                ViewState["dirState"] = SortDirection.Ascending;
+            }
+            return (SortDirection)ViewState["dirState"];
+        } 
+        set
+        {
+            ViewState["dirState"] = value;
+        }
+ 
+    }
+
+    #endregion
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+           // CheckUserRight();
+            MakeEmptyForm();
+
+            if (Request.UrlReferrer != null)
+            {
+
+                if (Request.UrlReferrer.ToString().EndsWith("SearchDocument.aspx"))
+                {
+                    if (Session["DocumentId_Edit"] != null)
+                    {
+                        CommandEventArgs commandArgs = new CommandEventArgs("Select", Session["DocumentId_Edit"].ToString());
+
+                        GridViewCommandEventArgs eventArgs = new GridViewCommandEventArgs(GrdReport.Rows[0], GrdReport, commandArgs);
+                        GrdReport_RowCommand(GrdReport, eventArgs);
+                        Session["DocumentId_Edit"] = null;
+                    }
+                }
+            }
+        }
+    }
+
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+        int InsertRow = 0, InserDetails = 0, InserDetails1 = 0;
+      
+        try
+        {
+           
+            if (long.Parse(lblPartyName.Text.Length.ToString()) <= 0)
+            {
+                Obj_Comm.ShowPopUpMsg("Please select atleast one party...", this.Page);
+                lblPartyName.Text = string.Empty;
+                ddlParty.Focus();
+                return;
+            }
+
+            if (long.Parse(lblPropertyName.Text.Length.ToString()) <= 0)
+            {
+                Obj_Comm.ShowPopUpMsg("Please select atleast one property...", this.Page);
+                lblPropertyName.Text = string.Empty;
+                ddlProperty.Focus();
+                return;
+            }
+            if (long.Parse(txtFile.Text.Length.ToString()) <= 0)
+            {
+                Obj_Comm.ShowPopUpMsg("Enter File No...", this.Page);
+                txtFile.Focus();
+                return;
+            }
+
+            if (Check() == true)
+            {
+                Entity_FileDocument.DocumentNo = txtDocNo.Text.Trim();
+                Entity_FileDocument.DateDetails = txtDate.Text;
+                Entity_FileDocument.DocumentSubjectId = Convert.ToInt32(ddlDocumentSubject.SelectedValue);
+                Entity_FileDocument.DocumentTitleId = Convert.ToInt32(ddlTitleofDocument.SelectedValue);
+                Entity_FileDocument.DepartmentCategoryId = Convert.ToInt32(ddlDept.SelectedValue);
+                Entity_FileDocument.DepartmentSubCategoryId = Convert.ToInt32(ddlSubCategory.SelectedValue);
+            
+                if (ddlSubSubCategory.SelectedIndex > 0)
+                {
+                    Entity_FileDocument.DepartmentSubSubCategoryId = Convert.ToInt32(ddlSubSubCategory.SelectedValue);
+                }
+                else
+                {
+                    Entity_FileDocument.DepartmentSubSubCategoryId = 0;
+                }
+            
+                Entity_FileDocument.FileId = Convert.ToInt32(hdnFileId.Value);
+                Entity_FileDocument.AdditionalNotes = txtAdditionalNotes.Text;
+                Entity_FileDocument.FileUploadPath = lblFilePath.Text;
+                Entity_FileDocument.UserId = Convert.ToInt32(Session["UserId"]);
+                Entity_FileDocument.LoginDate = DateTime.Now;
+
+                InsertRow = Obj_FileDocument.InsertFileDocument(ref Entity_FileDocument, out StrError);
+
+                if (InsertRow != 0)
+                {
+                    foreach (System.Web.UI.WebControls.ListItem item in ddlParty.Items)
+                    {
+                        if (item.Selected)
+                        {
+                            Entity_FileDocument.DocumentId = InsertRow;
+                            Entity_FileDocument.PartyId = Convert.ToInt32(item.Value);
+                            InserDetails = Obj_FileDocument.InsertFileDoctPartyDtls(ref Entity_FileDocument, out StrError);
+                        }
+                    }
+                    foreach (System.Web.UI.WebControls.ListItem item in ddlProperty.Items)
+                    {
+                        if (item.Selected)
+                        {
+                            Entity_FileDocument.DocumentId = InsertRow;
+                            Entity_FileDocument.PropertyId = Convert.ToInt32(item.Value);
+                            InserDetails1 = Obj_FileDocument.InsertFileDoctPropertyDtls(ref Entity_FileDocument, out StrError);
+                        }
+                    }
+
+                    Obj_Comm.ShowPopUpMsg("Record Saved Successfully", this.Page);
+                    MakeEmptyForm();
+
+                    Entity_FileDocument = null;
+                    Obj_FileDocument = null;
+
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void BtnUpdate_Click(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty(hiddenbox.Value))
+        {
+            hiddenbox.Value = "0";
+        }
+
+        int i = Convert.ToInt32(hiddenbox.Value);
+        if (i == 0)
+        {
+            int UpdateRow = 0, InserDetails = 0, InserDetails1 = 0;
+            try
+            {
+                DateTime dt;
+              
+                if (long.Parse(lblPartyName.Text.Length.ToString()) <= 0)
+                {
+                    Obj_Comm.ShowPopUpMsg("Please select atleast one party...", this.Page);
+                    ddlParty.Focus();
+                    return;
+                }
+
+                if (long.Parse(lblPropertyName.Text.Length.ToString()) <= 0)
+                {
+                    Obj_Comm.ShowPopUpMsg("Please select atleast one property...", this.Page);
+                    ddlProperty.Focus();
+                    return;
+                }
+                if (long.Parse(txtFile.Text.Length.ToString()) <= 0)
+                {
+                    Obj_Comm.ShowPopUpMsg("Enter File No...", this.Page);
+                    txtFile.Focus();
+                    return;
+                }
+                if (Check() == true)
+                {
+                    if (ViewState["EditID"] != null)
+                    {
+                        Entity_FileDocument.DocumentId = Convert.ToInt32(ViewState["EditID"]);
+                    }
+                    Entity_FileDocument.DocumentNo = txtDocNo.Text.Trim();
+                    Entity_FileDocument.DateDetails = txtDate.Text;
+                    Entity_FileDocument.DocumentSubjectId = Convert.ToInt32(ddlDocumentSubject.Text);
+                    Entity_FileDocument.DocumentTitleId = Convert.ToInt32(ddlTitleofDocument.SelectedValue);
+                    Entity_FileDocument.DepartmentCategoryId = Convert.ToInt32(ddlDept.SelectedValue);
+                    Entity_FileDocument.DepartmentSubCategoryId = Convert.ToInt32(ddlSubCategory.SelectedValue);
+
+                    if (ddlSubSubCategory.SelectedIndex > 0)
+                    {
+                        Entity_FileDocument.DepartmentSubSubCategoryId = Convert.ToInt32(ddlSubSubCategory.SelectedValue);
+                    }
+                    else
+                    {
+                        Entity_FileDocument.DepartmentSubSubCategoryId = 0;
+                    }
+               
+                    Entity_FileDocument.FileId = Convert.ToInt32(hdnFileId.Value);
+                    Entity_FileDocument.AdditionalNotes = txtAdditionalNotes.Text;
+                    Entity_FileDocument.FileUploadPath = lblFilePath.Text;
+                 
+                    Entity_FileDocument.UserId = Convert.ToInt32(Session["UserId"]);
+                    Entity_FileDocument.LoginDate = DateTime.Now;
+
+                    UpdateRow = Obj_FileDocument.UpdateFileDocument(ref Entity_FileDocument, out StrError);
+
+                    if (UpdateRow != 0)
+                    {
+                        foreach (System.Web.UI.WebControls.ListItem item in ddlParty.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                Entity_FileDocument.DocumentId = Entity_FileDocument.DocumentId;
+                                Entity_FileDocument.PartyId = Convert.ToInt32(item.Value);
+                                InserDetails = Obj_FileDocument.InsertFileDoctPartyDtls(ref Entity_FileDocument, out StrError);
+                            }
+                        }
+
+                        foreach (System.Web.UI.WebControls.ListItem item in ddlProperty.Items)
+                        {
+                            if (item.Selected)
+                            {
+                                Entity_FileDocument.DocumentId = Entity_FileDocument.DocumentId;
+                                Entity_FileDocument.PropertyId = Convert.ToInt32(item.Value);
+                                InserDetails1 = Obj_FileDocument.InsertFileDoctPropertyDtls(ref Entity_FileDocument, out StrError);
+                            }
+                        }
+
+                        Obj_Comm.ShowPopUpMsg("Record Updated Successfully", this.Page);
+                        MakeEmptyForm();
+                        //  ddlOwner.Focus();
+                        Entity_FileDocument = null;
+                        Obj_Comm = null;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+
+    protected void BtnDelete_Click(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        MakeEmptyForm();
+
+    }
+
+    protected void txtFile_TextChanged(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty((HttpContext.Current.Cache["DirFile"]).ToString()))
+        {
+            DataTable DtNew = null;
+        }
+        else
+        {
+            StrCondition = txtFile.Text;
+            DataTable DtNew = (DataTable)HttpContext.Current.Cache["DirFile"];
+            var query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("ShowName").ToLower()).Contains(StrCondition.ToLower())
+                        select r;
+            if (query != null && query.Count() > 0)
+            {
+                DataTable DTNEW = query.CopyToDataTable();
+                txtFile.Text = DTNEW.Rows[0]["ShowName"].ToString();
+                hdnFileId.Value = DTNEW.Rows[0]["FileId"].ToString();
+                hdnRoomId.Value = DTNEW.Rows[0]["RoomId"].ToString();
+                hdnAisleId.Value = DTNEW.Rows[0]["AisleId"].ToString();
+
+                txtRoom.Text = DTNEW.Rows[0]["Room"].ToString();
+                txtAisle.Text = DTNEW.Rows[0]["Aisle"].ToString();
+                txtCabinet.Text = DTNEW.Rows[0]["CabinetNo"].ToString();
+                txtRows.Text = DTNEW.Rows[0]["RowNo"].ToString();
+                txtShelf.Text = DTNEW.Rows[0]["ShelfNo"].ToString();
+            }
+            else
+            {
+                txtFile.Text = "";
+                hdnFileId.Value = "-1";
+                hdnRoomId.Value = "";
+                hdnAisleId.Value = "";
+            }
+        }
+    }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+
+    public static string[] GetCompletionListFile(string prefixText, int count, string contextKey)
+    {
+        if (string.IsNullOrEmpty((HttpContext.Current.Cache["DirFile"]).ToString()))
+        {
+            DataTable DtNew = null;
+            return null;
+        }
+        else
+        {
+            DataTable DtNew = (DataTable)HttpContext.Current.Cache["DirFile"];
+
+            DataView view = DtNew.DefaultView;
+
+
+            string[] SearchList;
+
+            var query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("ShowName").ToLower()).Contains(prefixText.ToLower())
+                        select r.Field<string>("ShowName");
+            SearchList = query.ToArray();
+
+            if (prefixText.Contains(' '))
+            {
+                string[] str = prefixText.Split(' ');
+                if (str.Length == 2)
+                {
+                    query = from r in DtNew.AsEnumerable()
+                            where (r.Field<string>("Room").ToLower()).Contains(str[0].ToString().ToLower())
+                            where (r.Field<string>("Aisle").ToLower()).Contains(str[1].ToString().ToLower())
+                            select r.Field<string>("ShowName");
+
+                    SearchList = query.ToArray();
+                }
+                if (str.Length == 3)
+                {
+                    query = from r in DtNew.AsEnumerable()
+                            where (r.Field<string>("Room").ToLower()).Contains(str[0].ToString().ToLower())
+                            where (r.Field<string>("Aisle").ToLower()).Contains(str[1].ToString().ToLower())
+                            where (r.Field<string>("RowNo").ToLower()).Contains(str[2].ToString().ToLower())
+                            select r.Field<string>("ShowName");
+                    SearchList = query.ToArray();
+
+                }
+                if (str.Length == 4)
+                {
+                    query = from r in DtNew.AsEnumerable()
+                            where (r.Field<string>("Room").ToLower()).Contains(str[0].ToString().ToLower())
+                            where (r.Field<string>("Aisle").ToLower()).Contains(str[1].ToString().ToLower())
+                            where (r.Field<string>("CabinetNo").ToLower()).Contains(str[2].ToString().ToLower())
+                            where (r.Field<string>("ShelfNo").ToLower()).Contains(str[3].ToString().ToLower())
+                            select r.Field<string>("ShowName");
+                    SearchList = query.ToArray();
+
+                }
+            }
+            else
+            {
+                query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("ShowName").ToLower()).Contains(prefixText.ToLower())
+                        select r.Field<string>("ShowName");
+                SearchList = query.ToArray();
+            }
+            //string[] SearchList = query.ToArray();
+
+            return SearchList;
+
+        }
+    }
+     
+   /// <summary>
+   ///  For Document No
+   /// </summary>
+  
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+
+    public static string[] GetCompletionList_DocNo(string prefixText, int count, string contextKey)
+    {
+        if (string.IsNullOrEmpty((HttpContext.Current.Cache["Dir"]).ToString()))
+        {
+            DataTable DtNew = null;
+            return null;
+        }
+        else
+        {
+            DMSalutation obj_St = new DMSalutation();
+            DataTable DtNew = (DataTable)HttpContext.Current.Cache["Dir"];
+            var query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("DocumentNo").ToLower()).Contains(prefixText.ToLower())
+                        select (r.Field<string>("DocumentNo"));
+            string[] SearchList = query.ToArray();
+            return SearchList;
+        }
+    }
+
+    protected void ddlDept_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {            
+            DataSet Ds = new DataSet();
+            Ds = Obj_FileDocument.FillDepartmentSubCategory(Convert.ToInt32(ddlDept.SelectedValue), out StrError);
+            if (Ds.Tables.Count > 0)
+            {
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlSubCategory.DataSource = Ds.Tables[0];
+                        ddlSubCategory.DataTextField = "DepartmentSubCategory";
+                        ddlSubCategory.DataValueField = "DepartmentSubCategoryId";
+                        ddlSubCategory.DataBind();
+
+                        ddlSubSubCategory.Items.Clear();
+                        ddlSubSubCategory.DataSource = null;
+                        ddlSubSubCategory.DataBind();
+
+                    }
+                }
+            }
+            ddlDept.Focus();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ddlSubCategory_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            DataSet Ds = new DataSet();
+            Ds = Obj_FileDocument.FillDepartmentSubSubCategory(Convert.ToInt32(ddlDept.SelectedValue), Convert.ToInt32(ddlSubCategory.SelectedValue), out StrError);
+            if (Ds.Tables.Count > 0)
+            {
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlSubSubCategory.DataSource = Ds.Tables[0];
+                        ddlSubSubCategory.DataTextField = "DepartmentSubSubCategory";
+                        ddlSubSubCategory.DataValueField = "DepartmentSubSubCategoryId";
+                        ddlSubSubCategory.DataBind();
+
+                    }
+                }
+            }
+            ddlSubCategory.Focus();
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ddlParty_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            int Unitcnt = 0;
+            string unit;
+            DataTable dtmerge = new DataTable();
+
+            foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlParty.Items)
+            {
+                if (Chkitem.Selected == true)
+                {
+                    unit = Chkitem.ToString();
+                    int unitno = Convert.ToInt32(Chkitem.Value.ToString());
+                    Unitcnt++;
+                }            
+            }
+
+            if (Unitcnt > 0)      
+            {                        
+                PartyName();
+            }
+            else
+            {
+                    Obj_Comm.ShowPopUpMsg("Please Select Party", this.Page);
+                    ddlParty.Focus();
+                    return;          
+            } 
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void GrdReport_RowDeleting(object sender, GridViewDeleteEventArgs e)
+    {
+        try
+        {
+            int DeleteId = Convert.ToInt32(((ImageButton)GrdReport.Rows[e.RowIndex].Cells[0].FindControl("ImgBtnDelete")).CommandArgument.ToString());
+          
+            if (DeleteId != 0)
+            {
+                Entity_FileDocument.DocumentId = DeleteId;
+                Entity_FileDocument.UserId = Convert.ToInt32(Session["UserId"]);
+                Entity_FileDocument.LoginDate = DateTime.Now;
+                int iDelete = Obj_FileDocument.DeleteFileDocument(ref Entity_FileDocument, out StrError);
+                if (iDelete != 0)
+                {
+                    Obj_Comm.ShowPopUpMsg("Record Deleted Successfully..!", this.Page);
+                    MakeEmptyForm();
+                }
+            }
+            Entity_FileDocument = null;
+            Obj_Comm = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void GrdReport_RowCommand(object sender, GridViewCommandEventArgs e)
+    {
+        try
+        {
+            switch (e.CommandName)
+            {
+                    
+                case ("Select"):
+                    {
+                        #region Select
+                        
+                        if (Convert.ToInt32(e.CommandArgument) != 0)
+                        {
+                            ViewState["EditID"] = Convert.ToInt32(e.CommandArgument);
+                           
+                            DS = Obj_FileDocument.GetFileDocumentForEdit(Convert.ToInt32(e.CommandArgument), out StrError);
+                            if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+                            {
+                                txtDate.Text = DS.Tables[0].Rows[0]["DateDetails"].ToString();
+                                txtDocNo.Text = DS.Tables[0].Rows[0]["DocumentNo"].ToString();
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DocumentSubjectId"]) > 0)
+                                {
+                                    ddlDocumentSubject.SelectedValue = DS.Tables[0].Rows[0]["DocumentSubjectId"].ToString();
+                                }
+                             
+                                txtFile.Text = DS.Tables[0].Rows[0]["FileNo"].ToString();
+                                hdnFileId.Value = DS.Tables[0].Rows[0]["FileId"].ToString();
+                                txtRoom.Text = DS.Tables[0].Rows[0]["Room"].ToString();
+
+                                txtAisle.Text = DS.Tables[0].Rows[0]["Aisle"].ToString();
+                                txtRows.Text = DS.Tables[0].Rows[0]["RowNo"].ToString();
+                                txtCabinet.Text = DS.Tables[0].Rows[0]["CabinetNo"].ToString();
+                                txtShelf.Text = DS.Tables[0].Rows[0]["ShelfNo"].ToString();
+                                txtAdditionalNotes.Text = DS.Tables[0].Rows[0]["AdditionalNotes"].ToString();
+                                lblFilePath.Text = DS.Tables[0].Rows[0]["FileUploadPath"].ToString();
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DocumentTitleId"]) > 0)
+                                {
+                                    ddlTitleofDocument.SelectedValue = DS.Tables[0].Rows[0]["DocumentTitleId"].ToString();
+                                }
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DepartmentCategoryId"]) > 0)
+                                {
+                                    ddlDept.SelectedValue = DS.Tables[0].Rows[0]["DepartmentCategoryId"].ToString();
+                                    ddlDept_SelectedIndexChanged(sender, e);
+                                }
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DepartmentSubCategoryId"]) > 0)
+                                {
+                                    ddlSubCategory.SelectedValue = DS.Tables[0].Rows[0]["DepartmentSubCategoryId"].ToString();
+                                    ddlSubCategory_SelectedIndexChanged(sender, e);
+                                }
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DepartmentSubSubCategoryId"]) > 0)
+                                {
+                                    ddlSubSubCategory.SelectedValue = DS.Tables[0].Rows[0]["DepartmentSubSubCategoryId"].ToString();
+                                    ddlSubSubCategory_SelectedIndexChanged(sender, e);
+                                }
+                              
+                                foreach (System.Web.UI.WebControls.ListItem item in ddlParty.Items)
+                                {
+                                    for (int i = 0; i < DS.Tables[1].Rows.Count; i++)
+                                    {
+                                        if (item.Value == DS.Tables[1].Rows[i]["PartyId"].ToString())
+                                        {
+                                            item.Selected = true;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            item.Selected = false;
+                                        }
+                                    }
+                                }
+                                PartyName();
+
+                                foreach (System.Web.UI.WebControls.ListItem item in ddlProperty.Items)
+                                {
+                                    for (int i = 0; i < DS.Tables[2].Rows.Count; i++)
+                                    {
+                                        if (item.Value == DS.Tables[2].Rows[i]["PropertyId"].ToString())
+                                        {
+                                            item.Selected = true;
+                                            break;
+                                        }
+                                        else
+                                        {
+                                            item.Selected = false;
+                                        }
+                                    }
+                                }
+                                PropertyName();
+                            }
+                            else
+                            {
+                                MakeEmptyForm();
+                            }
+                            DS = null;
+                            Obj_FileDocument = null;
+                            BtnSave.Visible = false;
+                            if (!FlagEdit)
+                                BtnUpdate.Visible = true;
+                            if (!FlagDel)
+                                BtnDelete.Visible = false;
+                            txtDate.Focus();
+                        }
+
+                        break;
+                        #endregion
+                    }
+                case ("PopUp"):
+                    {
+                        PopUpFiles.Show();
+                        lblFileNo.Text = e.CommandArgument.ToString();
+                        popUpTitle.Text = "File No. - " + e.CommandArgument.ToString() + " Documents";
+                        ReportGrid_PopUp(e.CommandArgument.ToString());
+                        break;
+                    }
+                case ("PopUpDocNo"):
+                    {
+                        PopUpDocNo.Show();
+                        lblDocNo.Text = e.CommandArgument.ToString();
+                        popUpTitle.Text = "Document No. - " + e.CommandArgument.ToString() + " Files";
+                        ReportGrid_PopUpDocNo(e.CommandArgument.ToString());
+                        break;
+                    }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    private void ReportGrid_PopUp(string RepCondition)
+    {
+        try
+        {
+            DS1 = Obj_FileDocument.FillReportGrid_PopUp(RepCondition, out StrError);
+
+            if (DS1.Tables.Count > 0 && DS1.Tables[0].Rows.Count > 0)
+            {
+                GrdPopUp.DataSource = DS1.Tables[0];
+                GrdPopUp.DataBind();
+            }
+            else
+            {
+                GrdPopUp.DataSource = null;
+                GrdPopUp.DataBind();
+            }
+            //  Obj_FileDocument = null;
+            //  DS = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    private void ReportGrid_PopUpDocNo(string RepCondition)
+    {
+        try
+        {
+            DS1 = Obj_FileDocument.FillReportGrid_PopUpDocNo(RepCondition, out StrError);
+
+            if (DS1.Tables.Count > 0 && DS1.Tables[0].Rows.Count > 0)
+            {
+                GrdPopUpDoc.DataSource = DS1.Tables[0];
+                GrdPopUpDoc.DataBind();
+            }
+            else
+            {
+                GrdPopUpDoc.DataSource = null;
+                GrdPopUpDoc.DataBind();
+            }
+            //  Obj_FileDocument = null;
+            //  DS = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void GrdReport_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        try
+        {
+            GrdReport.PageIndex = e.NewPageIndex;
+            StrCondition = TxtSearch.Text.Trim();
+            ReportGrid(StrCondition);
+
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void GrdReport_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        ReportGrid(StrCondition);
+        DataTable dt = new DataTable();
+        dt = DS1.Tables[0];
+        {
+            string SortDir = string.Empty;
+            if (dir == SortDirection.Ascending)
+            {
+                dir = SortDirection.Descending;
+                SortDir = "Desc";
+            }
+            else
+            {
+                dir = SortDirection.Ascending;
+                SortDir = "Asc";
+            }
+            DataView sortedView = new DataView(dt);
+            sortedView.Sort = e.SortExpression + " " + SortDir;
+            GrdReport.DataSource = sortedView;
+            GrdReport.DataBind();
+        }
+
+    }
+
+    protected void TxtSearch_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void txtSearchNew_TextChanged(object sender, EventArgs e)
+    {
+        StrCondition = txtSearchNew.Text.Trim();
+        ReportGrid(StrCondition);
+    }
+
+    protected void ddlSubSubCategory_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        ddlSubSubCategory.Focus();
+    }
+
+    protected void ddlProperty_SelectedIndexChanged(object sender, EventArgs e) 
+    {
+         try
+        {
+            int Unitcnt = 0;
+            string unit;
+            DataTable dtmerge = new DataTable();
+
+            foreach (System.Web.UI.WebControls.ListItem Chkitem in ddlProperty.Items)
+            {
+                if (Chkitem.Selected == true)
+                {
+                    unit = Chkitem.ToString();
+                    int unitno = Convert.ToInt32(Chkitem.Value.ToString());
+                    Unitcnt++;
+                }            
+            }
+
+            if (Unitcnt > 0)      
+            {
+                PropertyName();
+            }
+            else
+            {
+                    Obj_Comm.ShowPopUpMsg("Please Select Property", this.Page);
+                    ddlParty.Focus();
+                    return;          
+            } 
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void lnkLogoUpload_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            //To Delete All Files In Direcotry===========
+
+            string[] filePaths = System.IO.Directory.GetFiles(Server.MapPath("~/Images/Temp/"));
+            foreach (string filePath in filePaths)
+                System.IO.File.Delete(filePath);
+
+            //To Delete All Files In Direcotry===========
+            Random random = new Random();
+            //Label lblLogoUploadname = ((Label)dr.FindControl("lblLogoUploadname"));
+            if (flUpload.HasFile)
+            {
+                //--Total No of Files--
+                Int64 TotalFiles = System.IO.Directory.GetFiles(Server.MapPath("~/Images/Documents")).Count();
+
+                string filename = System.IO.Path.GetFileName(flUpload.FileName);
+                filename = TotalFiles + "-" + filename;
+                filename = filename.Replace("&", "and");
+                flUpload.SaveAs(Server.MapPath("~/Images/Documents/") + filename);
+                lblFilePath.Text = "~/Images/Documents/" + filename;
+                lblFilePath.Visible = true;
+            }
+
+        }
+        catch (Exception ex)
+        {
+            Obj_Comm.ShowPopUpMsg("Upload status: The file could not be uploaded. The following error occured: " + ex.Message, this.Page);
+        }
+    }
+
+    protected void lnkCancelUplod_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            lblFilePath.Text = "";
+            flUpload.Visible = true;
+            flUpload.Focus();
+        }
+        catch (Exception ex)
+        {
+            Obj_Comm.ShowPopUpMsg("Upload status: The file could not be uploaded. The following error occured: " + ex.Message, this.Page);
+        }
+    }
+
+    protected void DownloadDoct(object sender, EventArgs e)
+    {
+        try
+        {
+            LinkButton LB = (LinkButton)sender;
+            int RowIndex = Convert.ToInt32(LB.CommandArgument);
+            if (!GrdReport.Rows[RowIndex].Cells[1].Text.Equals("&nbsp;"))
+            {
+                if (!string.IsNullOrEmpty(GrdReport.Rows[RowIndex].Cells[17].Text))
+                {
+                    Response.Redirect(ResolveUrl(GrdReport.Rows[RowIndex].Cells[17].Text), false);
+                }
+                else
+                {
+                    Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                    LB.Focus();
+                }
+            }
+            else
+            {
+                Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                LB.Focus();
+            }
+            LB.Focus();
+        }
+        catch (Exception ex)
+        {
+            Obj_Comm.ShowPopUpMsg(ex.Message, this.Page);
+        }
+    }
+   
+    protected void btnPopUpClose_Click(object sender, ImageClickEventArgs e)
+    {
+        PopUpFiles.Hide();
+    }
+   
+    protected void GrdPopUp_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        try
+        {
+            GrdPopUp.PageIndex = e.NewPageIndex;
+            StrCondition = lblFileNo.Text.ToString();
+            ReportGrid_PopUp(StrCondition);
+            PopUpFiles.Show();
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+   
+    protected void GrdPopUp_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        try
+        {
+            StrCondition = lblFileNo.Text.ToString();
+            ReportGrid_PopUp(StrCondition);
+            DataTable dt = new DataTable();
+            dt = DS1.Tables[0];
+            {
+                string SortDir = string.Empty;
+                if (dir == SortDirection.Ascending)
+                {
+                    dir = SortDirection.Descending;
+                    SortDir = "Desc";
+                }
+                else
+                {
+                    dir = SortDirection.Ascending;
+                    SortDir = "Asc";
+                }
+                DataView sortedView = new DataView(dt);
+                sortedView.Sort = e.SortExpression + " " + SortDir;
+                GrdPopUp.DataSource = sortedView;
+                GrdPopUp.DataBind();
+                PopUpFiles.Show();
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+   
+    protected void LblbtnUploadDocPop_Click(object sender, EventArgs e)
+    {    
+            try
+            {
+                LinkButton LB1 = (LinkButton)sender;
+                int RowIndex = Convert.ToInt32(LB1.CommandArgument);
+                if (!GrdPopUp.Rows[RowIndex].Cells[1].Text.Equals("&nbsp;"))
+                {
+                    if (!string.IsNullOrEmpty(GrdPopUp.Rows[RowIndex].Cells[16].Text))
+                    {
+                        Response.Redirect(ResolveUrl(GrdPopUp.Rows[RowIndex].Cells[16].Text), false);
+                    }
+                    else
+                    {
+                        Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                        LB1.Focus();
+                    }
+                }
+                else
+                {
+                    Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                    LB1.Focus();
+                }
+                LB1.Focus();
+            }
+            catch (Exception ex)
+            {
+                Obj_Comm.ShowPopUpMsg(ex.Message, this.Page);
+            }
+   
+    }
+   
+    protected void ImgAddDoctTitle_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddDoctTitle.Visible = false;
+        ImgBtnDoctTitleRefresh.Visible = true;
+        ImgAddDoctTitle.Focus();
+    }
+
+    protected void ImgBtnDoctTitleRefresh_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddDoctTitle.Visible = true;
+            ImgBtnDoctTitleRefresh.Visible = false;
+            DS = Obj_FileDocument.GetDocumentTitle(out StrError);
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["DocumentTitle"] = DS.Tables[0];
+                ddlTitleofDocument.DataSource = DS.Tables[0];
+                ddlTitleofDocument.DataTextField = "DocumentTitle";
+                ddlTitleofDocument.DataValueField = "DocumentTitleId";
+                ddlTitleofDocument.DataBind();
+
+
+                if (Session["CustomerId"] != null)
+                {
+                    ddlTitleofDocument.SelectedValue = Convert.ToString(Session["CustomerId"]);
+                    
+                }
+                else
+                {
+                    ImgAddDoctTitle.Visible = true;
+                    ImgBtnDoctTitleRefresh.Visible = false;
+                }
+            }
+            ImgBtnDoctTitleRefresh.Focus();
+            Session["CustomerId"] = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ddlTitleofDocument_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void ImgAddCategory_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddCategory.Visible = false;
+        ImgRefreshCategory.Visible = true;
+        ImgAddCategory.Focus();
+    }
+
+    protected void ImgRefreshCategory_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddCategory.Visible = true;
+            ImgRefreshCategory.Visible = false;
+            DS = Obj_FileDocument.GetCategory(out StrError);
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["Category"] = DS.Tables[0];
+                ddlDept.DataSource = DS.Tables[0];
+                ddlDept.DataTextField = "DepartmentCategory";
+                ddlDept.DataValueField = "DepartmentCategoryId";
+                ddlDept.DataBind();
+
+                //if (Session["CustomerId"] != null)
+                //{
+                //    ddlDept.SelectedValue = Convert.ToString(Session["CustomerId"]);
+
+                //}
+                //else
+                //{
+                    ImgAddCategory.Visible = true;
+                    ImgRefreshCategory.Visible = false;
+               // }
+            }
+            ImgRefreshCategory.Focus();
+          //  Session["CustomerId"] = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ImgAddSubCategory_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddSubCategory.Visible = false;
+        ImgRefreshSubCategory.Visible = true;
+        ImgAddSubCategory.Focus();
+    }
+
+    protected void ImgRefreshSubCategory_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddSubCategory.Visible = true;
+            ImgRefreshSubCategory.Visible = false;
+         
+            DS = Obj_FileDocument.GetSubCategory(Convert.ToInt32(ddlDept.SelectedValue), out StrError);
+
+            if (Convert.ToInt32(ddlDept.SelectedValue) <= 0)
+            {
+                 Obj_Comm.ShowPopUpMsg("Please Select Category", this.Page);
+                 return;
+            }
+
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["SubCategory"] = DS.Tables[0];
+                ddlSubCategory.DataSource = DS.Tables[0];
+                ddlSubCategory.DataTextField = "DepartmentSubCategory";
+                ddlSubCategory.DataValueField = "DepartmentSubCategoryId";
+                ddlSubCategory.DataBind();
+
+                ImgAddCategory.Visible = true;
+                ImgRefreshCategory.Visible = false;
+              
+            }
+
+            ImgRefreshCategory.Focus();
+          
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ImgAddSubSubCategory_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddSubSubCategory.Visible = false;
+        ImgRefreshSubSubCategory.Visible = true;
+        ImgAddSubSubCategory.Focus();
+    }
+
+    protected void ImgRefreshSubSubCategory_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddSubSubCategory.Visible = true;
+            ImgRefreshSubSubCategory.Visible = false;
+           
+
+              if (Convert.ToInt32(ddlDept.SelectedValue) <= 0)
+            {
+                 Obj_Comm.ShowPopUpMsg("Please Select Category", this.Page);
+                 return;
+            }
+
+              if (Convert.ToInt32(ddlSubCategory.SelectedValue) <= 0)
+              {
+                  Obj_Comm.ShowPopUpMsg("Please Select Sub Category", this.Page);
+                  return;
+              }
+
+              DS = Obj_FileDocument.GetSubSubCategory(Convert.ToInt32(ddlDept.SelectedValue), Convert.ToInt32(ddlSubCategory.SelectedValue), out StrError);
+           
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["SubSubCategory"] = DS.Tables[0];
+                ddlSubSubCategory.DataSource = DS.Tables[0];
+                ddlSubSubCategory.DataTextField = "DepartmentSubSubCategory";
+                ddlSubSubCategory.DataValueField = "DepartmentSubSubCategoryId";
+                ddlSubSubCategory.DataBind();
+
+                    ImgAddSubSubCategory.Visible = true;
+                    ImgRefreshSubSubCategory.Visible = false;
+                }
+          
+            ImgRefreshSubSubCategory.Focus();          
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ImgAddParty_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddParty.Visible = false;
+        ImgRefreshParty.Visible = true;
+        ImgAddParty.Focus();
+    }
+
+    protected void ImgRefreshParty_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddParty.Visible = true;
+            ImgRefreshParty.Visible = false;
+            DS = Obj_FileDocument.GetParty(out StrError);
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["Party"] = DS.Tables[0];
+                ddlParty.DataSource = DS.Tables[0];
+                ddlParty.DataTextField = "Party";
+                ddlParty.DataValueField = "PartyId";
+                ddlParty.DataBind();
+
+            
+                ImgAddParty.Visible = true;
+                ImgRefreshParty.Visible = false;
+            
+            }
+            ImgRefreshParty.Focus();
+           
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ImgRefreshProperty_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddProperty.Visible = true;
+            ImgRefreshProperty.Visible = false;
+            DS = Obj_FileDocument.GetProperty(out StrError);
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["Property"] = DS.Tables[0];
+                ddlProperty.DataSource = DS.Tables[0];
+                ddlProperty.DataTextField = "PropertyName";
+                ddlProperty.DataValueField = "PropertyId";
+                ddlProperty.DataBind();
+
+
+                //  if (Session["PropertyId"] != null)
+              //  {
+                //       ddlTitleofDocument.SelectedValue = Convert.ToString(Session["PropertyId"]);
+
+             //   }
+             //   else
+             //   {
+                    ImgAddProperty.Visible = true;
+                    ImgRefreshProperty.Visible = false;
+              //  }
+            }
+            ImgRefreshProperty.Focus();
+            //Session["PropertyId"] = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ImgAddProperty_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddProperty.Visible = false;
+        ImgRefreshProperty.Visible = true;
+        ImgAddProperty.Focus();
+    }
+
+    protected void GrdReport_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType==DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtn = (LinkButton)e.Row.FindControl("LblbtnUploadDoc");
+                if (lnkbtn != null)
+                {
+                    
+                    if (GrdReport.DataKeys[e.Row.RowIndex].Values["FileUploadPath"].ToString() == "")
+                    {
+                            lnkbtn.Visible = false;
+                    }
+                    else
+                    {
+                        lnkbtn.Visible = true;
+                    }
+                    
+                }
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void ddlDocumentSubject_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void ImgBtnDoctSubjectRefresh_Click(object sender, ImageClickEventArgs e)
+    {
+        try
+        {
+            ImgAddDocSubject.Visible = true;
+            ImgBtnDoctSubjectRefresh.Visible = false;
+            DS = Obj_FileDocument.GetDocumentSubject(out StrError);
+            if (DS.Tables.Count > 0)
+            {
+                ViewState["DocumentSubject"] = DS.Tables[0];
+                ddlDocumentSubject.DataSource = DS.Tables[0];
+                ddlDocumentSubject.DataTextField = "DocumentSubject";
+                ddlDocumentSubject.DataValueField = "DocumentSubjectId";
+                ddlDocumentSubject.DataBind();
+
+
+                if (Session["CustomerId"] != null)
+                {
+                    ddlDocumentSubject.SelectedValue = Convert.ToString(Session["CustomerId"]);
+
+                }
+                else
+                {
+                    ImgAddDocSubject.Visible = true;
+                    ImgBtnDoctSubjectRefresh.Visible = false;
+                }
+            }
+            ImgBtnDoctSubjectRefresh.Focus();
+            Session["CustomerId"] = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void ImgAddDocSubject_Click(object sender, ImageClickEventArgs e)
+    {
+        ImgAddDocSubject.Visible = false;
+        ImgBtnDoctSubjectRefresh.Visible = true;
+        ImgAddDocSubject.Focus();
+    }
+
+    protected void txtDocNo_TextChanged(object sender, EventArgs e)
+    {
+        if (string.IsNullOrEmpty((HttpContext.Current.Cache["Dir"]).ToString()))
+        {
+            DataTable DtNew = null;
+        }
+        else
+        {
+            DataTable DtNew = (DataTable)HttpContext.Current.Cache["Dir"];
+            StrCondition = TxtSearch.Text.Trim();
+            var query = from r in DtNew.AsEnumerable()
+                        where (r.Field<string>("DocumentNo")).Contains(StrCondition)
+                        select r;
+
+        }
+        txtDocNo.Focus();
+    }
+
+    protected void GrdPopUp_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtnPop = (LinkButton)e.Row.FindControl("LblbtnUploadDocPop");
+                if (lnkbtnPop != null)
+                {
+
+                    if (GrdPopUp.DataKeys[e.Row.RowIndex].Values["FileUploadPath"].ToString() == "")
+                    {
+                        lnkbtnPop.Visible = false;
+                    }
+                    else
+                    {
+                        lnkbtnPop.Visible = true;
+                    }
+
+                }
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void GrdPopUpDoc_PageIndexChanging(object sender, GridViewPageEventArgs e)
+    {
+        try
+        {
+            GrdPopUpDoc.PageIndex = e.NewPageIndex;
+            StrCondition = lblDocNo.Text.ToString();
+            ReportGrid_PopUpDocNo(StrCondition);
+            PopUpDocNo.Show();
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void GrdPopUpDoc_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        try
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                LinkButton lnkbtnPopDoc = (LinkButton)e.Row.FindControl("LblbtnUploadDocPopNo");
+                if (lnkbtnPopDoc != null)
+                {
+
+                    if (GrdPopUpDoc.DataKeys[e.Row.RowIndex].Values["FileUploadPath"].ToString() == "")
+                    {
+                        lnkbtnPopDoc.Visible = false;
+                    }
+                    else
+                    {
+                        lnkbtnPopDoc.Visible = true;
+                    }
+
+                }
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void GrdPopUpDoc_Sorting(object sender, GridViewSortEventArgs e)
+    {
+        try
+        {
+            StrCondition = lblDocNo.Text.ToString();
+            ReportGrid_PopUpDocNo(StrCondition);
+            DataTable dt = new DataTable();
+            dt = DS1.Tables[0];
+            {
+                string SortDir = string.Empty;
+                if (dir == SortDirection.Ascending)
+                {
+                    dir = SortDirection.Descending;
+                    SortDir = "Desc";
+                }
+                else
+                {
+                    dir = SortDirection.Ascending;
+                    SortDir = "Asc";
+                }
+                DataView sortedView = new DataView(dt);
+                sortedView.Sort = e.SortExpression + " " + SortDir;
+                GrdPopUpDoc.DataSource = sortedView;
+                GrdPopUpDoc.DataBind();
+                PopUpDocNo.Show();
+            }
+        }
+        catch (Exception exp)
+        {
+            throw new Exception(exp.Message);
+        }
+    }
+
+    protected void LblbtnUploadDocPopNo_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            LinkButton LB1 = (LinkButton)sender;
+            int RowIndex = Convert.ToInt32(LB1.CommandArgument);
+            if (!GrdPopUpDoc.Rows[RowIndex].Cells[1].Text.Equals("&nbsp;"))
+            {
+                if (!string.IsNullOrEmpty(GrdPopUpDoc.Rows[RowIndex].Cells[16].Text))
+                {
+                    Response.Redirect(ResolveUrl(GrdPopUpDoc.Rows[RowIndex].Cells[16].Text), false);
+                }
+                else
+                {
+                    Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                    LB1.Focus();
+                }
+            }
+            else
+            {
+                Obj_Comm.ShowPopUpMsg("There is no file to view..", this.Page);
+                LB1.Focus();
+            }
+            LB1.Focus();
+        }
+        catch (Exception ex)
+        {
+            Obj_Comm.ShowPopUpMsg(ex.Message, this.Page);
+        }
+    }
+
+}

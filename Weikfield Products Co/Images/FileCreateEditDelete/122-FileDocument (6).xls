@@ -1,0 +1,7 @@
+<table border="0">
+	<tr>
+		<th scope="col">#</th><th scope="col">FileNo</th><th scope="col">FileName</th><th scope="col">PropertyName</th><th scope="col">Company</th><th scope="col">Room</th><th scope="col">Aisle</th><th scope="col">ShelfNo</th><th scope="col">Narration</th><th scope="col">DocDate</th><th scope="col">DocExpiryDate</th><th scope="col">Barcode</th>
+	</tr><tr>
+		<td>8</td><td>R /f/s1/F0010</td><td>TestDoc</td><td>KHANAPUR PROPERTY</td><td>MR. LALIT ATUR SANGTANI.</td><td>R 1</td><td>f</td><td>s1</td><td>TestFile</td><td>21 Nov 2017</td><td>22 Nov 2017</td><td>45879232</td>
+	</tr>
+</table>

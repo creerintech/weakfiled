@@ -1,0 +1,17 @@
+<table border="0">
+	<tr>
+		<th scope="col">#</th><th scope="col">PropertyId</th><th scope="col">Property</th><th scope="col">PartyId</th><th scope="col">PartyName</th><th scope="col">CompanyName</th><th scope="col">CompanyId</th><th scope="col">UnitArea</th><th scope="col">UnitNo</th><th scope="col">RentalAmt</th><th scope="col">PropertyTaxAmt</th><th scope="col">SocietyMaintenaceAmt</th><th scope="col">Status</th><th scope="col">FromDate</th><th scope="col">ToDate</th><th scope="col">CollectedDate</th>
+	</tr><tr>
+		<td>9</td><td>9</td><td>1ST FLOOR, BARON CENTRE  (3)</td><td>22</td><td>DR.HARJOT KAUR</td><td>ATUR INDIA PVT. LTD.</td><td>1</td><td>2880.00</td><td>3</td><td>115000.00</td><td>0.00</td><td>0.00</td><td>Unpaid</td><td>01/08/2018</td><td>31/07/2019</td><td>01/08/2018</td>
+	</tr><tr>
+		<td>41</td><td>41</td><td>2ND FLOOR, BARON CENTRE (2)</td><td>7</td><td>JETSYNTHESYS PVT.LTD.</td><td>ATUR INDIA PVT. LTD.</td><td>1</td><td>1460.00</td><td>2</td><td>90000.00</td><td>0.00</td><td>0.00</td><td>Unpaid</td><td>01/09/2017</td><td>31/08/2019</td><td>01/09/2017</td>
+	</tr><tr>
+		<td>64</td><td>64</td><td>FLAT NO. 207,G BLDG,ATUR NAGAR</td><td>45</td><td>VEERSINGH NIRUHSINGH THAKUR</td><td>ATUR INDIA PVT. LTD.</td><td>1</td><td>407.00</td><td>207</td><td>4000.00</td><td>0.00</td><td>0.00</td><td>Unpaid</td><td>01/09/2018</td><td>31/07/2019</td><td>22/02/2019</td>
+	</tr><tr>
+		<td>23</td><td>23</td><td>FLAT NO.104, BLD.NO.18, ATUR PARK</td><td>15</td><td>CHHANNOMAL DWARKAPRASAD GUPTA</td><td>ATUR SANGTANI &amp; ASSOCIATES</td><td>2</td><td>1832.00</td><td>104</td><td>30000.00</td><td>0.00</td><td>0.00</td><td>Unpaid</td><td>16/09/2018</td><td>15/09/2019</td><td>16/09/2018</td>
+	</tr><tr>
+		<td>43</td><td>43</td><td>FLAT NO.402, BLD.NO.18, ATUR PARK, PUNE</td><td>12</td><td>BABU KRISHNAMOHAN DEBNATH</td><td>ATUR SANGTANI &amp; ASSOCIATES</td><td>2</td><td>2636.00</td><td>402</td><td>48150.00</td><td>0.00</td><td>0.00</td><td>Unpaid</td><td>07/09/2018</td><td>06/09/2019</td><td>07/09/2018</td>
+	</tr><tr>
+		<td>33</td><td>33</td><td>ROW HOUSE NO.5, BLD.NO.20,ATUR PK, PUNE</td><td>31</td><td>LEXICON LEARNING PVT.LTD.</td><td>NINA LALIT SANGTANI</td><td>6</td><td>3423.00</td><td>1</td><td>96300.00</td><td>0.00</td><td>0.00</td><td>Unpaid</td><td>23/07/2018</td><td>22/07/2019</td><td>23/07/2018</td>
+	</tr>
+</table>

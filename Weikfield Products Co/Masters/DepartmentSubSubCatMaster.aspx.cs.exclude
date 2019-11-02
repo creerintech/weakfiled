@@ -1,0 +1,383 @@
+﻿using DMS.DataModel;
+using DMS.EntityClass;
+using DMS.Utility;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Threading;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Masters_DepartmentSubSubCatMaster : System.Web.UI.Page
+{
+    //#region[Private Variables]
+
+    //DMDepartmentSubSubCategory Obj_DeptSubSubCategory = new DMDepartmentSubSubCategory();
+    //DeptSubSubCategory Entity_DeptSubSubCategory = new DeptSubSubCategory();
+    //CommanFunction Obj_Comm = new CommanFunction();
+    //DataSet DS = new DataSet();
+
+    //private string StrError = string.Empty;
+    //private string StrCondition = string.Empty;
+    //private static bool FlagAdd = false, FlagDel = false, FlagEdit = false;
+    //private bool Flag = true;
+    //#endregion
+
+    #region[UserDefinedFunction]
+
+    //User Right Function===========
+    public void CheckUserRight()
+    {
+        FlagAdd = FlagDel = FlagEdit = false;
+        try
+        {
+
+        }
+        catch (ThreadAbortException)
+        {
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+    //User Right Function===========
+
+    private void MakeEmptyForm()
+    {
+        BindCMB();
+        txtDepartmentSubSubCategory.Focus();
+        if (!FlagAdd)
+            BtnSave.Visible = true;
+        BtnUpdate.Visible = false;
+        BtnDelete.Visible = false;
+        BtnCancel.Visible = true;
+        txtDepartmentSubSubCategory.Text = string.Empty;
+        ddlSubDepartment.Items.Clear();
+        TxtSearch.Text = string.Empty;
+        ViewState["EditID"] = null;
+        ReportGrid(StrCondition);
+    }
+
+    private void MakeControlEmpty()
+    {
+        txtDepartmentSubSubCategory.Text = string.Empty;
+        ReportGrid(StrCondition);
+        txtDepartmentSubSubCategory.Focus();
+        ViewState["EditID"] = null;
+    }
+
+    private void ReportGrid(string RepCondition)
+    {
+        try
+        {
+            DS = Obj_DeptSubSubCategory.GetDepartmentSubCategoryList(RepCondition, out StrError);
+
+            if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+            {
+                GrdReport.DataSource = DS;
+                GrdReport.DataBind();
+            }
+            else
+            {
+                GrdReport.DataSource = null;
+                GrdReport.DataBind();
+            }
+            Obj_DeptSubSubCategory = null;
+            DS = null;
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+
+    }
+
+    private void BindCMB()
+    {
+        DataSet DSC = new DataSet();
+        DSC = Obj_DeptSubSubCategory.GetDepartmentSubCategory(out StrError);
+
+        if (DSC.Tables.Count > 0)
+        {
+            if (DSC.Tables[0].Rows.Count > 0)
+            {
+                ddlDepartmentCategory.DataSource = DSC.Tables[0];
+                ddlDepartmentCategory.DataTextField = "DepartmentCategory";
+                ddlDepartmentCategory.DataValueField = "DepartmentCategoryId";
+                ddlDepartmentCategory.DataBind();
+            }
+
+           
+
+        }
+    }
+
+    private bool Check()
+    {
+        DataSet Ds = new DataSet();
+        Ds = new DataSet();
+        Flag = true;
+
+        if (ViewState["EditID"] != null)
+
+            Ds = Obj_DeptSubSubCategory.ChkDuplicate(txtDepartmentSubSubCategory.Text, long.Parse(ViewState["EditID"].ToString()), ddlDepartmentCategory.SelectedItem.Text, ddlSubDepartment.SelectedItem.Text, out StrError);
+        else
+            Ds = Obj_DeptSubSubCategory.ChkDuplicate(txtDepartmentSubSubCategory.Text, -1, ddlDepartmentCategory.SelectedItem.Text, ddlSubDepartment.SelectedItem.Text, out StrError);
+
+        if (Ds.Tables.Count > 0)
+        {
+            if (Ds.Tables[0].Rows.Count > 0)
+            {
+                if (long.Parse(Ds.Tables[0].Rows[0][0].ToString()) > 0)
+                {
+                    Flag = false;
+                    Obj_Comm.ShowPopUpMsg("Sub Sub Category is Already Present..!", this.Page);
+                    txtDepartmentSubSubCategory.Text = string.Empty;
+                }
+
+            }
+        }
+        return Flag;
+    }
+
+    #endregion
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!Page.IsPostBack)
+        {
+            CheckUserRight();
+
+            MakeEmptyForm();
+            ddlDepartmentCategory.Focus();
+        }
+    }
+
+    protected void BtnUpdate_Click(object sender, EventArgs e)
+    {
+        int i = Convert.ToInt32(hiddenbox.Value);
+        if (i == 0)
+        {
+            int UpdateRow = 0;
+            try
+            {
+                if (Check() == true)
+                {
+                    if (ViewState["EditID"] != null)
+                    {
+                        Entity_DeptSubSubCategory.DepartmentSubSubCategoryId = Convert.ToInt32(ViewState["EditID"]);
+                    }
+                    Entity_DeptSubSubCategory.DepartmentSubSubCategory = txtDepartmentSubSubCategory.Text.Trim();
+                    Entity_DeptSubSubCategory.DepartmentSubCategoryId = Convert.ToInt32(ddlSubDepartment.SelectedValue);
+                    Entity_DeptSubSubCategory.DepartmentCategoryId = Convert.ToInt32(ddlDepartmentCategory.SelectedValue);
+                    Entity_DeptSubSubCategory.UserId = Convert.ToInt32(Session["UserId"]);
+                    Entity_DeptSubSubCategory.LoginDate = DateTime.Now;
+                    UpdateRow = Obj_DeptSubSubCategory.UpdateDepartmentSubCategory(ref Entity_DeptSubSubCategory, out StrError);
+                    if (UpdateRow != 0)
+                    {
+                        Obj_Comm.ShowPopUpMsg("Record Updated Successfully", this.Page);
+                        MakeEmptyForm();
+                        ddlDepartmentCategory.Focus();
+                        Entity_DeptSubSubCategory = null;
+                        Obj_Comm = null;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+
+    protected void BtnSave_Click(object sender, EventArgs e)
+    {
+        int InsertRow = 0;
+        try
+        {
+            // DS = Obj_DeptSubSubCategory.ChkDuplicate(Convert.ToInt32(ddlDepartmentCategory.SelectedValue), txtDepartmentSubSubCategory.Text.Trim().ToUpper(), out StrError);
+            //if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+            //{
+            //    Obj_Comm.ShowPopUpMsg("This Department Sub Category Already Exist For " + ddlDepartmentCategory.SelectedItem.Text, this.Page);
+            //    txtDepartmentSubSubCategory.Focus();
+            //}
+            //else
+            //{
+            if (Check() == true)
+            {
+                Entity_DeptSubSubCategory.DepartmentSubSubCategory = txtDepartmentSubSubCategory.Text.Trim();
+                Entity_DeptSubSubCategory.DepartmentCategoryId = Convert.ToInt32(ddlDepartmentCategory.SelectedValue);
+                Entity_DeptSubSubCategory.DepartmentSubCategoryId = Convert.ToInt32(ddlSubDepartment.SelectedValue);
+                Entity_DeptSubSubCategory.UserId = Convert.ToInt32(Session["UserId"]);
+                Entity_DeptSubSubCategory.LoginDate = DateTime.Now;
+
+                InsertRow = Obj_DeptSubSubCategory.InsertDepartmentSubCategory(ref Entity_DeptSubSubCategory, out StrError);
+
+                if (InsertRow > 0)
+                {
+                    Obj_Comm.ShowPopUpMsg("Record Saved Successfully", this.Page);
+                    //    MakeEmptyForm();
+                    //   ddlDepartmentCategory.Focus();
+                    MakeControlEmpty();
+                    Entity_DeptSubSubCategory = null;
+                    Obj_Comm = null;
+                }
+                // }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void BtnDelete_Click(object sender, EventArgs e)
+    {
+        int i = Convert.ToInt32(hiddenbox.Value);
+        if (i == 0)
+        {
+            try
+            {
+                int DeleteId = 0;
+                if (ViewState["EditID"] != null)
+                {
+                    if (long.Parse(hdnFldUsedCnt.Value.ToString()) > 0)
+                    {
+                        Obj_Comm.ShowPopUpMsg("Department Sub Sub Category is in use. Cannot Delete Record...", this.Page);
+                        return;
+                    }
+
+                    DeleteId = Convert.ToInt32(ViewState["EditID"]);
+                }
+                if (DeleteId != 0)
+                {
+                    Entity_DeptSubSubCategory.DepartmentSubSubCategoryId = DeleteId;
+                    Entity_DeptSubSubCategory.UserId = Convert.ToInt32(Session["UserId"]);
+                    Entity_DeptSubSubCategory.LoginDate = DateTime.Now;
+                    int iDelete = Obj_DeptSubSubCategory.DeleteDepartmentSubCategory(ref Entity_DeptSubSubCategory, out StrError);
+                    if (iDelete != 0)
+                    {
+                        Obj_Comm.ShowPopUpMsg("Record Deleted Successfully..!", this.Page);
+                        MakeEmptyForm();
+                    }
+
+                }
+                Entity_DeptSubSubCategory = null;
+                Obj_Comm = null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+    }
+
+    protected void BtnCancel_Click(object sender, EventArgs e)
+    {
+        MakeEmptyForm();
+    }
+
+    protected void GrdReport_ItemCommand(object source, RepeaterCommandEventArgs e)
+    {
+        try
+        {
+            switch (e.CommandName)
+            {
+                case ("Select"):
+                    {
+                        if (Convert.ToInt32(e.CommandArgument) != 0)
+                        {
+                            ViewState["EditID"] = Convert.ToInt32(e.CommandArgument);
+                            LinkButton lnk = (LinkButton)e.Item.FindControl("lbtn_List");
+                            Label lbl = (Label)e.Item.FindControl("lblUsedCnt");
+
+                            if (lnk != null)
+                            {
+                                hdnFldUsedCnt.Value = lbl.Text;
+                            }
+                            DS = Obj_DeptSubSubCategory.GetDepartmentSubCategoryForEdit(Convert.ToInt32(e.CommandArgument), out StrError);
+
+                            if (DS.Tables.Count > 0 && DS.Tables[0].Rows.Count > 0)
+                            {
+                                txtDepartmentSubSubCategory.Text = DS.Tables[0].Rows[0]["DepartmentSubSubCategory"].ToString();
+
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DepartmentCategoryID"]) > 0)
+                                {
+                                    ddlDepartmentCategory.SelectedValue = DS.Tables[0].Rows[0]["DepartmentCategoryID"].ToString();
+                                    ddlDepartmentCategory_SelectedIndexChanged(source, e);
+                                }
+                                if (Convert.ToInt32(DS.Tables[0].Rows[0]["DepartmentSubCategoryID"]) > 0)
+                                {
+                                    ddlSubDepartment.SelectedValue = DS.Tables[0].Rows[0]["DepartmentSubCategoryID"].ToString();
+                                   
+                                }
+                            }
+                            else
+                            {
+                                MakeEmptyForm();
+                            }
+                            DS = null;
+                            Obj_DeptSubSubCategory = null;
+                            BtnSave.Visible = false;
+                            if (!FlagEdit)
+                                BtnUpdate.Visible = true;
+                            if (!FlagDel)
+                                BtnDelete.Visible = true;
+                            txtDepartmentSubSubCategory.Focus();
+                        }
+
+                        break;
+                    }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+
+    protected void TxtSearch_TextChanged(object sender, EventArgs e)
+    {
+        StrCondition = TxtSearch.Text.Trim();
+        ReportGrid(StrCondition);
+    }
+
+    [System.Web.Services.WebMethodAttribute(), System.Web.Script.Services.ScriptMethodAttribute()]
+    public static string[] GetCompletionList(string prefixText, int count, string contextKey)
+    {
+        DMDepartmentSubCategory Obj_DepartmentSubCategory = new DMDepartmentSubCategory();
+        string[] SearchList = Obj_DepartmentSubCategory.GetSuggestRecord(prefixText);
+        return SearchList;
+    }
+
+    protected void ddlDepartmentCategory_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        try
+        {
+            DataSet Ds = new DataSet();
+            Ds = Obj_DeptSubSubCategory.GetSubDepartment(Convert.ToInt32(ddlDepartmentCategory.SelectedValue), out StrError);
+            if (Ds.Tables.Count > 0)
+            {
+                if (Ds.Tables[0].Rows.Count > 0)
+                {
+                    if (Ds.Tables[0].Rows.Count > 0)
+                    {
+                        ddlSubDepartment.DataSource = Ds.Tables[0];
+                        ddlSubDepartment.DataTextField = "DepartmentSubCategory";
+                        ddlSubDepartment.DataValueField = "DepartmentSubCategoryId";
+                        ddlSubDepartment.DataBind();
+
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            throw new Exception(ex.Message);
+        }
+    }
+}

@@ -1,0 +1,456 @@
+﻿<%@ Page Title="Search Your File" Language="C#" MasterPageFile="~/MasterPages/MasterPage.master" AutoEventWireup="true" CodeFile="SearchFiles.aspx.cs" Inherits="Transactions_SearchFiles"  EnableEventValidation="false"%>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajax" %>
+<%@ Register Assembly="DropDownCheckBoxes" Namespace="Saplin.Controls" TagPrefix="asp" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="SearchContent" Runat="Server">
+     <ajax:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server" />
+
+    <style type="text/css">
+        .mycheckBig input {
+            width: 16px;
+            height: 16px;
+        }
+
+        .mycheckSmall input {
+            width: 10px;
+            height: 10px;
+        }
+    </style>
+
+    <script type = "text/javascript">
+ function SetTarget() {
+     document.forms[0].target = "_blank";
+ }
+</script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="Title" Runat="Server">
+    Search Your File
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="Body" Runat="Server">
+     <asp:UpdatePanel ID="uPanel" runat="server">
+        <ContentTemplate>
+            <fieldset id="fieldset" runat="server" class="FieldSet">
+
+                <center>
+                    <table width="95%">
+                        <tr style="height: 2px">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <asp:CheckBox ID="chkDateDetails" CssClass="mycheckBig" Font-Size="14px" runat="server" Text="Date" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkDocumentNo" CssClass="mycheckBig" Font-Size="14px" runat="server" Text="Document No" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkDocumentSubject" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="File Subject" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkDocumentTitle" CssClass="mycheckBig" Font-Size="14px" runat="server" Text="File Name" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkDepartmentCategory" CssClass="mycheckBig" Font-Size="14px" runat="server" Text="Category" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkDepartmentSubCategory" CssClass="mycheckBig" Font-Size="14px" runat="server" Text="Sub Category" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                        </tr>
+                        <tr style="height: 2px">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+                            
+                            <td>
+                                <asp:CheckBox ID="chkDepartmentSubSubCategory" CssClass="mycheckBig" Font-Size="14px" runat="server" Text="Sub Sub Category" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkPropertyName" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Property Name" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkParty" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Party" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkFileNo" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="File No" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkRoom" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Room" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                        </tr>
+                        <tr style="height: 2px">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                        <tr>
+
+                            <td>
+                                <asp:CheckBox ID="chkAisle" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Aisle" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkRowNo" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Row No" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkCabinetNo" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Cabinet No" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                            <td>
+                                <asp:CheckBox ID="chkShelfNo" runat="server" CssClass="mycheckBig" Font-Size="14px" Text="Shelf No" AutoPostBack="true" OnCheckedChanged="chkFilter_CheckedChanged" />
+                            </td>
+                        </tr>
+                        <tr style="height: 5px">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+
+                    </table>
+                </center>
+                
+                <center>
+                    <table width="80%">
+                        <tr>
+                            <td style="font-size: 14px;">Search 1:</td>
+                            <td style="width: 10px;"></td>
+                            <td>
+                                <asp:TextBox ID="TxtSearch" runat="server" AutoPostBack="True" CssClass="TextBox_Search" OnTextChanged="TxtSearch_TextChanged" TabIndex="43" ToolTip="Enter The Text" Width="500px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr id="SEARCH2" runat="server" class="Display_None">
+                            <td style="font-size: 14px;">Search 2:</td>
+                            <td style="width: 10px;"></td>
+                            <td>
+                                <asp:TextBox ID="txtSearch1" runat="server" AutoPostBack="True" CssClass="TextBox_Search" OnTextChanged="txtSearch1_TextChanged" TabIndex="43" ToolTip="Enter The Text" Width="500px"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr><td colspan="3" align="right"><asp:ImageButton id="imgExcel" runat="server" ImageUrl="~/Images/Icon/excel.png" OnClick="imgExcel_Click"/></td></tr>
+                    </table>
+
+                </center>
+                
+            </fieldset>
+            </td>
+            </tr>
+            </table>
+            <asp:UpdatePanel ID="Content1_UpdatePanel" runat="server">
+                <ContentTemplate>
+
+                    <%--   <ajax:AutoCompleteExtender ID="AutoCompleteExtender1" runat="server" TargetControlID="TxtSearch"
+                        CompletionInterval="100" UseContextKey="True" FirstRowSelected="true" ShowOnlyCurrentWordInCompletionListItem="true"
+                        ServiceMethod="GetCompletionList" CompletionListCssClass="AutoExtender" CompletionListItemCssClass="AutoExtenderList"
+                        CompletionListHighlightedItemCssClass="AutoExtenderHighlight">
+                    </ajax:AutoCompleteExtender>--%>
+                </ContentTemplate>
+            </asp:UpdatePanel>
+            
+            <fieldset id="fieldset1" runat="server" class="FieldSet">
+                <div style="overflow: scroll; width: 990px; height: 400px;">
+
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <asp:UpdatePanel ID="UpdatePanel_GrdReport" runat="server">
+                                    <ContentTemplate>
+                                        <asp:GridView ID="GrdReport" runat="server" AllowPaging="false" AlternatingRowStyle-CssClass="alt"
+                                            AutoGenerateColumns="False" GridLines="Both" PagerStyle-CssClass="pgr" CellPadding="5" CellSpacing="5"
+                                            Width="98%" PageSize="20" CssClass="mGridNew" OnRowCommand="GrdReport_RowCommand" OnRowDataBound="GrdReport_RowDataBound"
+                                             OnSelectedIndexChanged="GrdReport_SelectedIndexChanged"
+                                            OnPageIndexChanging="GrdReport_PageIndexChanging" TabIndex="16" AllowSorting="True"
+                                            OnSorting="GrdReport_Sorting" ForeColor="#333333" DataKeyNames="#">
+
+                                            <RowStyle BackColor="white" Font-Bold="true" Font-Size="13px" Height="25px" ForeColor="#333333" />
+                                            <HeaderStyle Font-Size="15px" Height="30px" VerticalAlign="Middle" ForeColor="White" />
+
+                                            <AlternatingRowStyle BackColor="LightGray" CssClass="alt" ForeColor="Black" />
+
+
+                                            <Columns>
+                                              
+                                                <asp:TemplateField HeaderText="Srl">
+                                                    <ItemTemplate>
+                                                        <asp:Label ID="LblSrNo" runat="server" Text='<%#Container.DataItemIndex+1 %>'></asp:Label>
+                                                    </ItemTemplate>
+                                                    <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                                                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" Width="6%" />
+                                                </asp:TemplateField>
+
+                                                <asp:BoundField HeaderText="Date" DataField="DateDetails" SortExpression="DateDetails">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                                <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                                <asp:BoundField HeaderText="Subject" DataField="FileSubject" SortExpression="FileSubject">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                                <asp:BoundField HeaderText="FileName" DataField="FileName" SortExpression="FileName">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="Category" DataField="DepartmentCategory" SortExpression="DepartmentCategory">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                                <asp:BoundField HeaderText="Sub Category" DataField="DepartmentSubCategory" SortExpression="DepartmentSubCategory">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                                <asp:BoundField HeaderText="Sub Sub Category" DataField="DepartmentSubSubCategory" SortExpression="DepartmentSubSubCategory">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                                <asp:BoundField HeaderText="Party" DataField="Party" SortExpression="Party">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="Property" DataField="PropertyName" SortExpression="PropertyName">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false"/>
+                                                </asp:BoundField>
+
+                                              <asp:BoundField HeaderText="File" DataField="FileNo" SortExpression="FileNo">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+
+                                               <%--  <asp:TemplateField HeaderText="File No" SortExpression="FileNo">
+                                                <ItemTemplate>
+                                                    <asp:LinkButton runat="server" ID="lnkFile" Text='<%#Eval("FileNo") %>' CommandArgument='<%# Eval("FileNo") %>' CommandName="PopUp"></asp:LinkButton>
+                                                </ItemTemplate>
+                                                   <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:TemplateField>--%>
+
+                                                <asp:BoundField HeaderText="Room" DataField="Room" SortExpression="Room">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="Aisle" DataField="Aisle" SortExpression="Aisle">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="Rows No" DataField="RowNo" SortExpression="RowNo">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="Cabinet No" DataField="CabinetNo" SortExpression="CabinetNo">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="Shelf No" DataField="ShelfNo" SortExpression="ShelfNo">
+                                                    <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                    <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                                </asp:BoundField>
+                                                <asp:BoundField HeaderText="DepartmentCategoryId" DataField="DepartmentCategoryId">
+                                                    <HeaderStyle CssClass="Display_None" />
+                                                    <ItemStyle CssClass="Display_None" />
+                                                </asp:BoundField>
+
+                                            </Columns>
+                                            <EditRowStyle BackColor="#999999" />
+                                            <FooterStyle CssClass="footer" />
+
+                                            <PagerStyle CssClass="pgr" BackColor="#284775" ForeColor="White" HorizontalAlign="Left" />
+
+                                            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                           <%-- <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                            <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                            <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                            <SortedDescendingHeaderStyle BackColor="#6F8DAE" />--%>
+
+                                        </asp:GridView>
+
+                                    </ContentTemplate>
+                                </asp:UpdatePanel>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                     <div>
+    <asp:Button ID="btnPopHide" runat="server" Style="display: none;" />
+    <asp:Panel ID="pnlInfo" runat="server" CssClass="ModelPopUpPanelBackGroundBig"
+        Style="display: none;">
+        <table width="100%" class="PopUpHeader">
+            <tr style="background-color:#1569C7; height: 25px; text-align: center; vertical-align: middle;">
+                <td>
+                    <div style="float:left; margin-left:5px;">
+                    &nbsp;<asp:Label ID="popUpTitle" runat="server" ForeColor="White" Font-Bold="true"
+                        Font-Size="12px" Text="File Contents"></asp:Label>
+                        </div>
+                    <div style="float:right; margin-right:5px;"><asp:ImageButton  ID="btnPopUpClose" ImageUrl="~/Images/Icon/CloseButton.png" ToolTip="Close" runat="server" OnClick="btnPopUpClose_Click"/></div>
+                </td>
+                
+            </tr>
+        </table>
+        <table width="100%" style="margin: 5px 0 5px 0;">
+            <tr>
+                <td><asp:Label ID="lblFileNo" Text="" runat="server" Visible="false"></asp:Label>
+                </td>
+            </tr>
+            <tr><td>
+                <div style="overflow:scroll; width:770px;">
+                <asp:GridView ID="GrdPopUp" runat="server" AllowPaging="True" AlternatingRowStyle-CssClass="alt"
+                                        AutoGenerateColumns="False" CssClass="mGridNew" GridLines="Both" PagerStyle-CssClass="pgr"
+                                        Width="98%" PageSize="10" OnPageIndexChanging="GrdPopUp_PageIndexChanging" TabIndex="16" AllowSorting="true" 
+                                        OnSorting="GrdPopUp_Sorting" OnRowDataBound="GrdPopUp_RowDataBound" DataKeyNames="FileUploadPath">
+
+                                        <RowStyle BackColor="white" Font-Bold="true" Font-Size="13px" Height="25px" ForeColor="#333333" />
+                                            <HeaderStyle Font-Size="15px" Height="30px" VerticalAlign="Middle" ForeColor="White" />
+
+
+                                            <AlternatingRowStyle BackColor="LightGray" CssClass="alt" ForeColor="Black" />
+                                      
+                                       <%-- <SortedAscendingHeaderStyle BackColor="Blue" ForeColor="White" />
+                                        <SortedAscendingCellStyle BackColor="LightBlue" />  
+                                        <SortedDescendingHeaderStyle BackColor="Green" ForeColor="White"/>
+                                        <SortedDescendingCellStyle BackColor="LightGreen"/>
+                                     --%>
+                                        <Columns>
+                                            
+                                            <asp:TemplateField HeaderText="Sr. No.">
+                                                <ItemTemplate>
+                                                    <asp:Label ID="LblSrNo" runat="server" Text='<%#Container.DataItemIndex+1 %>'></asp:Label>
+                                                </ItemTemplate>
+                                                <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" />
+                                                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" Wrap="False" Width="7%" />
+                                            </asp:TemplateField>
+
+                                            <asp:BoundField HeaderText="Date" DataField="DateDetails" SortExpression="DateDetails" >
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                  
+                                            <asp:BoundField HeaderText="Document No" DataField="DocumentNo" SortExpression="DocumentNo">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                            <asp:BoundField HeaderText="Document Subject" DataField="DocumentSubject" SortExpression="DocumentSubject">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false"/>
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                            <asp:BoundField HeaderText="Title Of Document" DataField="DocumentTitle" SortExpression="DocumentTitle">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle"  Wrap="false"/>
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                            <asp:BoundField HeaderText="Department" DataField="DepartmentCategory" SortExpression="DepartmentCategory">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                               <asp:BoundField HeaderText="Sub Department" DataField="DepartmentSubCategory" SortExpression="DepartmentSubCategory">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false"/>
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                               <asp:BoundField HeaderText="Sub Sub Department" DataField="DepartmentSubSubCategory" SortExpression="DepartmentSubSubCategory">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                           
+                                             <asp:BoundField HeaderText="Party" DataField="Party" SortExpression="Party">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle"  />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                             <asp:BoundField HeaderText="Property" DataField="PropertyName" SortExpression="PropertyName">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle"  />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                             <asp:BoundField HeaderText="File" DataField="FileNo" SortExpression="FileNo">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle"  Wrap="false"/>
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                             <asp:BoundField HeaderText="Room" DataField="Room" SortExpression="Room">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                             <asp:BoundField HeaderText="Aisle" DataField="Aisle" SortExpression="Aisle">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle"  Wrap="false"/>
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                             <asp:BoundField HeaderText="Rows No" DataField="RowNo" SortExpression="RowNo">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle"  Wrap="false"/>
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                             <asp:BoundField HeaderText="Cabinet No" DataField="CabinetNo" SortExpression="CabinetNo">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+                                             <asp:BoundField HeaderText="Shelf No" DataField="ShelfNo" SortExpression="ShelfNo">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                            <asp:BoundField HeaderText="File Path" DataField="FileUploadPath" >
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="false" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" />
+                                            </asp:BoundField>
+
+                                        <asp:TemplateField HeaderText="Preview">
+                                            <ItemTemplate>
+                                                <asp:UpdatePanel ID="UpLnkButtonPop" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:LinkButton ID="LblbtnUploadDocPop" runat="server" Text="Download" OnClick="LblbtnUploadDocPop_Click"
+                                                             CommandArgument='<%#((GridViewRow)Container).RowIndex %>' OnClientClick="aspnetForm.target ='_blank';"></asp:LinkButton>
+                                                    </ContentTemplate>
+                                                    <Triggers>
+                                                        <asp:PostBackTrigger ControlID="LblbtnUploadDocPop" />
+                                                    </Triggers>
+                                                </asp:UpdatePanel>
+                                            </ItemTemplate>
+
+                                            <HeaderStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <FooterStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                            <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
+                                        </asp:TemplateField>
+
+                                            <asp:BoundField HeaderText="DepartmentCategoryId" DataField="DepartmentCategoryId">
+                                                <HeaderStyle CssClass="Display_None" />
+                                                <ItemStyle CssClass="Display_None" />
+                                            </asp:BoundField>
+
+                                            <asp:BoundField HeaderText="DocumentTitleId" DataField="DocumentTitleId">
+                                                <HeaderStyle HorizontalAlign="Left" VerticalAlign="Middle" CssClass="Display_None" />
+                                                <ItemStyle HorizontalAlign="Left" VerticalAlign="Middle" Wrap="False" CssClass="Display_None" />
+                                            </asp:BoundField>
+
+                                        </Columns>
+                                        <PagerStyle CssClass="pgr" />
+                                        <AlternatingRowStyle CssClass="alt" />
+                                   
+                                    </asp:GridView>
+                    </div>
+                </td></tr>
+        </table>
+               
+    </asp:Panel>
+    <ajax:ModalPopupExtender ID="PopUpFiles" BackgroundCssClass="modalBackground" runat="server"
+        TargetControlID="btnPopHide" PopupControlID="pnlInfo">
+    </ajax:ModalPopupExtender>
+</div>
+            </fieldset>
+        </ContentTemplate>
+        <Triggers>
+              <asp:PostBackTrigger ControlID="imgExcel" />
+        </Triggers>
+    </asp:UpdatePanel>
+</asp:Content>
+
